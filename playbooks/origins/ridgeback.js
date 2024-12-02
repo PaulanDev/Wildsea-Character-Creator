@@ -1,7 +1,8 @@
 export const ridgebackPlaybook = {
   name: "Ridgeback",
   type: "Origin",
-  blurb: "",
+  blurb:
+    "Raised on mountaintop islands, battered and hardened by the elements. Ridgebacks are larger and much tougher than the average wildsea denizen.",
   edgesQS: ["Grace", "Iron", "Teeth"],
   skillsQS: ["Brace", "Break", "Cook", "Harvest", "Rattle", "Tend", "Vault"],
   languagesQS: ["Chthonic", "Brasstongue", "Old Hand"],
