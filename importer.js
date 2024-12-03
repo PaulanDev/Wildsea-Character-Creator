@@ -14,6 +14,7 @@ import { shanklingPlaybook } from "./playbooks/origins/shankling.js";
 import { spitbornPlaybook } from "./playbooks/origins/spit-born.js";
 import { alchemistPlaybook } from "./playbooks/posts/alchemist.js";
 import { charPlaybook } from "./playbooks/posts/char.js";
+import { corsairPlaybook } from "./playbooks/posts/corsair.js";
 
 export const PLAYBOOKS = [
   ardentPlaybook,
@@ -31,4 +32,5 @@ export const PLAYBOOKS = [
   spitbornPlaybook,
   alchemistPlaybook,
   charPlaybook,
+  corsairPlaybook,
 ];
