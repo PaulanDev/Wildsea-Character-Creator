@@ -1,4 +1,4 @@
-const shanklingPlaybook = {
+export const shanklingPlaybook = {
   name: "Shankling",
   type: "Origin",
   blurb:
