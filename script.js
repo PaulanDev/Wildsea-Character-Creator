@@ -1,8 +1,10 @@
 //HTML Declarations
 const BLOODLINECONTAINER = document.getElementById("bloodline-container");
 const ORIGINCONTAINER = document.getElementById("origin-container");
+const POSTCONTAINER = document.getElementById("post-container");
 const BLOODLINECHOICE = document.getElementById("bloodline-choice");
 const ORIGINCHOICE = document.getElementById("origin-choice");
+const POSTCHOICE = document.getElementById("post-choice");
 
 import { PLAYBOOKS } from "./importer.js";
 
@@ -28,6 +30,12 @@ const renderChoiceBtns = function () {
       );
     } else if (playbook.type == "Origin") {
       ORIGINCHOICE.innerHTML += choiceBtnTemplate(
+        playbook.name,
+        playbook.type,
+        playbook.blurb
+      );
+    } else if (playbook.type == "Post") {
+      POSTCHOICE.innerHTML += choiceBtnTemplate(
         playbook.name,
         playbook.type,
         playbook.blurb
@@ -67,6 +75,6 @@ const playbookChoiceBtns = document.getElementsByClassName(
     });
 
     clickedBtn.classList.toggle("selected-playbook");
-    let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id)
+    let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
   });
 });
