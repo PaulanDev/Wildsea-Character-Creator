@@ -9,6 +9,7 @@ import { tzelicraePlaybook } from "./playbooks/bloodlines/tzelicrae.js";
 import { ambercladPlaybook } from "./playbooks/origins/amberclad.js";
 import { anchoredPlaybook } from "./playbooks/origins/anchored.js";
 import { ridgebackPlaybook } from "./playbooks/origins/ridgeback.js";
+import { rootlessPlaybook } from "./playbooks/origins/rootless.js";
 
 export const PLAYBOOKS = [
   ardentPlaybook,
@@ -21,4 +22,5 @@ export const PLAYBOOKS = [
   ambercladPlaybook,
   anchoredPlaybook,
   ridgebackPlaybook,
+  rootlessPlaybook,
 ];
