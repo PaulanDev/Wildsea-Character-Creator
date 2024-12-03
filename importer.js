@@ -11,6 +11,7 @@ import { anchoredPlaybook } from "./playbooks/origins/anchored.js";
 import { ridgebackPlaybook } from "./playbooks/origins/ridgeback.js";
 import { rootlessPlaybook } from "./playbooks/origins/rootless.js";
 import { shanklingPlaybook } from "./playbooks/origins/shankling.js";
+import { spitbornPlaybook } from "./playbooks/origins/spit-born.js";
 
 export const PLAYBOOKS = [
   ardentPlaybook,
@@ -25,4 +26,5 @@ export const PLAYBOOKS = [
   ridgebackPlaybook,
   rootlessPlaybook,
   shanklingPlaybook,
+  spitbornPlaybook,
 ];
