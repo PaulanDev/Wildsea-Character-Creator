@@ -20,6 +20,7 @@ import { dredgerPlaybook } from "./playbooks/posts/dredger.js";
 import { hackerPlaybook } from "./playbooks/posts/hacker.js";
 import { horizoneerPlaybook } from "./playbooks/posts/horizoneer.js";
 import { hunterPlaybook } from "./playbooks/posts/hunter.js";
+import { mesmerPlaybook } from "./playbooks/posts/mesmer.js";
 
 export const PLAYBOOKS = [
   ardentPlaybook,
@@ -43,4 +44,5 @@ export const PLAYBOOKS = [
   hackerPlaybook,
   horizoneerPlaybook,
   hunterPlaybook,
+  mesmerPlaybook,
 ];
