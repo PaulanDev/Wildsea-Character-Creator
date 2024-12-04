@@ -21,6 +21,7 @@ import { hackerPlaybook } from "./playbooks/posts/hacker.js";
 import { horizoneerPlaybook } from "./playbooks/posts/horizoneer.js";
 import { hunterPlaybook } from "./playbooks/posts/hunter.js";
 import { mesmerPlaybook } from "./playbooks/posts/mesmer.js";
+import { navigatorPlaybook } from "./playbooks/posts/navigator.js";
 
 export const PLAYBOOKS = [
   ardentPlaybook,
@@ -45,4 +46,5 @@ export const PLAYBOOKS = [
   horizoneerPlaybook,
   hunterPlaybook,
   mesmerPlaybook,
+  navigatorPlaybook,
 ];
