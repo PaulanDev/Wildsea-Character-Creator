@@ -18,7 +18,7 @@ export const dredgerPlaybook = {
     salvage: ["Copper Rings", "Ancient Engine"],
     specimens: ["Soporific Sap", "Leviathan Claw"],
     whispers: ["A Risen Wreck"],
-    charts: ["An ancient Shipping Manifest"],
+    charts: ["An Ancient Shipping Manifest"],
   },
   drivesQS: [
     "Discover an untouched pre-verdant ruin",
