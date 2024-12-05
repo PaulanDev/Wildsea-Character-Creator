@@ -28,6 +28,7 @@ import { slingerPlaybook } from "./playbooks/posts/slinger.js";
 import { steepPlaybook } from "./playbooks/posts/steep.js";
 import { surgeonPlaybook } from "./playbooks/posts/surgeon.js";
 import { tempestPlaybook } from "./playbooks/posts/tempest.js";
+import { wordbearerPlaybook } from "./playbooks/posts/wordbearer.js";
 
 export const PLAYBOOKS = [
   ardentPlaybook,
@@ -59,4 +60,5 @@ export const PLAYBOOKS = [
   steepPlaybook,
   surgeonPlaybook,
   tempestPlaybook,
+  wordbearerPlaybook,
 ];
