@@ -25,6 +25,7 @@ import { navigatorPlaybook } from "./playbooks/posts/navigator.js";
 import { rattlehandPlaybook } from "./playbooks/posts/rattlehand.js";
 import { screwPlaybook } from "./playbooks/posts/screw.js";
 import { slingerPlaybook } from "./playbooks/posts/slinger.js";
+import { steepPlaybook } from "./playbooks/posts/steep.js";
 
 export const PLAYBOOKS = [
   ardentPlaybook,
@@ -53,4 +54,5 @@ export const PLAYBOOKS = [
   rattlehandPlaybook,
   screwPlaybook,
   slingerPlaybook,
+  steepPlaybook,
 ];
