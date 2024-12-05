@@ -1,5 +1,5 @@
 export const tempestPlaybook = {
-  name: "Template",
+  name: "Tempest",
   type: "Post",
   blurb:
     "Those that have taste the storm, and come back changed - destructive dervishes of thunder and lightning.",
