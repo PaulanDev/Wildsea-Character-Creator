@@ -5,6 +5,8 @@ const POSTCONTAINER = document.getElementById("post-container");
 const BLOODLINECHOICE = document.getElementById("bloodline-choice");
 const ORIGINCHOICE = document.getElementById("origin-choice");
 const POSTCHOICE = document.getElementById("post-choice");
+const BLOODLINEEDGES = document.getElementById("bloodline-edges");
+const BLOODLINEASPECTS = document.getElementById("bloodline-aspects");
 
 import { PLAYBOOKS } from "./importer.js";
 
@@ -76,5 +78,13 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     clickedBtn.classList.toggle("selected-playbook");
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
+
+    if (selectedPlaybook.type == "Bloodline") {
+      BLOODLINEEDGES.innerHTML = "";
+      BLOODLINEASPECTS.innerHTML != "";
+      selectedPlaybook.edgesQS.forEach((edge) => {
+        BLOODLINEEDGES.innerHTML += `<div id='Bloodline-edge-${edge}' class='Bloodline-edge'>${edge}</div>`;
+      });
+    }
   });
 });
