@@ -12,17 +12,26 @@ header {
 .btn-spread {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 1em 0.5em;
   justify-content: space-around;
 }
 
 .playbook-choice-btn {
-  width: 250px;
+  width: 220px;
   border: 1px solid black;
   border-radius: 10px;
   user-select: none;
+  padding: 0 1em;
 }
 
 .selected-playbook {
   background-color: red;
+}
+
+.Bloodline-edge {
+  width: 220px;
+  border: 1px solid black;
+  border-radius: 10px;
+  user-select: none;
+  padding: 0 1em;
 }
