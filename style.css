@@ -3,6 +3,10 @@
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
+
 /*ELEMENTS*/
 header {
   font-size: 3em;
