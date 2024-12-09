@@ -5,6 +5,7 @@ const POSTCONTAINER = document.getElementById("post-container");
 const BLOODLINECHOICE = document.getElementById("bloodline-choice");
 const ORIGINCHOICE = document.getElementById("origin-choice");
 const POSTCHOICE = document.getElementById("post-choice");
+const BLOODLINESELECTABLES = document.getElementById("bloodline-selectables");
 const BLOODLINEEDGES = document.getElementById("bloodline-edges");
 const BLOODLINEASPECTS = document.getElementById("bloodline-aspects");
 
@@ -104,6 +105,14 @@ const playbookChoiceBtns = document.getElementsByClassName(
     });
 
     clickedBtn.classList.toggle("selected-playbook");
+
+    //Hide Bloodline-selectables element is no playbooks are selected.
+    if (btn.classList.contains("selected-playbook")) {
+      BLOODLINESELECTABLES.classList.remove("hidden");
+    } else {
+      BLOODLINESELECTABLES.classList.add("hidden");
+    }
+
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
     if (selectedPlaybook.type == "Bloodline") {
