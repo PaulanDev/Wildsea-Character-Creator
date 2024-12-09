@@ -10,6 +10,33 @@ const BLOODLINEASPECTS = document.getElementById("bloodline-aspects");
 
 import { PLAYBOOKS } from "./importer.js";
 
+let qsCharacterHolder = {
+  bloodline: {
+    edge: "",
+    skills: {},
+    resources: [],
+    drive: "",
+    mire: "",
+    aspects: [],
+  },
+  origin: {
+    edge: "",
+    skills: {},
+    resources: [],
+    drive: "",
+    mire: "",
+    aspects: [],
+  },
+  post: {
+    edge: "",
+    skills: {},
+    resources: [],
+    drive: "",
+    mire: "",
+    aspects: [],
+  },
+};
+
 //Playbook choice template
 const choiceBtnTemplate = (name, type, blurb) => {
   return `<div id='${name}' class='${type.toLowerCase()}-choice-btn playbook-choice-btn'>
@@ -81,7 +108,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     if (selectedPlaybook.type == "Bloodline") {
       BLOODLINEEDGES.innerHTML = "";
-      BLOODLINEASPECTS.innerHTML != "";
+      BLOODLINEASPECTS.innerHTML = "";
       selectedPlaybook.edgesQS.forEach((edge) => {
         BLOODLINEEDGES.innerHTML += `<div id='Bloodline-edge-${edge}' class='Bloodline-edge'>${edge}</div>`;
       });
