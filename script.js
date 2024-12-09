@@ -107,7 +107,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
     clickedBtn.classList.toggle("selected-playbook");
 
     //Hide Bloodline-selectables element is no playbooks are selected.
-    if (btn.classList.contains("selected-playbook")) {
+    if (btn.matches(".bloodline-choice-btn.selected-playbook")) {
       BLOODLINESELECTABLES.classList.remove("hidden");
     } else {
       BLOODLINESELECTABLES.classList.add("hidden");
