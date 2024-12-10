@@ -33,7 +33,15 @@ header {
 }
 
 .Bloodline-edge {
-  width: 220px;
+  width: 230px;
+  border: 1px solid black;
+  border-radius: 10px;
+  user-select: none;
+  padding: 0 1em;
+}
+
+.Bloodline-aspect {
+  width: 230px;
   border: 1px solid black;
   border-radius: 10px;
   user-select: none;
