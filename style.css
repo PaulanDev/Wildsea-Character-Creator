@@ -32,7 +32,8 @@ header {
   background-color: red;
 }
 
-.Bloodline-edge {
+.Bloodline-edge,
+.Origin-edge {
   width: 230px;
   border: 1px solid black;
   border-radius: 10px;
@@ -40,10 +41,19 @@ header {
   padding: 0 1em;
 }
 
-.Bloodline-aspect {
+.Bloodline-aspect,
+.Origin-aspect {
   width: 230px;
   border: 1px solid black;
   border-radius: 10px;
   user-select: none;
   padding: 0 1em;
+}
+
+#bloodline-selectables,
+#origin-selectables {
+  margin: 20px 80px;
+  padding: 10px;
+  border: 2px solid gray;
+  border-radius: 15px;
 }
