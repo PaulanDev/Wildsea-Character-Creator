@@ -33,7 +33,8 @@ header {
 }
 
 .Bloodline-edge,
-.Origin-edge {
+.Origin-edge,
+.Post-edge {
   width: 230px;
   border: 1px solid black;
   border-radius: 10px;
@@ -42,7 +43,8 @@ header {
 }
 
 .Bloodline-aspect,
-.Origin-aspect {
+.Origin-aspect,
+.Post-aspect {
   width: 230px;
   border: 1px solid black;
   border-radius: 10px;
@@ -51,7 +53,8 @@ header {
 }
 
 #bloodline-selectables,
-#origin-selectables {
+#origin-selectables,
+#post-selectables {
   margin: 20px 80px;
   padding: 10px;
   border: 2px solid gray;
