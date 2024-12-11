@@ -2,12 +2,18 @@
 const BLOODLINECONTAINER = document.getElementById("bloodline-container");
 const ORIGINCONTAINER = document.getElementById("origin-container");
 const POSTCONTAINER = document.getElementById("post-container");
+
 const BLOODLINECHOICE = document.getElementById("bloodline-choice");
 const ORIGINCHOICE = document.getElementById("origin-choice");
 const POSTCHOICE = document.getElementById("post-choice");
+
 const BLOODLINESELECTABLES = document.getElementById("bloodline-selectables");
 const BLOODLINEEDGESBTNS = document.getElementById("bloodline-edges-btns");
 const BLOODLINEASPECTSBTNS = document.getElementById("bloodline-aspects-btns");
+
+const ORIGINSELECTABLES = document.getElementById("origin-selectables");
+const ORIGINEDGESBTNS = document.getElementById("origin-edges-btns");
+const ORIGINASPECTBTNS = document.getElementById("origin-aspects-btns");
 
 import { PLAYBOOKS } from "./importer.js";
 import { edgesInfo } from "./playbooks/edges.js";
@@ -136,6 +142,16 @@ const playbookChoiceBtns = document.getElementsByClassName(
       }
     }
 
+    //Hide Origin-selectables element is no playbooks are selected.
+    if (btn.classList.contains("origin-choice-btn")) {
+      if (btn.classList.contains("selected-playbook")) {
+        ORIGINSELECTABLES.classList.remove("hidden");
+      } else {
+        ORIGINSELECTABLES.classList.add("hidden");
+        resetCharacterPlaybook(qsCharacterHolder.origin);
+      }
+    }
+
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
     if (selectedPlaybook.type == "Bloodline") {
@@ -154,6 +170,27 @@ const playbookChoiceBtns = document.getElementsByClassName(
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
         BLOODLINEASPECTSBTNS.innerHTML += `<div class='Bloodline-aspect'>
+        <h3>${aspect.name}</h3>
+        <p>${aspect.length} Track ${aspect.type}</p>
+        <p>${aspect.description}</p>
+        </div>`;
+      });
+    } else if (selectedPlaybook.type == "Origin") {
+      ORIGINEDGESBTNS.innerHTML = "";
+      ORIGINASPECTBTNS.innerHTML = "";
+      qsCharacterHolder.origin.name = selectedPlaybook.name;
+      //Generate Edge buttons
+      selectedPlaybook.edgesQS.forEach((edge) => {
+        ORIGINEDGESBTNS.innerHTML += `<div id='Origin-edge-${edge}' class='Origin-edge'>
+        <h3>${edge}</h3>
+        <p>${capitalize(
+          edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
+        )}</p>
+        </div>`;
+      });
+      //Generate Aspect Buttons
+      selectedPlaybook.aspects.forEach((aspect) => {
+        ORIGINASPECTBTNS.innerHTML += `<div class='Origin-aspect'>
         <h3>${aspect.name}</h3>
         <p>${aspect.length} Track ${aspect.type}</p>
         <p>${aspect.description}</p>
