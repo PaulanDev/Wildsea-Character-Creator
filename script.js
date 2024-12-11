@@ -127,12 +127,13 @@ const playbookChoiceBtns = document.getElementsByClassName(
     clickedBtn.classList.toggle("selected-playbook");
 
     //Hide Bloodline-selectables element is no playbooks are selected.
-    //KNOWN BUG: Clicking on an origin/post button hides bloodline selections.
-    if (btn.matches(".bloodline-choice-btn.selected-playbook")) {
-      BLOODLINESELECTABLES.classList.remove("hidden");
-    } else {
-      BLOODLINESELECTABLES.classList.add("hidden");
-      resetCharacterPlaybook(qsCharacterHolder.bloodline);
+    if (btn.classList.contains("bloodline-choice-btn")) {
+      if (btn.classList.contains("selected-playbook")) {
+        BLOODLINESELECTABLES.classList.remove("hidden");
+      } else {
+        BLOODLINESELECTABLES.classList.add("hidden");
+        resetCharacterPlaybook(qsCharacterHolder.bloodline);
+      }
     }
 
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
