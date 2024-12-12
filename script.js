@@ -67,8 +67,8 @@ const resetCharacterPlaybook = (item) => {
   item["aspects"] = [];
 };
 
-//Playbook choice template
-const choiceBtnTemplate = (name, type, blurb) => {
+//Playbook choice button template
+const playbookBtnTemplate = (name, type, blurb) => {
   return `<div id='${name}' class='${type.toLowerCase()}-choice-btn playbook-choice-btn'>
       <h2 class='text-center'>
       ${name}
@@ -82,19 +82,19 @@ const choiceBtnTemplate = (name, type, blurb) => {
 const renderChoiceBtns = function () {
   for (const playbook of PLAYBOOKS) {
     if (playbook.type == "Bloodline") {
-      BLOODLINECHOICE.innerHTML += choiceBtnTemplate(
+      BLOODLINECHOICE.innerHTML += playbookBtnTemplate(
         playbook.name,
         playbook.type,
         playbook.blurb
       );
     } else if (playbook.type == "Origin") {
-      ORIGINCHOICE.innerHTML += choiceBtnTemplate(
+      ORIGINCHOICE.innerHTML += playbookBtnTemplate(
         playbook.name,
         playbook.type,
         playbook.blurb
       );
     } else if (playbook.type == "Post") {
-      POSTCHOICE.innerHTML += choiceBtnTemplate(
+      POSTCHOICE.innerHTML += playbookBtnTemplate(
         playbook.name,
         playbook.type,
         playbook.blurb
