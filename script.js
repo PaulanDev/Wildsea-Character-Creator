@@ -103,6 +103,18 @@ const renderChoiceBtns = function () {
   }
 };
 
+//Toggles the visibility of element el based on class cl of target t.
+const hideIfNotSelected = (t, cl, el, pb) => {
+  if (t.classList.contains(cl)) {
+    if (t.classList.contains("selected-playbook")) {
+      el.classList.remove("hidden");
+    } else {
+      el.classList.add("hidden");
+      resetCharacterPlaybook(qsCharacterHolder[pb]);
+    }
+  }
+};
+
 //Call renderChoiceBtns before assigning button functionality
 renderChoiceBtns();
 
@@ -136,35 +148,19 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     clickedBtn.classList.toggle("selected-playbook");
 
-    //Hide Bloodline-selectables element is no playbooks are selected.
-    if (btn.classList.contains("bloodline-choice-btn")) {
-      if (btn.classList.contains("selected-playbook")) {
-        BLOODLINESELECTABLES.classList.remove("hidden");
-      } else {
-        BLOODLINESELECTABLES.classList.add("hidden");
-        resetCharacterPlaybook(qsCharacterHolder.bloodline);
-      }
-    }
+    //Hide Bloodline Selectables if no playbook is selected
+    hideIfNotSelected(
+      btn,
+      "bloodline-choice-btn",
+      BLOODLINESELECTABLES,
+      "bloodline"
+    );
 
-    //Hide Origin-selectables element is no playbooks are selected.
-    if (btn.classList.contains("origin-choice-btn")) {
-      if (btn.classList.contains("selected-playbook")) {
-        ORIGINSELECTABLES.classList.remove("hidden");
-      } else {
-        ORIGINSELECTABLES.classList.add("hidden");
-        resetCharacterPlaybook(qsCharacterHolder.origin);
-      }
-    }
+    //Hide Origin Selectables if no playbook is selected
+    hideIfNotSelected(btn, "origin-choice-btn", ORIGINSELECTABLES, "origin");
 
-    //Hide Post-selectables element is no playbooks are selected.
-    if (btn.classList.contains("post-choice-btn")) {
-      if (btn.classList.contains("selected-playbook")) {
-        POSTSELECTABLES.classList.remove("hidden");
-      } else {
-        POSTSELECTABLES.classList.add("hidden");
-        resetCharacterPlaybook(qsCharacterHolder.post);
-      }
-    }
+    //Hide Post Selectables if no playbook is selected
+    hideIfNotSelected(btn, "post-choice-btn", POSTSELECTABLES, "post");
 
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
