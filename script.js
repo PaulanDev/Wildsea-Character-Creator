@@ -10,6 +10,7 @@ const POSTCHOICE = document.getElementById("post-choice");
 const BLOODLINESELECTABLES = document.getElementById("bloodline-selectables");
 const BLOODLINEEDGESBTNS = document.getElementById("bloodline-edges-btns");
 const BLOODLINEASPECTSBTNS = document.getElementById("bloodline-aspects-btns");
+const BLOODLINESKILLSBTNS = document.getElementById("bloodline-skills-btns");
 
 const ORIGINSELECTABLES = document.getElementById("origin-selectables");
 const ORIGINEDGESBTNS = document.getElementById("origin-edges-btns");
@@ -167,6 +168,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
     if (selectedPlaybook.type == "Bloodline") {
       BLOODLINEEDGESBTNS.innerHTML = "";
       BLOODLINEASPECTSBTNS.innerHTML = "";
+      BLOODLINESKILLSBTNS.innerHTML = "";
       qsCharacterHolder.bloodline.name = selectedPlaybook.name;
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
@@ -185,6 +187,17 @@ const playbookChoiceBtns = document.getElementsByClassName(
         <p>${aspect.description}</p>
         </div>`;
       });
+      //Generate Skill Buttons
+      [...selectedPlaybook.skillsQS, ...selectedPlaybook.languagesQS].forEach(
+        (skill) => {
+          BLOODLINESKILLSBTNS.innerHTML += `<div id='${skill}-skill-counter' class='skill-counter'>
+          <div class="skill-name">${capitalize(skill)}</div>
+          <div class="skill-val-dec-btn">-</div>
+          <div class="skill-value" id='${skill}-points'>0</div>
+          <div class="skill-val-inc-btn">+</div>
+          </div>`;
+        }
+      );
     } else if (selectedPlaybook.type == "Origin") {
       ORIGINEDGESBTNS.innerHTML = "";
       ORIGINASPECTBTNS.innerHTML = "";
