@@ -105,9 +105,9 @@ const renderChoiceBtns = function () {
 };
 
 //Toggles the visibility of element el based on class cl of target t.
-const hideIfNotSelected = (t, cl, el, pb) => {
-  if (t.classList.contains(cl)) {
-    if (t.classList.contains("selected-playbook")) {
+const hideIfNotSelected = (target, cl, el, pb) => {
+  if (target.classList.contains(cl)) {
+    if (target.classList.contains("selected-playbook")) {
       el.classList.remove("hidden");
     } else {
       el.classList.add("hidden");
