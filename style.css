@@ -22,7 +22,7 @@ header {
 
 .playbook-choice-btn {
   width: 220px;
-  border: 1px solid black;
+  border: 3px solid black;
   border-radius: 10px;
   user-select: none;
   padding: 0 1em;
@@ -36,7 +36,7 @@ header {
 .Origin-edge,
 .Post-edge {
   width: 230px;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   user-select: none;
   padding: 0 1em;
@@ -46,7 +46,7 @@ header {
 .Origin-aspect,
 .Post-aspect {
   width: 230px;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   user-select: none;
   padding: 0 1em;
@@ -59,4 +59,63 @@ header {
   padding: 10px;
   border: 2px solid gray;
   border-radius: 15px;
+}
+
+/*Skill specific styles*/
+.skill-name {
+  grid-area: name;
+  border-bottom: 1px solid black;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.skill-val-dec-btn {
+  grid-area: minus;
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.skill-value {
+  grid-area: counter;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.skill-val-inc-btn {
+  grid-area: plus;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.skill-val-dec-btn:hover {
+  background-color: red;
+  cursor: pointer;
+  user-select: none;
+}
+
+.skill-val-inc-btn:hover {
+  background-color: green;
+  cursor: pointer;
+  user-select: none;
+}
+
+.skill-counter {
+  display: grid;
+  grid-template-areas:
+    "name name name name name"
+    "minus minus counter plus plus"
+    "minus minus counter plus plus"
+    "minus minus counter plus plus"
+    "minus minus counter plus plus"
+    "minus minus counter plus plus"
+    "minus minus counter plus plus";
+  border: 2px solid black;
+  width: 120px;
+  height: 80px;
+  border-radius: 10px;
 }
