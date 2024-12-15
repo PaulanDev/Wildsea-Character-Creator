@@ -7,16 +7,16 @@ const BLOODLINECHOICE = document.getElementById("bloodline-choice");
 const ORIGINCHOICE = document.getElementById("origin-choice");
 const POSTCHOICE = document.getElementById("post-choice");
 
-const BLOODLINESELECTABLES = document.getElementById("bloodline-selectables");
+const BLOODLINEOPTIONS = document.getElementById("bloodline-options");
 const BLOODLINEEDGESBTNS = document.getElementById("bloodline-edges-btns");
 const BLOODLINEASPECTSBTNS = document.getElementById("bloodline-aspects-btns");
 const BLOODLINESKILLSBTNS = document.getElementById("bloodline-skills-btns");
 
-const ORIGINSELECTABLES = document.getElementById("origin-selectables");
+const ORIGINOPTIONS = document.getElementById("origin-options");
 const ORIGINEDGESBTNS = document.getElementById("origin-edges-btns");
 const ORIGINASPECTBTNS = document.getElementById("origin-aspects-btns");
 
-const POSTSELECTABLES = document.getElementById("post-selectables");
+const POSTOPTIONS = document.getElementById("post-options");
 const POSTEDGESBTNS = document.getElementById("post-edges-btns");
 const POSTASPECTBTNS = document.getElementById("post-aspects-btns");
 
@@ -105,7 +105,7 @@ const renderChoiceBtns = function () {
 };
 
 //Toggles the visibility of element el based on class cl of target t.
-const hideIfNotSelected = (target, cl, el, pb) => {
+const hideOptionsIfNotSelected = (target, cl, el, pb) => {
   if (target.classList.contains(cl)) {
     if (target.classList.contains("selected-playbook")) {
       el.classList.remove("hidden");
@@ -149,19 +149,19 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     clickedBtn.classList.toggle("selected-playbook");
 
-    //Hide Bloodline Selectables if no playbook is selected
-    hideIfNotSelected(
+    //Hide Bloodline Options if no playbook is selected
+    hideOptionsIfNotSelected(
       btn,
       "bloodline-choice-btn",
-      BLOODLINESELECTABLES,
+      BLOODLINEOPTIONS,
       "bloodline"
     );
 
-    //Hide Origin Selectables if no playbook is selected
-    hideIfNotSelected(btn, "origin-choice-btn", ORIGINSELECTABLES, "origin");
+    //Hide Origin Options if no playbook is selected
+    hideOptionsIfNotSelected(btn, "origin-choice-btn", ORIGINOPTIONS, "origin");
 
-    //Hide Post Selectables if no playbook is selected
-    hideIfNotSelected(btn, "post-choice-btn", POSTSELECTABLES, "post");
+    //Hide Post Options if no playbook is selected
+    hideOptionsIfNotSelected(btn, "post-choice-btn", POSTOPTIONS, "post");
 
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
