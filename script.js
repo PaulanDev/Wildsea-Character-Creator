@@ -11,6 +11,11 @@ const BLOODLINEOPTIONS = document.getElementById("bloodline-options");
 const BLOODLINEEDGESBTNS = document.getElementById("bloodline-edges-btns");
 const BLOODLINEASPECTSBTNS = document.getElementById("bloodline-aspects-btns");
 const BLOODLINESKILLSBTNS = document.getElementById("bloodline-skills-btns");
+const BLOODLINEOPTIONDIVS = [
+  BLOODLINEEDGESBTNS,
+  BLOODLINEASPECTSBTNS,
+  BLOODLINESKILLSBTNS,
+];
 
 const ORIGINOPTIONS = document.getElementById("origin-options");
 const ORIGINEDGESBTNS = document.getElementById("origin-edges-btns");
@@ -184,9 +189,11 @@ const playbookChoiceBtns = document.getElementsByClassName(
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
     if (selectedPlaybook.type == "Bloodline") {
-      BLOODLINEEDGESBTNS.innerHTML = "";
-      BLOODLINEASPECTSBTNS.innerHTML = "";
-      BLOODLINESKILLSBTNS.innerHTML = "";
+      //Clear out each div that holds options on click
+      BLOODLINEOPTIONDIVS.forEach((div) => {
+        div.innerHTML = "";
+      });
+      //Assign bloodline name to qsCharacterHolder
       qsCharacterHolder.bloodline.name = selectedPlaybook.name;
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
