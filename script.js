@@ -85,7 +85,7 @@ const playbookBtnTemplate = (name, type, blurb) => {
 };
 
 const edgeBtnTemplate = (edge, pb) => {
-  return `<div id='${pb}-edge-${edge}' class='${pb}-edge'>
+  return `<div id='${pb}-edge-${edge}' class='${pb}-edge edges'>
     <h3>${edge}</h3>
     <p>${capitalize(
       edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
@@ -99,6 +99,10 @@ const aspectBtnTemplate = (aspect, type) => {
         <p>${aspect["length"]} Track ${aspect["type"]}</p>
         <p>${aspect["description"]}</p>
         </div>`;
+};
+
+const btnArrayOf = (pb, option) => {
+  return [...document.getElementsByClassName(`${pb}-${option}`)];
 };
 
 //Create playbook choice buttons
@@ -222,7 +226,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       });
 
       //Add clickability to Edge buttons
-      [...document.getElementsByClassName("Bloodline-edge")].forEach((btn2) => {
+      btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
         btn2.addEventListener("click", () => {
           edgeButtonFunction(btn2, selectedPlaybook.type);
         });
@@ -250,6 +254,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       ORIGINEDGESBTNS.innerHTML = "";
       ORIGINASPECTBTNS.innerHTML = "";
       qsCharacterHolder.origin.name = selectedPlaybook.name;
+
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
         ORIGINEDGESBTNS.innerHTML += edgeBtnTemplate(
@@ -257,6 +262,14 @@ const playbookChoiceBtns = document.getElementsByClassName(
           selectedPlaybook.type
         );
       });
+
+      //Add clickability to Edge buttons
+      btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
+        btn2.addEventListener("click", () => {
+          edgeButtonFunction(btn2, selectedPlaybook.type);
+        });
+      });
+
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
         ORIGINASPECTBTNS.innerHTML += aspectBtnTemplate(
