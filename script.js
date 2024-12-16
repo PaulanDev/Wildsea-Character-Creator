@@ -74,7 +74,6 @@ const resetCharacterPlaybook = (item) => {
 };
 
 /* HTML TEMPLATES */
-//Playbook choice button template
 const playbookBtnTemplate = (name, type, blurb) => {
   return `<div id='${name}' class='${type.toLowerCase()}-choice-btn playbook-choice-btn'>
       <h2 class='text-center'>
@@ -92,6 +91,14 @@ const edgeBtnTemplate = (edge, pb) => {
       edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
     )}</p>
     </div>`;
+};
+
+const aspectBtnTemplate = (aspect, type) => {
+  return `<div class='${type}-aspect'>
+        <h3>${aspect["name"]}</h3>
+        <p>${aspect["length"]} Track ${aspect["type"]}</p>
+        <p>${aspect["description"]}</p>
+        </div>`;
 };
 
 //Create playbook choice buttons
@@ -204,11 +211,10 @@ const playbookChoiceBtns = document.getElementsByClassName(
       });
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
-        BLOODLINEASPECTSBTNS.innerHTML += `<div class='Bloodline-aspect'>
-        <h3>${aspect.name}</h3>
-        <p>${aspect.length} Track ${aspect.type}</p>
-        <p>${aspect.description}</p>
-        </div>`;
+        BLOODLINEASPECTSBTNS.innerHTML += aspectBtnTemplate(
+          aspect,
+          selectedPlaybook.type
+        );
       });
       //Generate Skill Buttons
       [...selectedPlaybook.skillsQS, ...selectedPlaybook.languagesQS].forEach(
@@ -234,11 +240,10 @@ const playbookChoiceBtns = document.getElementsByClassName(
       });
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
-        ORIGINASPECTBTNS.innerHTML += `<div class='Origin-aspect'>
-        <h3>${aspect.name}</h3>
-        <p>${aspect.length} Track ${aspect.type}</p>
-        <p>${aspect.description}</p>
-        </div>`;
+        ORIGINASPECTBTNS.innerHTML += aspectBtnTemplate(
+          aspect,
+          selectedPlaybook.type
+        );
       });
     } else if (selectedPlaybook.type == "Post") {
       POSTEDGESBTNS.innerHTML = "";
@@ -250,11 +255,10 @@ const playbookChoiceBtns = document.getElementsByClassName(
       });
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
-        POSTASPECTBTNS.innerHTML += `<div class='Post-aspect'>
-        <h3>${aspect.name}</h3>
-        <p>${aspect.length} Track ${aspect.type}</p>
-        <p>${aspect.description}</p>
-        </div>`;
+        POSTASPECTBTNS.innerHTML += aspectBtnTemplate(
+          aspect,
+          selectedPlaybook.type
+        );
       });
     }
     console.log(qsCharacterHolder);
