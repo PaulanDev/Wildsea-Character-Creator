@@ -116,6 +116,19 @@ const hideOptionsIfNotSelected = (target, cl, el, pb) => {
   }
 };
 
+//Unselect a button of the same class as the clicked button
+const deselectUnusedButton = (arr, cl, target) => {
+  [...arr].forEach((item) => {
+    if (
+      item.classList.contains(cl) &&
+      item.classList.contains(target.classList[0]) &&
+      item.id !== target.id
+    ) {
+      item.classList.remove(cl);
+    }
+  });
+};
+
 //Call renderChoiceBtns before assigning button functionality
 renderChoiceBtns();
 
@@ -135,17 +148,12 @@ const playbookChoiceBtns = document.getElementsByClassName(
       clickedBtn = event.target.parentElement;
     }
 
-    //Unselect a button of the same type as the clicked button
-    [...playbookChoiceBtns].forEach((item) => {
-      if (
-        item.classList.contains("selected-playbook") &&
-        item.classList.contains(clickedBtn.classList[0]) &&
-        item.id !== clickedBtn.id
-      ) {
-        item.classList.remove("selected-playbook");
-        resetCharacterPlaybook(qsCharacterHolder.bloodline);
-      }
-    });
+    //Remove 'selected-playbook' class from a button of same type as clicked button
+    deselectUnusedButton(
+      [...playbookChoiceBtns],
+      "selected-playbook",
+      clickedBtn
+    );
 
     clickedBtn.classList.toggle("selected-playbook");
 
