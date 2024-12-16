@@ -32,6 +32,10 @@ header {
   background-color: red;
 }
 
+.selected-edge {
+  background-color: turquoise;
+}
+
 .Bloodline-edge,
 .Origin-edge,
 .Post-edge {
