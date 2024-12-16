@@ -68,6 +68,7 @@ const resetCharacterPlaybook = (item) => {
   item["aspects"] = [];
 };
 
+/* HTML TEMPLATES */
 //Playbook choice button template
 const playbookBtnTemplate = (name, type, blurb) => {
   return `<div id='${name}' class='${type.toLowerCase()}-choice-btn playbook-choice-btn'>
@@ -77,6 +78,15 @@ const playbookBtnTemplate = (name, type, blurb) => {
       <p class='text-center'>
       ${blurb}
       </p></div>`;
+};
+
+const edgeBtnTemplate = (edge, pb) => {
+  return `<div id='${pb}-edge-${edge}' class='${pb}-edge'>
+    <h3>${edge}</h3>
+    <p>${capitalize(
+      edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
+    )}</p>
+    </div>`;
 };
 
 //Create playbook choice buttons
@@ -180,12 +190,10 @@ const playbookChoiceBtns = document.getElementsByClassName(
       qsCharacterHolder.bloodline.name = selectedPlaybook.name;
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
-        BLOODLINEEDGESBTNS.innerHTML += `<div id='Bloodline-edge-${edge}' class='Bloodline-edge'>
-        <h3>${edge}</h3>
-        <p>${capitalize(
-          edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
-        )}</p>
-        </div>`;
+        BLOODLINEEDGESBTNS.innerHTML += edgeBtnTemplate(
+          edge,
+          selectedPlaybook.type
+        );
       });
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
@@ -212,12 +220,10 @@ const playbookChoiceBtns = document.getElementsByClassName(
       qsCharacterHolder.origin.name = selectedPlaybook.name;
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
-        ORIGINEDGESBTNS.innerHTML += `<div id='Origin-edge-${edge}' class='Origin-edge'>
-        <h3>${edge}</h3>
-        <p>${capitalize(
-          edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
-        )}</p>
-        </div>`;
+        ORIGINEDGESBTNS.innerHTML += edgeBtnTemplate(
+          edge,
+          selectedPlaybook.type
+        );
       });
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
@@ -233,12 +239,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       qsCharacterHolder.post.name = selectedPlaybook.name;
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
-        POSTEDGESBTNS.innerHTML += `<div id='Post-edge-${edge}' class='Post-edge'>
-        <h3>${edge}</h3>
-        <p>${capitalize(
-          edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
-        )}</p>
-        </div>`;
+        POSTEDGESBTNS.innerHTML += edgeBtnTemplate(edge, selectedPlaybook.type);
       });
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
