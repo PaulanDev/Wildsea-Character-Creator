@@ -52,9 +52,9 @@ header {
   padding: 0 1em;
 }
 
-#bloodline-selectables,
-#origin-selectables,
-#post-selectables {
+#bloodline-options,
+#origin-options,
+#post-options {
   margin: 20px 80px;
   padding: 10px;
   border: 2px solid gray;
