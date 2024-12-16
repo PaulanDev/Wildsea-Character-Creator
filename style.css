@@ -41,9 +41,7 @@ header {
   color: beige;
 }
 
-.Bloodline-edge,
-.Origin-edge,
-.Post-edge {
+.edges {
   width: 230px;
   border: 2px solid black;
   border-radius: 10px;
