@@ -209,6 +209,18 @@ const playbookChoiceBtns = document.getElementsByClassName(
           selectedPlaybook.type
         );
       });
+      //Add clickability to Edge buttons
+      [...document.getElementsByClassName("Bloodline-edge")].forEach((btn2) => {
+        btn2.addEventListener("click", (ev) => {
+          qsCharacterHolder.bloodline.edge = btn2.id.split("-")[2];
+          btn2.classList.toggle("selected-edge");
+          deselectUnusedButton(
+            [...document.getElementsByClassName("Bloodline-edge")],
+            "selected-edge",
+            btn2
+          );
+        });
+      });
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
         BLOODLINEASPECTSBTNS.innerHTML += aspectBtnTemplate(
