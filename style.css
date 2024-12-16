@@ -36,6 +36,11 @@ header {
   background-color: turquoise;
 }
 
+.locked-edge {
+  background-color: darkslategray;
+  color: beige;
+}
+
 .Bloodline-edge,
 .Origin-edge,
 .Post-edge {
