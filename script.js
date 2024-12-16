@@ -151,6 +151,17 @@ const deselectUnusedButton = (arr, cl, target) => {
   });
 };
 
+//Option Functionality
+const edgeButtonFunction = (target, type) => {
+  qsCharacterHolder[type.toLowerCase()].edge = target.id.split("-")[2];
+  target.classList.toggle("selected-edge");
+  deselectUnusedButton(
+    [...document.getElementsByClassName(`${type}-edge`)],
+    "selected-edge",
+    target
+  );
+};
+
 //Call renderChoiceBtns before assigning button functionality
 renderChoiceBtns();
 
@@ -209,18 +220,14 @@ const playbookChoiceBtns = document.getElementsByClassName(
           selectedPlaybook.type
         );
       });
+
       //Add clickability to Edge buttons
       [...document.getElementsByClassName("Bloodline-edge")].forEach((btn2) => {
-        btn2.addEventListener("click", (ev) => {
-          qsCharacterHolder.bloodline.edge = btn2.id.split("-")[2];
-          btn2.classList.toggle("selected-edge");
-          deselectUnusedButton(
-            [...document.getElementsByClassName("Bloodline-edge")],
-            "selected-edge",
-            btn2
-          );
+        btn2.addEventListener("click", () => {
+          edgeButtonFunction(btn2, selectedPlaybook.type);
         });
       });
+
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
         BLOODLINEASPECTSBTNS.innerHTML += aspectBtnTemplate(
