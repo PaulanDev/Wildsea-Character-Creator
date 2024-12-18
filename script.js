@@ -58,6 +58,14 @@ let qsCharacterHolder = {
   },
 };
 
+const createEdgeHolder = () => {
+  return [
+    qsCharacterHolder.bloodline.edge,
+    qsCharacterHolder.origin.edge,
+    qsCharacterHolder.post.edge,
+  ];
+};
+
 const capitalize = (str) => {
   return str[0].toUpperCase() + str.slice(1);
 };
@@ -136,8 +144,18 @@ const isEdgeSelectedElsewhere = (holder, check) => {
   return false;
 };
 
-const turnOffDuplicateButtons = (el, cl) => {
-  [...document.getElementsByClassName(cl)].forEach((item) => {});
+const toggleLockedEdges = (target) => {
+  let edgeHolder = createEdgeHolder();
+
+  [...document.getElementsByClassName("edges")].forEach((item) => {
+    if (item.id != target.id && !item.classList.contains("selected-edge")) {
+      if (edgeHolder.includes(item.classList[1].split("-")[0])) {
+        item.classList.add("locked-edge");
+      } else if (item.classList.contains("locked-edge")) {
+        item.classList.remove("locked-edge");
+      }
+    }
+  });
 };
 
 //Option Functionality
@@ -155,6 +173,7 @@ const edgeButtonFunction = (target, type) => {
     "selected-edge",
     target
   );
+  toggleLockedEdges(target);
 };
 
 /* HTML TEMPLATES */
@@ -224,6 +243,17 @@ const playbookChoiceBtns = document.getElementsByClassName(
     );
     hideOptionsIfNotSelected(btn, "origin-choice-btn", ORIGINOPTIONS, "origin");
     hideOptionsIfNotSelected(btn, "post-choice-btn", POSTOPTIONS, "post");
+
+    //Toggle locked-edge off when a playbook button is clicked
+    let edgeHolder = createEdgeHolder();
+    [...document.getElementsByClassName("edges")].forEach((item) => {
+      if (
+        !edgeHolder.includes(item.classList[1].split("-")[0]) &&
+        item.classList.contains("locked-edge")
+      ) {
+        item.classList.remove("locked-edge");
+      }
+    });
 
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
