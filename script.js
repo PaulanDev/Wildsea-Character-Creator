@@ -142,7 +142,9 @@ const turnOffDuplicateButtons = (el, cl) => {
 
 //Option Functionality
 const edgeButtonFunction = (target, type) => {
+  //Set edge on the character sheet
   qsCharacterHolder[type.toLowerCase()].edge = target.id.split("-")[2];
+  //Toggle selection class on clicked button
   target.classList.toggle("selected-edge");
   //Removes edge from qsCharacterHolder is edge button is deselected
   if (!target.classList.contains("selected-edge")) {
@@ -213,18 +215,14 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     clickedBtn.classList.toggle("selected-playbook");
 
-    //Hide Bloodline Options if no playbook is selected
+    //Hide Options if no playbook is selected
     hideOptionsIfNotSelected(
       btn,
       "bloodline-choice-btn",
       BLOODLINEOPTIONS,
       "bloodline"
     );
-
-    //Hide Origin Options if no playbook is selected
     hideOptionsIfNotSelected(btn, "origin-choice-btn", ORIGINOPTIONS, "origin");
-
-    //Hide Post Options if no playbook is selected
     hideOptionsIfNotSelected(btn, "post-choice-btn", POSTOPTIONS, "post");
 
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
