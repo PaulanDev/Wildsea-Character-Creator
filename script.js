@@ -144,6 +144,10 @@ const turnOffDuplicateButtons = (el, cl) => {
 const edgeButtonFunction = (target, type) => {
   qsCharacterHolder[type.toLowerCase()].edge = target.id.split("-")[2];
   target.classList.toggle("selected-edge");
+  //Removes edge from qsCharacterHolder is edge button is deselected
+  if (!target.classList.contains("selected-edge")) {
+    qsCharacterHolder[type.toLowerCase()].edge = "";
+  }
   deselectUnusedButton(
     [...document.getElementsByClassName(`${type}-edge`)],
     "selected-edge",
@@ -226,6 +230,8 @@ const playbookChoiceBtns = document.getElementsByClassName(
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
     if (selectedPlaybook.type == "Bloodline") {
+      //Clear out the holder when a new playbook is clicked
+      resetCharacterPlaybook(qsCharacterHolder.bloodline);
       //Clear out each div that holds options on click
       BLOODLINEOPTIONDIVS.forEach((div) => {
         div.innerHTML = "";
@@ -266,6 +272,8 @@ const playbookChoiceBtns = document.getElementsByClassName(
         }
       );
     } else if (selectedPlaybook.type == "Origin") {
+      //Clear out the holder when a new playbook is clicked
+      resetCharacterPlaybook(qsCharacterHolder.origin);
       ORIGINEDGESBTNS.innerHTML = "";
       ORIGINASPECTBTNS.innerHTML = "";
       qsCharacterHolder.origin.name = selectedPlaybook.name;
@@ -293,6 +301,8 @@ const playbookChoiceBtns = document.getElementsByClassName(
         );
       });
     } else if (selectedPlaybook.type == "Post") {
+      //Clear out the holder when a new playbook is clicked
+      resetCharacterPlaybook(qsCharacterHolder.post);
       POSTEDGESBTNS.innerHTML = "";
       POSTASPECTBTNS.innerHTML = "";
       qsCharacterHolder.post.name = selectedPlaybook.name;
