@@ -73,34 +73,6 @@ const resetCharacterPlaybook = (item) => {
   item["aspects"] = [];
 };
 
-/* HTML TEMPLATES */
-const playbookBtnTemplate = (name, type, blurb) => {
-  return `<div id='${name}' class='${type.toLowerCase()}-choice-btn playbook-choice-btn'>
-      <h2 class='text-center'>
-      ${name}
-      </h2>
-      <p class='text-center'>
-      ${blurb}
-      </p></div>`;
-};
-
-const edgeBtnTemplate = (edge, pb) => {
-  return `<div id='${pb}-edge-${edge}' class='${pb}-edge edges'>
-    <h3>${edge}</h3>
-    <p>${capitalize(
-      edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
-    )}</p>
-    </div>`;
-};
-
-const aspectBtnTemplate = (aspect, type) => {
-  return `<div class='${type}-aspect'>
-        <h3>${aspect["name"]}</h3>
-        <p>${aspect["length"]} Track ${aspect["type"]}</p>
-        <p>${aspect["description"]}</p>
-        </div>`;
-};
-
 const btnArrayOf = (pb, option) => {
   return [...document.getElementsByClassName(`${pb}-${option}`)];
 };
@@ -155,6 +127,19 @@ const deselectUnusedButton = (arr, cl, target) => {
   });
 };
 
+const isEdgeSelectedElsewhere = (holder, check) => {
+  for (let pb in holder) {
+    if (holder[pb].edge == check) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const turnOffDuplicateButtons = (el, cl) => {
+  [...document.getElementsByClassName(cl)].forEach((item) => {});
+};
+
 //Option Functionality
 const edgeButtonFunction = (target, type) => {
   qsCharacterHolder[type.toLowerCase()].edge = target.id.split("-")[2];
@@ -166,6 +151,36 @@ const edgeButtonFunction = (target, type) => {
   );
 };
 
+/* HTML TEMPLATES */
+const playbookBtnTemplate = (name, type, blurb) => {
+  return `<div id='${name}' class='${type.toLowerCase()}-choice-btn playbook-choice-btn'>
+      <h2 class='text-center'>
+      ${name}
+      </h2>
+      <p class='text-center'>
+      ${blurb}
+      </p></div>`;
+};
+
+const edgeBtnTemplate = (edge, pb) => {
+  return `<div id='${pb}-edge-${edge}' class='${pb}-edge ${edge}-btn edges ${
+    isEdgeSelectedElsewhere(qsCharacterHolder, edge) ? "locked-edge" : ""
+  }'>
+    <h3>${edge}</h3>
+    <p>${capitalize(
+      edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
+    )}</p>
+    </div>`;
+};
+
+const aspectBtnTemplate = (aspect, type) => {
+  return `<div class='${type}-aspect'>
+        <h3>${aspect["name"]}</h3>
+        <p>${aspect["length"]} Track ${aspect["type"]}</p>
+        <p>${aspect["description"]}</p>
+        </div>`;
+};
+
 //Call renderChoiceBtns before assigning button functionality
 renderChoiceBtns();
 
@@ -174,7 +189,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
   "playbook-choice-btn"
 );
 
-//Add function to buttons
+//Add functionality to Playbook buttons
 [...playbookChoiceBtns].forEach((btn) => {
   btn.addEventListener("click", (event) => {
     let clickedBtn = event.target;
