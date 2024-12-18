@@ -39,6 +39,7 @@ header {
 .locked-edge {
   background-color: darkslategray;
   color: beige;
+  pointer-events: none;
 }
 
 .edges {
