@@ -338,6 +338,12 @@ const playbookChoiceBtns = document.getElementsByClassName(
       selectedPlaybook.edgesQS.forEach((edge) => {
         POSTEDGESBTNS.innerHTML += edgeBtnTemplate(edge, selectedPlaybook.type);
       });
+      //Add clickability to Edge buttons
+      btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
+        btn2.addEventListener("click", () => {
+          edgeButtonFunction(btn2, selectedPlaybook.type);
+        });
+      });
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
         POSTASPECTBTNS.innerHTML += aspectBtnTemplate(
