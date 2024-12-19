@@ -148,7 +148,6 @@ const isEdgeSelectedElsewhere = (holder, check) => {
 
 const toggleLockedEdges = (target) => {
   let edgeHolder = createEdgeHolder();
-
   [...document.getElementsByClassName("edges")].forEach((item) => {
     if (item.id != target.id && !item.classList.contains("selected-edge")) {
       if (edgeHolder.includes(item.classList[1].split("-")[0])) {
@@ -158,6 +157,18 @@ const toggleLockedEdges = (target) => {
       }
     }
   });
+};
+
+//Skill Related Functions
+const doesSkillHavePoints = (skill) => {
+  for (let pb in qsCharacterHolder) {
+    if (pb["skills"].hasOwnProperty(skill)) {
+      if (pb["skills"][skill] > 0) {
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 //Option Functionality
@@ -197,6 +208,15 @@ const edgeBtnTemplate = (edge, pb) => {
     <p>${capitalize(
       edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
     )}</p>
+    </div>`;
+};
+
+const skillBtnTemplate = (skill) => {
+  return `<div id='${skill}-skill-counter' class=' skill-counter'>
+    <div class="skill-name">${capitalize(skill)}</div>
+    <div class="skill-val-dec-btn">-</div>
+    <div class="${skill}-value skill-value" id='${skill}-points'>0</div>
+    <div class="skill-val-inc-btn">+</div>
     </div>`;
 };
 
@@ -293,12 +313,10 @@ const playbookChoiceBtns = document.getElementsByClassName(
       //Generate Skill Buttons
       [...selectedPlaybook.skillsQS, ...selectedPlaybook.languagesQS].forEach(
         (skill) => {
-          BLOODLINESKILLSBTNS.innerHTML += `<div id='${skill}-skill-counter' class='skill-counter'>
-          <div class="skill-name">${capitalize(skill)}</div>
-          <div class="skill-val-dec-btn">-</div>
-          <div class="${skill}-value skill-value" id='${skill}-points'>0</div>
-          <div class="skill-val-inc-btn">+</div>
-          </div>`;
+          BLOODLINESKILLSBTNS.innerHTML += skillBtnTemplate(
+            skill,
+            selectedPlaybook.type
+          );
         }
       );
     } else if (selectedPlaybook.type == "Origin") {
