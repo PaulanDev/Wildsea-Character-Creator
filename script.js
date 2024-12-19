@@ -20,6 +20,8 @@ const BLOODLINEOPTIONDIVS = [
 const ORIGINOPTIONS = document.getElementById("origin-options");
 const ORIGINEDGESBTNS = document.getElementById("origin-edges-btns");
 const ORIGINASPECTBTNS = document.getElementById("origin-aspects-btns");
+const ORIGINSKILLSBTNS = document.getElementById("origin-skills-btns");
+const ORIGINOPTIONDIVS = [ORIGINEDGESBTNS, ORIGINASPECTBTNS, ORIGINSKILLSBTNS];
 
 const POSTOPTIONS = document.getElementById("post-options");
 const POSTEDGESBTNS = document.getElementById("post-edges-btns");
@@ -294,7 +296,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
           BLOODLINESKILLSBTNS.innerHTML += `<div id='${skill}-skill-counter' class='skill-counter'>
           <div class="skill-name">${capitalize(skill)}</div>
           <div class="skill-val-dec-btn">-</div>
-          <div class="skill-value" id='${skill}-points'>0</div>
+          <div class="${skill}-value skill-value" id='${skill}-points'>0</div>
           <div class="skill-val-inc-btn">+</div>
           </div>`;
         }
@@ -302,8 +304,11 @@ const playbookChoiceBtns = document.getElementsByClassName(
     } else if (selectedPlaybook.type == "Origin") {
       //Clear out the holder when a new playbook is clicked
       resetCharacterPlaybook(qsCharacterHolder.origin);
-      ORIGINEDGESBTNS.innerHTML = "";
-      ORIGINASPECTBTNS.innerHTML = "";
+      //Clear out each div that holds options on click
+      ORIGINOPTIONDIVS.forEach((div) => {
+        div.innerHTML = "";
+      });
+      //Assign origin name to qsCharacterHolder
       qsCharacterHolder.origin.name = selectedPlaybook.name;
 
       //Generate Edge buttons
