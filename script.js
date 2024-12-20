@@ -171,6 +171,18 @@ const doesSkillHavePoints = (skill) => {
   return false;
 };
 
+const plusBtnFunction = (target, type) => {
+  const skill = target.parentElement.id.split("-")[0];
+
+  if (qsCharacterHolder[type.toLowerCase()].skills.hasOwnProperty(skill)) {
+    qsCharacterHolder[type.toLowerCase()].skills[skill]++;
+  } else {
+    qsCharacterHolder[type.toLowerCase()].skills[skill] = 1;
+  }
+
+  console.log("Check skills:", qsCharacterHolder);
+};
+
 //Option Functionality
 const edgeButtonFunction = (target, type) => {
   //Set edge on the character sheet
@@ -317,6 +329,14 @@ const playbookChoiceBtns = document.getElementsByClassName(
             skill,
             selectedPlaybook.type
           );
+        }
+      );
+      //Add clickability to skill plus buttons
+      [...document.getElementsByClassName("skill-val-inc-btn")].forEach(
+        (btn2) => {
+          btn2.addEventListener("click", () => {
+            plusBtnFunction(btn2, selectedPlaybook.type);
+          });
         }
       );
     } else if (selectedPlaybook.type == "Origin") {
