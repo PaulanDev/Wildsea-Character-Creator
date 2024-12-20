@@ -22,6 +22,14 @@ const ORIGINOPTIONDIVS = [ORIGINEDGESBTNS, ORIGINASPECTBTNS, ORIGINSKILLSBTNS];
 const POSTOPTIONS = document.getElementById("post-options");
 const POSTEDGESBTNS = document.getElementById("post-edges-btns");
 const POSTASPECTBTNS = document.getElementById("post-aspects-btns");
+const POSTSKILLSBTNS = document.getElementById("post-skills-btns");
+const POSTOPTIONDIVS = [POSTEDGESBTNS, POSTASPECTBTNS, POSTSKILLSBTNS];
+
+const OPTIONSOBJECT = {
+  Bloodline: { optiondiv: BLOODLINEOPTIONS, divarray: BLOODLINEOPTIONDIVS },
+  Origin: { optiondiv: ORIGINOPTIONS, divarray: ORIGINOPTIONDIVS },
+  Post: { optiondiv: POSTOPTIONS, divarray: POSTOPTIONDIVS },
+};
 
 import { PLAYBOOKS } from "./importer.js";
 import { edgesInfo } from "./playbooks/edges.js";
