@@ -1,8 +1,4 @@
 //HTML Declarations
-const BLOODLINECONTAINER = document.getElementById("bloodline-container");
-const ORIGINCONTAINER = document.getElementById("origin-container");
-const POSTCONTAINER = document.getElementById("post-container");
-
 const BLOODLINECHOICE = document.getElementById("bloodline-choice");
 const ORIGINCHOICE = document.getElementById("origin-choice");
 const POSTCHOICE = document.getElementById("post-choice");
