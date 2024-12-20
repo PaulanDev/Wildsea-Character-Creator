@@ -308,9 +308,19 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
+    /*
+    OPTIONS_OBJECT[selectedPlaybook.type].divarray.forEach((div) => {div.innerHTML = "";})
+    */
+
+    //Clear out the holder when a new playbook is clicked
+    resetCharacterPlaybook(qsCharacterHolder[selectedPlaybook.type]);
+
     if (selectedPlaybook.type == "Bloodline") {
+      /*
       //Clear out the holder when a new playbook is clicked
       resetCharacterPlaybook(qsCharacterHolder.Bloodline);
+      */
+
       //Clear out each div that holds options on click
       BLOODLINE_OPTION_DIVS.forEach((div) => {
         div.innerHTML = "";
@@ -357,8 +367,11 @@ const playbookChoiceBtns = document.getElementsByClassName(
         }
       );
     } else if (selectedPlaybook.type == "Origin") {
+      /*
       //Clear out the holder when a new playbook is clicked
       resetCharacterPlaybook(qsCharacterHolder.Origin);
+      */
+
       //Clear out each div that holds options on click
       ORIGIN_OPTION_DIVS.forEach((div) => {
         div.innerHTML = "";
@@ -389,8 +402,11 @@ const playbookChoiceBtns = document.getElementsByClassName(
         );
       });
     } else if (selectedPlaybook.type == "Post") {
+      /*
       //Clear out the holder when a new playbook is clicked
       resetCharacterPlaybook(qsCharacterHolder.Post);
+      */
+
       POST_EDGE_BTNS.innerHTML = "";
       POST_ASPECT_BTNS.innerHTML = "";
       qsCharacterHolder.Post.name = selectedPlaybook.name;
