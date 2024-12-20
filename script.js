@@ -180,6 +180,10 @@ const plusBtnFunction = (target, type) => {
     qsCharacterHolder[type.toLowerCase()].skills[skill] = 1;
   }
 
+  [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
+    counter.innerHTML = qsCharacterHolder[type.toLowerCase()].skills[skill];
+  });
+
   console.log("Check skills:", qsCharacterHolder);
 };
 
