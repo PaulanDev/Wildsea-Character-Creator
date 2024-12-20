@@ -1,34 +1,32 @@
 //HTML Declarations
-const BLOODLINE_CHOICE = document.getElementById("bloodline-choice");
-const ORIGIN_CHOICE = document.getElementById("origin-choice");
-const POST_CHOICE = document.getElementById("post-choice");
+const BLOODLINE_CHOICE = document.getElementById("Bloodline-choice");
+const ORIGIN_CHOICE = document.getElementById("Origin-choice");
+const POST_CHOICE = document.getElementById("Post-choice");
 
-const BLOODLINE_OPTIONS = document.getElementById("bloodline-options");
-const BLOODLINE_EDGE_BTNS = document.getElementById("bloodline-edges-btns");
-const BLOODLINE_ASPECTS_BTNS = document.getElementById(
-  "bloodline-aspects-btns"
-);
-const BLOODLINE_SKILL_BTNS = document.getElementById("bloodline-skills-btns");
+const BLOODLINE_OPTIONS = document.getElementById("Bloodline-options");
+const BLOODLINE_EDGE_BTNS = document.getElementById("Bloodline-edge-btns");
+const BLOODLINE_ASPECT_BTNS = document.getElementById("Bloodline-aspect-btns");
+const BLOODLINE_SKILL_BTNS = document.getElementById("Bloodline-skill-btns");
 const BLOODLINE_OPTION_DIVS = [
   BLOODLINE_EDGE_BTNS,
-  BLOODLINE_ASPECTS_BTNS,
+  BLOODLINE_ASPECT_BTNS,
   BLOODLINE_SKILL_BTNS,
 ];
 
-const ORIGIN_OPTIONS = document.getElementById("origin-options");
-const ORIGIN_EDGE_BTNS = document.getElementById("origin-edges-btns");
-const ORIGIN_ASPECTS_BTNS = document.getElementById("origin-aspects-btns");
-const ORIGIN_SKILL_BTNS = document.getElementById("origin-skills-btns");
+const ORIGIN_OPTIONS = document.getElementById("Origin-options");
+const ORIGIN_EDGE_BTNS = document.getElementById("Origin-edge-btns");
+const ORIGIN_ASPECT_BTNS = document.getElementById("Origin-aspect-btns");
+const ORIGIN_SKILL_BTNS = document.getElementById("Origin-skill-btns");
 const ORIGIN_OPTION_DIVS = [
   ORIGIN_EDGE_BTNS,
-  ORIGIN_ASPECTS_BTNS,
+  ORIGIN_ASPECT_BTNS,
   ORIGIN_SKILL_BTNS,
 ];
 
 const POST_OPTIONS = document.getElementById("post-options");
-const POST_EDGE_BTNS = document.getElementById("post-edges-btns");
-const POST_ASPECT_BTNS = document.getElementById("post-aspects-btns");
-const POST_SKILL_BTNS = document.getElementById("post-skills-btns");
+const POST_EDGE_BTNS = document.getElementById("Post-edge-btns");
+const POST_ASPECT_BTNS = document.getElementById("Post-aspect-btns");
+const POST_SKILL_BTNS = document.getElementById("Post-skill-btns");
 const POSTOPTIONDIVS = [POST_EDGE_BTNS, POST_ASPECT_BTNS, POST_SKILL_BTNS];
 
 const OPTIONS_OBJECT = {
@@ -41,7 +39,7 @@ import { PLAYBOOKS } from "./importer.js";
 import { edgesInfo } from "./playbooks/edges.js";
 
 let qsCharacterHolder = {
-  bloodline: {
+  Bloodline: {
     name: "",
     edge: "",
     skills: {},
@@ -50,7 +48,7 @@ let qsCharacterHolder = {
     mire: "",
     aspects: [],
   },
-  origin: {
+  Origin: {
     name: "",
     edge: "",
     skills: {},
@@ -59,7 +57,7 @@ let qsCharacterHolder = {
     mire: "",
     aspects: [],
   },
-  post: {
+  Post: {
     name: "",
     edge: "",
     skills: {},
@@ -72,9 +70,9 @@ let qsCharacterHolder = {
 
 const createEdgeHolder = () => {
   return [
-    qsCharacterHolder.bloodline.edge,
-    qsCharacterHolder.origin.edge,
-    qsCharacterHolder.post.edge,
+    qsCharacterHolder.Bloodline.edge,
+    qsCharacterHolder.Origin.edge,
+    qsCharacterHolder.Post.edge,
   ];
 };
 
@@ -184,14 +182,14 @@ const doesSkillHavePoints = (skill) => {
 const plusBtnFunction = (target, type) => {
   const skill = target.parentElement.id.split("-")[0];
 
-  if (qsCharacterHolder[type.toLowerCase()].skills.hasOwnProperty(skill)) {
-    qsCharacterHolder[type.toLowerCase()].skills[skill]++;
+  if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
+    qsCharacterHolder[type].skills[skill]++;
   } else {
-    qsCharacterHolder[type.toLowerCase()].skills[skill] = 1;
+    qsCharacterHolder[type].skills[skill] = 1;
   }
 
   [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
-    counter.innerHTML = qsCharacterHolder[type.toLowerCase()].skills[skill];
+    counter.innerHTML = qsCharacterHolder[type].skills[skill];
   });
 
   console.log("Check skills:", qsCharacterHolder);
@@ -200,12 +198,12 @@ const plusBtnFunction = (target, type) => {
 //Option Functionality
 const edgeButtonFunction = (target, type) => {
   //Set edge on the character sheet
-  qsCharacterHolder[type.toLowerCase()].edge = target.id.split("-")[2];
+  qsCharacterHolder[type].edge = target.id.split("-")[2];
   //Toggle selection class on clicked button
   target.classList.toggle("selected-edge");
   //Removes edge from qsCharacterHolder is edge button is deselected
   if (!target.classList.contains("selected-edge")) {
-    qsCharacterHolder[type.toLowerCase()].edge = "";
+    qsCharacterHolder[type].edge = "";
   }
   deselectUnusedButton(
     [...document.getElementsByClassName(`${type}-edge`)],
@@ -217,7 +215,7 @@ const edgeButtonFunction = (target, type) => {
 
 /* HTML TEMPLATES */
 const playbookBtnTemplate = (name, type, blurb) => {
-  return `<div id='${name}' class='${type.toLowerCase()}-choice-btn playbook-choice-btn'>
+  return `<div id='${name}' class='${type}-choice-btn playbook-choice-btn'>
       <h2 class='text-center'>
       ${name}
       </h2>
@@ -285,17 +283,17 @@ const playbookChoiceBtns = document.getElementsByClassName(
     //Hide Options if no playbook is selected
     hideOptionsIfNotSelected(
       btn,
-      "bloodline-choice-btn",
+      "Bloodline-choice-btn",
       BLOODLINE_OPTIONS,
       "bloodline"
     );
     hideOptionsIfNotSelected(
       btn,
-      "origin-choice-btn",
+      "Origin-choice-btn",
       ORIGIN_OPTIONS,
       "origin"
     );
-    hideOptionsIfNotSelected(btn, "post-choice-btn", POST_OPTIONS, "post");
+    hideOptionsIfNotSelected(btn, "Post-choice-btn", POST_OPTIONS, "post");
 
     //Toggle locked-edge off when a playbook button is clicked
     let edgeHolder = createEdgeHolder();
@@ -312,13 +310,13 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     if (selectedPlaybook.type == "Bloodline") {
       //Clear out the holder when a new playbook is clicked
-      resetCharacterPlaybook(qsCharacterHolder.bloodline);
+      resetCharacterPlaybook(qsCharacterHolder.Bloodline);
       //Clear out each div that holds options on click
       BLOODLINE_OPTION_DIVS.forEach((div) => {
         div.innerHTML = "";
       });
       //Assign bloodline name to qsCharacterHolder
-      qsCharacterHolder.bloodline.name = selectedPlaybook.name;
+      qsCharacterHolder.Bloodline.name = selectedPlaybook.name;
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
         BLOODLINE_EDGE_BTNS.innerHTML += edgeBtnTemplate(
@@ -336,7 +334,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
-        BLOODLINE_ASPECTS_BTNS.innerHTML += aspectBtnTemplate(
+        BLOODLINE_ASPECT_BTNS.innerHTML += aspectBtnTemplate(
           aspect,
           selectedPlaybook.type
         );
@@ -360,13 +358,13 @@ const playbookChoiceBtns = document.getElementsByClassName(
       );
     } else if (selectedPlaybook.type == "Origin") {
       //Clear out the holder when a new playbook is clicked
-      resetCharacterPlaybook(qsCharacterHolder.origin);
+      resetCharacterPlaybook(qsCharacterHolder.Origin);
       //Clear out each div that holds options on click
       ORIGIN_OPTION_DIVS.forEach((div) => {
         div.innerHTML = "";
       });
       //Assign origin name to qsCharacterHolder
-      qsCharacterHolder.origin.name = selectedPlaybook.name;
+      qsCharacterHolder.Origin.name = selectedPlaybook.name;
 
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
@@ -385,17 +383,17 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
-        ORIGIN_ASPECTS_BTNS.innerHTML += aspectBtnTemplate(
+        ORIGIN_ASPECT_BTNS.innerHTML += aspectBtnTemplate(
           aspect,
           selectedPlaybook.type
         );
       });
     } else if (selectedPlaybook.type == "Post") {
       //Clear out the holder when a new playbook is clicked
-      resetCharacterPlaybook(qsCharacterHolder.post);
+      resetCharacterPlaybook(qsCharacterHolder.Post);
       POST_EDGE_BTNS.innerHTML = "";
       POST_ASPECT_BTNS.innerHTML = "";
-      qsCharacterHolder.post.name = selectedPlaybook.name;
+      qsCharacterHolder.Post.name = selectedPlaybook.name;
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
         POST_EDGE_BTNS.innerHTML += edgeBtnTemplate(
