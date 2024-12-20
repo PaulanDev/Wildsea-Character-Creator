@@ -3,32 +3,38 @@ const BLOODLINE_CHOICE = document.getElementById("bloodline-choice");
 const ORIGIN_CHOICE = document.getElementById("origin-choice");
 const POST_CHOICE = document.getElementById("post-choice");
 
-const BLOODLINEOPTIONS = document.getElementById("bloodline-options");
-const BLOODLINEEDGESBTNS = document.getElementById("bloodline-edges-btns");
-const BLOODLINEASPECTSBTNS = document.getElementById("bloodline-aspects-btns");
-const BLOODLINESKILLSBTNS = document.getElementById("bloodline-skills-btns");
-const BLOODLINEOPTIONDIVS = [
-  BLOODLINEEDGESBTNS,
-  BLOODLINEASPECTSBTNS,
-  BLOODLINESKILLSBTNS,
+const BLOODLINE_OPTIONS = document.getElementById("bloodline-options");
+const BLOODLINE_EDGE_BTNS = document.getElementById("bloodline-edges-btns");
+const BLOODLINE_ASPECTS_BTNS = document.getElementById(
+  "bloodline-aspects-btns"
+);
+const BLOODLINE_SKILL_BTNS = document.getElementById("bloodline-skills-btns");
+const BLOODLINE_OPTION_DIVS = [
+  BLOODLINE_EDGE_BTNS,
+  BLOODLINE_ASPECTS_BTNS,
+  BLOODLINE_SKILL_BTNS,
 ];
 
-const ORIGINOPTIONS = document.getElementById("origin-options");
-const ORIGINEDGESBTNS = document.getElementById("origin-edges-btns");
-const ORIGINASPECTBTNS = document.getElementById("origin-aspects-btns");
-const ORIGINSKILLSBTNS = document.getElementById("origin-skills-btns");
-const ORIGINOPTIONDIVS = [ORIGINEDGESBTNS, ORIGINASPECTBTNS, ORIGINSKILLSBTNS];
+const ORIGIN_OPTIONS = document.getElementById("origin-options");
+const ORIGIN_EDGE_BTNS = document.getElementById("origin-edges-btns");
+const ORIGIN_ASPECTS_BTNS = document.getElementById("origin-aspects-btns");
+const ORIGIN_SKILL_BTNS = document.getElementById("origin-skills-btns");
+const ORIGIN_OPTION_DIVS = [
+  ORIGIN_EDGE_BTNS,
+  ORIGIN_ASPECTS_BTNS,
+  ORIGIN_SKILL_BTNS,
+];
 
-const POSTOPTIONS = document.getElementById("post-options");
-const POSTEDGESBTNS = document.getElementById("post-edges-btns");
-const POSTASPECTBTNS = document.getElementById("post-aspects-btns");
-const POSTSKILLSBTNS = document.getElementById("post-skills-btns");
-const POSTOPTIONDIVS = [POSTEDGESBTNS, POSTASPECTBTNS, POSTSKILLSBTNS];
+const POST_OPTIONS = document.getElementById("post-options");
+const POST_EDGE_BTNS = document.getElementById("post-edges-btns");
+const POST_ASPECT_BTNS = document.getElementById("post-aspects-btns");
+const POST_SKILL_BTNS = document.getElementById("post-skills-btns");
+const POSTOPTIONDIVS = [POST_EDGE_BTNS, POST_ASPECT_BTNS, POST_SKILL_BTNS];
 
 const OPTIONS_OBJECT = {
-  Bloodline: { optiondiv: BLOODLINEOPTIONS, divarray: BLOODLINEOPTIONDIVS },
-  Origin: { optiondiv: ORIGINOPTIONS, divarray: ORIGINOPTIONDIVS },
-  Post: { optiondiv: POSTOPTIONS, divarray: POSTOPTIONDIVS },
+  Bloodline: { optiondiv: BLOODLINE_OPTIONS, divarray: BLOODLINE_OPTION_DIVS },
+  Origin: { optiondiv: ORIGIN_OPTIONS, divarray: ORIGIN_OPTION_DIVS },
+  Post: { optiondiv: POST_OPTIONS, divarray: POSTOPTIONDIVS },
 };
 
 import { PLAYBOOKS } from "./importer.js";
@@ -280,11 +286,16 @@ const playbookChoiceBtns = document.getElementsByClassName(
     hideOptionsIfNotSelected(
       btn,
       "bloodline-choice-btn",
-      BLOODLINEOPTIONS,
+      BLOODLINE_OPTIONS,
       "bloodline"
     );
-    hideOptionsIfNotSelected(btn, "origin-choice-btn", ORIGINOPTIONS, "origin");
-    hideOptionsIfNotSelected(btn, "post-choice-btn", POSTOPTIONS, "post");
+    hideOptionsIfNotSelected(
+      btn,
+      "origin-choice-btn",
+      ORIGIN_OPTIONS,
+      "origin"
+    );
+    hideOptionsIfNotSelected(btn, "post-choice-btn", POST_OPTIONS, "post");
 
     //Toggle locked-edge off when a playbook button is clicked
     let edgeHolder = createEdgeHolder();
@@ -303,14 +314,14 @@ const playbookChoiceBtns = document.getElementsByClassName(
       //Clear out the holder when a new playbook is clicked
       resetCharacterPlaybook(qsCharacterHolder.bloodline);
       //Clear out each div that holds options on click
-      BLOODLINEOPTIONDIVS.forEach((div) => {
+      BLOODLINE_OPTION_DIVS.forEach((div) => {
         div.innerHTML = "";
       });
       //Assign bloodline name to qsCharacterHolder
       qsCharacterHolder.bloodline.name = selectedPlaybook.name;
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
-        BLOODLINEEDGESBTNS.innerHTML += edgeBtnTemplate(
+        BLOODLINE_EDGE_BTNS.innerHTML += edgeBtnTemplate(
           edge,
           selectedPlaybook.type
         );
@@ -325,7 +336,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
-        BLOODLINEASPECTSBTNS.innerHTML += aspectBtnTemplate(
+        BLOODLINE_ASPECTS_BTNS.innerHTML += aspectBtnTemplate(
           aspect,
           selectedPlaybook.type
         );
@@ -333,7 +344,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       //Generate Skill Buttons
       [...selectedPlaybook.skillsQS, ...selectedPlaybook.languagesQS].forEach(
         (skill) => {
-          BLOODLINESKILLSBTNS.innerHTML += skillBtnTemplate(
+          BLOODLINE_SKILL_BTNS.innerHTML += skillBtnTemplate(
             skill,
             selectedPlaybook.type
           );
@@ -351,7 +362,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       //Clear out the holder when a new playbook is clicked
       resetCharacterPlaybook(qsCharacterHolder.origin);
       //Clear out each div that holds options on click
-      ORIGINOPTIONDIVS.forEach((div) => {
+      ORIGIN_OPTION_DIVS.forEach((div) => {
         div.innerHTML = "";
       });
       //Assign origin name to qsCharacterHolder
@@ -359,7 +370,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
-        ORIGINEDGESBTNS.innerHTML += edgeBtnTemplate(
+        ORIGIN_EDGE_BTNS.innerHTML += edgeBtnTemplate(
           edge,
           selectedPlaybook.type
         );
@@ -374,7 +385,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
-        ORIGINASPECTBTNS.innerHTML += aspectBtnTemplate(
+        ORIGIN_ASPECTS_BTNS.innerHTML += aspectBtnTemplate(
           aspect,
           selectedPlaybook.type
         );
@@ -382,12 +393,15 @@ const playbookChoiceBtns = document.getElementsByClassName(
     } else if (selectedPlaybook.type == "Post") {
       //Clear out the holder when a new playbook is clicked
       resetCharacterPlaybook(qsCharacterHolder.post);
-      POSTEDGESBTNS.innerHTML = "";
-      POSTASPECTBTNS.innerHTML = "";
+      POST_EDGE_BTNS.innerHTML = "";
+      POST_ASPECT_BTNS.innerHTML = "";
       qsCharacterHolder.post.name = selectedPlaybook.name;
       //Generate Edge buttons
       selectedPlaybook.edgesQS.forEach((edge) => {
-        POSTEDGESBTNS.innerHTML += edgeBtnTemplate(edge, selectedPlaybook.type);
+        POST_EDGE_BTNS.innerHTML += edgeBtnTemplate(
+          edge,
+          selectedPlaybook.type
+        );
       });
       //Add clickability to Edge buttons
       btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
@@ -397,7 +411,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       });
       //Generate Aspect Buttons
       selectedPlaybook.aspects.forEach((aspect) => {
-        POSTASPECTBTNS.innerHTML += aspectBtnTemplate(
+        POST_ASPECT_BTNS.innerHTML += aspectBtnTemplate(
           aspect,
           selectedPlaybook.type
         );
