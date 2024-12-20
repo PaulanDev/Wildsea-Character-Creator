@@ -1,7 +1,7 @@
 //HTML Declarations
-const BLOODLINECHOICE = document.getElementById("bloodline-choice");
-const ORIGINCHOICE = document.getElementById("origin-choice");
-const POSTCHOICE = document.getElementById("post-choice");
+const BLOODLINE_CHOICE = document.getElementById("bloodline-choice");
+const ORIGIN_CHOICE = document.getElementById("origin-choice");
+const POST_CHOICE = document.getElementById("post-choice");
 
 const BLOODLINEOPTIONS = document.getElementById("bloodline-options");
 const BLOODLINEEDGESBTNS = document.getElementById("bloodline-edges-btns");
@@ -25,7 +25,7 @@ const POSTASPECTBTNS = document.getElementById("post-aspects-btns");
 const POSTSKILLSBTNS = document.getElementById("post-skills-btns");
 const POSTOPTIONDIVS = [POSTEDGESBTNS, POSTASPECTBTNS, POSTSKILLSBTNS];
 
-const OPTIONSOBJECT = {
+const OPTIONS_OBJECT = {
   Bloodline: { optiondiv: BLOODLINEOPTIONS, divarray: BLOODLINEOPTIONDIVS },
   Origin: { optiondiv: ORIGINOPTIONS, divarray: ORIGINOPTIONDIVS },
   Post: { optiondiv: POSTOPTIONS, divarray: POSTOPTIONDIVS },
@@ -95,19 +95,19 @@ const btnArrayOf = (pb, option) => {
 const renderChoiceBtns = function () {
   for (const playbook of PLAYBOOKS) {
     if (playbook.type == "Bloodline") {
-      BLOODLINECHOICE.innerHTML += playbookBtnTemplate(
+      BLOODLINE_CHOICE.innerHTML += playbookBtnTemplate(
         playbook.name,
         playbook.type,
         playbook.blurb
       );
     } else if (playbook.type == "Origin") {
-      ORIGINCHOICE.innerHTML += playbookBtnTemplate(
+      ORIGIN_CHOICE.innerHTML += playbookBtnTemplate(
         playbook.name,
         playbook.type,
         playbook.blurb
       );
     } else if (playbook.type == "Post") {
-      POSTCHOICE.innerHTML += playbookBtnTemplate(
+      POST_CHOICE.innerHTML += playbookBtnTemplate(
         playbook.name,
         playbook.type,
         playbook.blurb
