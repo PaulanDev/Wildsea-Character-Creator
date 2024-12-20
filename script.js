@@ -23,7 +23,7 @@ const ORIGIN_OPTION_DIVS = [
   ORIGIN_SKILL_BTNS,
 ];
 
-const POST_OPTIONS = document.getElementById("post-options");
+const POST_OPTIONS = document.getElementById("Post-options");
 const POST_EDGE_BTNS = document.getElementById("Post-edge-btns");
 const POST_ASPECT_BTNS = document.getElementById("Post-aspect-btns");
 const POST_SKILL_BTNS = document.getElementById("Post-skill-btns");
@@ -285,15 +285,15 @@ const playbookChoiceBtns = document.getElementsByClassName(
       btn,
       "Bloodline-choice-btn",
       BLOODLINE_OPTIONS,
-      "bloodline"
+      "Bloodline"
     );
     hideOptionsIfNotSelected(
       btn,
       "Origin-choice-btn",
       ORIGIN_OPTIONS,
-      "origin"
+      "Origin"
     );
-    hideOptionsIfNotSelected(btn, "Post-choice-btn", POST_OPTIONS, "post");
+    hideOptionsIfNotSelected(btn, "Post-choice-btn", POST_OPTIONS, "Post");
 
     //Toggle locked-edge off when a playbook button is clicked
     let edgeHolder = createEdgeHolder();
