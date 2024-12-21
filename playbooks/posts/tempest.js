@@ -76,7 +76,7 @@ export const tempestPlaybook = {
       type: "Trait",
       length: 3,
       description:
-        "You can direct bursts of voltaic energy through your palsm or fingers, dealing LR Volt damage.",
+        "You can direct bursts of voltaic energy through your palms or fingers, dealing LR Volt damage.",
     },
     {
       name: "Ground Zero Overload",
@@ -90,7 +90,7 @@ export const tempestPlaybook = {
       type: "Gear",
       length: 5,
       description:
-        "A guitar-like instrument sarved from the bones of an ironjaw ray. Produces a harsh, buzzing tone when played that seems to awaken the spirit of rebellion in some.",
+        "A guitar-like instrument carved from the bones of an ironjaw ray. Produces a harsh, buzzing tone when played that seems to awaken the spirit of rebellion in some.",
     },
     {
       name: "Mesh Relay",
@@ -104,21 +104,21 @@ export const tempestPlaybook = {
       type: "Gear",
       length: 3,
       description:
-        "You can act as an additional (or main) engine for your ship, powering its bite with your mere presence. Increase your ship's Speed rating by oen when you're aboard.",
+        "You can act as an additional (or main) engine for your ship, powering its bite with your mere presence. Increase your ship's Speed rating by one when you're aboard.",
     },
     {
       name: "Voltaic Lantern",
       type: "Gear",
       length: 3,
       description:
-        "A simple light source that runs off of your own internal charge. Mark to delete a nearby source of electricity, absorbing it into the lantern for a brighter glow.",
+        "A simple light source that runs off of your own internal charge. Mark to deplete a nearby source of electricity, absorbing it into the lantern for a brighter glow.",
     },
     {
       name: "Singed Coat",
       type: "Gear",
       length: 3,
       description:
-        "You're resistant to three damage types, chosen from the following list: Frost, Flame, Salt, Blast, Volt",
+        "You're resistant to three damage types, chosen from the following list: Frost, Flame, Salt, Blast, Volt.",
     },
     {
       name: "Internal Battery",
@@ -139,7 +139,7 @@ export const tempestPlaybook = {
       type: "Companion",
       length: 4,
       description:
-        "Winds abound limbs and under clothes, always moving. Mark to identify the nearest source of potent electricity no matter the distance.",
+        "Winds abound limbs and under clothes, always moving. Mark to identify the nearest source of potent electricity, no matter the distance.",
     },
   ],
 };
