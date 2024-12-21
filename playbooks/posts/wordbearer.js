@@ -114,7 +114,7 @@ export const wordbearerPlaybook = {
       type: "Companion",
       length: 2,
       description:
-        "A wheezing machine used for the sorting and sategorzing of mail. You count as fluent in all languages, but only when reading addresses, listening to directions, or commiting a sender's message to memory.",
+        "A wheezing machine used for the sorting and categorzing of mail. You count as fluent in all languages, but only when reading addresses, listening to directions, or commiting a sender's message to memory.",
     },
     {
       name: "Retired Courier Dragonfly",
