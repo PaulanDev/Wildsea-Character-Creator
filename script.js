@@ -27,12 +27,12 @@ const POST_OPTIONS = document.getElementById("Post-options");
 const POST_EDGE_BTNS = document.getElementById("Post-edge-btns");
 const POST_ASPECT_BTNS = document.getElementById("Post-aspect-btns");
 const POST_SKILL_BTNS = document.getElementById("Post-skill-btns");
-const POSTOPTIONDIVS = [POST_EDGE_BTNS, POST_ASPECT_BTNS, POST_SKILL_BTNS];
+const POST_OPTION_DIVS = [POST_EDGE_BTNS, POST_ASPECT_BTNS, POST_SKILL_BTNS];
 
 const OPTIONS_OBJECT = {
   Bloodline: { optiondiv: BLOODLINE_OPTIONS, divarray: BLOODLINE_OPTION_DIVS },
   Origin: { optiondiv: ORIGIN_OPTIONS, divarray: ORIGIN_OPTION_DIVS },
-  Post: { optiondiv: POST_OPTIONS, divarray: POSTOPTIONDIVS },
+  Post: { optiondiv: POST_OPTIONS, divarray: POST_OPTION_DIVS },
 };
 
 const BLOODLINE_DISPLAY_NAME = document.getElementById(
@@ -327,129 +327,52 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
-    /*
-    OPTIONS_OBJECT[selectedPlaybook.type].divarray.forEach((div) => {div.innerHTML = "";})
-    */
-
     //Clear out the holder when a new playbook is clicked
     resetCharacterPlaybook(qsCharacterHolder[selectedPlaybook.type]);
 
-    if (selectedPlaybook.type == "Bloodline") {
-      /*
-      //Clear out the holder when a new playbook is clicked
-      resetCharacterPlaybook(qsCharacterHolder.Bloodline);
-      */
+    //Clear out each div that holds options on click
+    OPTIONS_OBJECT[selectedPlaybook.type].divarray.forEach((div) => {
+      div.innerHTML = "";
+    });
 
-      //Clear out each div that holds options on click
-      BLOODLINE_OPTION_DIVS.forEach((div) => {
-        div.innerHTML = "";
-      });
-      //Assign bloodline name to qsCharacterHolder
-      qsCharacterHolder.Bloodline.name = selectedPlaybook.name;
-      //Generate Edge buttons
-      selectedPlaybook.edgesQS.forEach((edge) => {
-        BLOODLINE_EDGE_BTNS.innerHTML += edgeBtnTemplate(
-          edge,
-          selectedPlaybook.type
-        );
-      });
+    //Assign bloodline name to qsCharacterHolder
+    qsCharacterHolder[selectedPlaybook.type].name = selectedPlaybook.name;
 
-      //Add clickability to Edge buttons
-      btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
+    //Generate Edge buttons
+    selectedPlaybook.edgesQS.forEach((edge) => {
+      OPTIONS_OBJECT[selectedPlaybook.type].divarray[0].innerHTML +=
+        edgeBtnTemplate(edge, selectedPlaybook.type);
+    });
+
+    //Add clickability to Edge buttons
+    btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
+      btn2.addEventListener("click", () => {
+        edgeButtonFunction(btn2, selectedPlaybook.type);
+      });
+    });
+
+    //Generate Aspect buttons
+    selectedPlaybook.aspects.forEach((aspect) => {
+      OPTIONS_OBJECT[selectedPlaybook.type].divarray[1].innerHTML +=
+        aspectBtnTemplate(aspect, selectedPlaybook.type);
+    });
+
+    //Generate Skill Buttons
+    [...selectedPlaybook.skillsQS, ...selectedPlaybook.languagesQS].forEach(
+      (skill) => {
+        OPTIONS_OBJECT[selectedPlaybook.type].divarray[2].innerHTML +=
+          skillBtnTemplate(skill, selectedPlaybook.type);
+      }
+    );
+
+    //Add clickability to skill plus buttons
+    [...document.getElementsByClassName("skill-val-inc-btn")].forEach(
+      (btn2) => {
         btn2.addEventListener("click", () => {
-          edgeButtonFunction(btn2, selectedPlaybook.type);
+          plusBtnFunction(btn2, selectedPlaybook.type);
         });
-      });
-
-      //Generate Aspect Buttons
-      selectedPlaybook.aspects.forEach((aspect) => {
-        BLOODLINE_ASPECT_BTNS.innerHTML += aspectBtnTemplate(
-          aspect,
-          selectedPlaybook.type
-        );
-      });
-      //Generate Skill Buttons
-      [...selectedPlaybook.skillsQS, ...selectedPlaybook.languagesQS].forEach(
-        (skill) => {
-          BLOODLINE_SKILL_BTNS.innerHTML += skillBtnTemplate(
-            skill,
-            selectedPlaybook.type
-          );
-        }
-      );
-      //Add clickability to skill plus buttons
-      [...document.getElementsByClassName("skill-val-inc-btn")].forEach(
-        (btn2) => {
-          btn2.addEventListener("click", () => {
-            plusBtnFunction(btn2, selectedPlaybook.type);
-          });
-        }
-      );
-    } else if (selectedPlaybook.type == "Origin") {
-      /*
-      //Clear out the holder when a new playbook is clicked
-      resetCharacterPlaybook(qsCharacterHolder.Origin);
-      */
-
-      //Clear out each div that holds options on click
-      ORIGIN_OPTION_DIVS.forEach((div) => {
-        div.innerHTML = "";
-      });
-      //Assign origin name to qsCharacterHolder
-      qsCharacterHolder.Origin.name = selectedPlaybook.name;
-
-      //Generate Edge buttons
-      selectedPlaybook.edgesQS.forEach((edge) => {
-        ORIGIN_EDGE_BTNS.innerHTML += edgeBtnTemplate(
-          edge,
-          selectedPlaybook.type
-        );
-      });
-
-      //Add clickability to Edge buttons
-      btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
-        btn2.addEventListener("click", () => {
-          edgeButtonFunction(btn2, selectedPlaybook.type);
-        });
-      });
-
-      //Generate Aspect Buttons
-      selectedPlaybook.aspects.forEach((aspect) => {
-        ORIGIN_ASPECT_BTNS.innerHTML += aspectBtnTemplate(
-          aspect,
-          selectedPlaybook.type
-        );
-      });
-    } else if (selectedPlaybook.type == "Post") {
-      /*
-      //Clear out the holder when a new playbook is clicked
-      resetCharacterPlaybook(qsCharacterHolder.Post);
-      */
-
-      POST_EDGE_BTNS.innerHTML = "";
-      POST_ASPECT_BTNS.innerHTML = "";
-      qsCharacterHolder.Post.name = selectedPlaybook.name;
-      //Generate Edge buttons
-      selectedPlaybook.edgesQS.forEach((edge) => {
-        POST_EDGE_BTNS.innerHTML += edgeBtnTemplate(
-          edge,
-          selectedPlaybook.type
-        );
-      });
-      //Add clickability to Edge buttons
-      btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
-        btn2.addEventListener("click", () => {
-          edgeButtonFunction(btn2, selectedPlaybook.type);
-        });
-      });
-      //Generate Aspect Buttons
-      selectedPlaybook.aspects.forEach((aspect) => {
-        POST_ASPECT_BTNS.innerHTML += aspectBtnTemplate(
-          aspect,
-          selectedPlaybook.type
-        );
-      });
-    }
+      }
+    );
     console.log(qsCharacterHolder);
   });
 });
