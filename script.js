@@ -299,20 +299,15 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     clickedBtn.classList.toggle("selected-playbook");
 
-    //Hide Options if no playbook is selected
+    let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
+
+    //Hide Options div if no playbook of that type is selected
     hideOptionsIfNotSelected(
       btn,
-      "Bloodline-choice-btn",
-      BLOODLINE_OPTIONS,
-      "Bloodline"
+      `${selectedPlaybook.type}-choice-btn`,
+      OPTIONS_OBJECT[selectedPlaybook.type].optiondiv,
+      selectedPlaybook.type
     );
-    hideOptionsIfNotSelected(
-      btn,
-      "Origin-choice-btn",
-      ORIGIN_OPTIONS,
-      "Origin"
-    );
-    hideOptionsIfNotSelected(btn, "Post-choice-btn", POST_OPTIONS, "Post");
 
     //Toggle locked-edge off when a playbook button is clicked
     let edgeHolder = createEdgeHolder();
@@ -324,8 +319,6 @@ const playbookChoiceBtns = document.getElementsByClassName(
         item.classList.remove("locked-edge");
       }
     });
-
-    let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
     //Clear out the holder when a new playbook is clicked
     resetCharacterPlaybook(qsCharacterHolder[selectedPlaybook.type]);
