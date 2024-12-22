@@ -100,15 +100,6 @@ const deselectUnusedButton = (arr, cl, target) => {
   });
 };
 
-const isEdgeSelectedElsewhere = (holder, check) => {
-  for (let pb in holder) {
-    if (holder[pb].edge == check) {
-      return true;
-    }
-  }
-  return false;
-};
-
 const toggleLockedEdges = (target) => {
   let edgeHolder = createEdgeHolder();
   [...document.getElementsByClassName("edges")].forEach((item) => {
@@ -169,43 +160,13 @@ const edgeButtonFunction = (target, type) => {
 };
 
 /* HTML TEMPLATES */
-const playbookBtnTemplate = (name, type, blurb) => {
-  return `<div id='${name}' class='${type}-choice-btn playbook-choice-btn'>
-      <h2 class='text-center'>
-      ${name}
-      </h2>
-      <p class='text-center'>
-      ${blurb}
-      </p></div>`;
-};
 
-const edgeBtnTemplate = (edge, pb) => {
-  return `<div id='${pb}-edge-${edge}' class='${pb}-edge ${edge}-btn edges ${
-    isEdgeSelectedElsewhere(qsCharacterHolder, edge) ? "locked-edge" : ""
-  }'>
-    <h3>${edge}</h3>
-    <p>${capitalize(
-      edgesInfo.find((entry) => entry.name == edge).tagline.slice(11)
-    )}</p>
-    </div>`;
-};
-
-const skillBtnTemplate = (skill) => {
-  return `<div id='${skill}-skill-counter' class=' skill-counter'>
-    <div class="skill-name">${capitalize(skill)}</div>
-    <div class="skill-val-dec-btn">-</div>
-    <div class="${skill}-value skill-value" id='${skill}-points'>0</div>
-    <div class="skill-val-inc-btn">+</div>
-    </div>`;
-};
-
-const aspectBtnTemplate = (aspect, type) => {
-  return `<div class='${type}-aspect'>
-        <h3>${aspect["name"]}</h3>
-        <p>${aspect["length"]} Track ${aspect["type"]}</p>
-        <p>${aspect["description"]}</p>
-        </div>`;
-};
+import {
+  playbookBtnTemplate,
+  edgeBtnTemplate,
+  skillBtnTemplate,
+  aspectBtnTemplate,
+} from "./subscripts/htmlTemplates.js";
 
 //Call renderChoiceBtns before assigning button functionality
 renderChoiceBtns();
@@ -270,7 +231,12 @@ const playbookChoiceBtns = document.getElementsByClassName(
     //Generate Edge buttons
     selectedPlaybook.edgesQS.forEach((edge) => {
       OPTIONS_OBJECT[selectedPlaybook.type].divarray[0].innerHTML +=
-        edgeBtnTemplate(edge, selectedPlaybook.type);
+        edgeBtnTemplate(
+          edge,
+          selectedPlaybook.type,
+          qsCharacterHolder,
+          edgesInfo
+        );
     });
 
     //Add clickability to Edge buttons
