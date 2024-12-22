@@ -35,6 +35,25 @@ const OPTIONS_OBJECT = {
   Post: { optiondiv: POST_OPTIONS, divarray: POSTOPTIONDIVS },
 };
 
+const BLOODLINE_DISPLAY_NAME = document.getElementById(
+  "Bloodline-display-name"
+);
+const BLOODLINE_DISPLAY_EDGE = document.getElementById(
+  "Bloodline-display-edge"
+);
+
+const ORIGIN_DISPLAY_NAME = document.getElementById("Origin-display-name");
+const ORIGIN_DISPLAY_EDGE = document.getElementById("Origin-display-edge");
+
+const POST_DISPLAY_NAME = document.getElementById("Post-display-name");
+const POST_DISPLAY_EDGE = document.getElementById("Post-display-edge");
+
+const DISPLAY_OBJECT = {
+  Bloodline: [BLOODLINE_DISPLAY_NAME, BLOODLINE_DISPLAY_EDGE],
+  Origin: [ORIGIN_DISPLAY_NAME, ORIGIN_DISPLAY_EDGE],
+  Post: [POST_DISPLAY_NAME, POST_DISPLAY_EDGE],
+};
+
 import { PLAYBOOKS } from "./importer.js";
 import { edgesInfo } from "./playbooks/edges.js";
 
