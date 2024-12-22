@@ -3,6 +3,12 @@ const BLOODLINE_CHOICE = document.getElementById("Bloodline-choice");
 const ORIGIN_CHOICE = document.getElementById("Origin-choice");
 const POST_CHOICE = document.getElementById("Post-choice");
 
+const CHOICE_OBJECT = {
+  Bloodline: BLOODLINE_CHOICE,
+  Origin: ORIGIN_CHOICE,
+  Post: POST_CHOICE,
+};
+
 const BLOODLINE_OPTIONS = document.getElementById("Bloodline-options");
 const BLOODLINE_EDGE_BTNS = document.getElementById("Bloodline-edge-btns");
 const BLOODLINE_ASPECT_BTNS = document.getElementById("Bloodline-aspect-btns");
@@ -115,27 +121,13 @@ const btnArrayOf = (pb, option) => {
 };
 
 //Create playbook choice buttons
-const renderChoiceBtns = function () {
-  for (const playbook of PLAYBOOKS) {
-    if (playbook.type == "Bloodline") {
-      BLOODLINE_CHOICE.innerHTML += playbookBtnTemplate(
-        playbook.name,
-        playbook.type,
-        playbook.blurb
-      );
-    } else if (playbook.type == "Origin") {
-      ORIGIN_CHOICE.innerHTML += playbookBtnTemplate(
-        playbook.name,
-        playbook.type,
-        playbook.blurb
-      );
-    } else if (playbook.type == "Post") {
-      POST_CHOICE.innerHTML += playbookBtnTemplate(
-        playbook.name,
-        playbook.type,
-        playbook.blurb
-      );
-    }
+const renderChoiceBtns = () => {
+  for (let playbook of PLAYBOOKS) {
+    CHOICE_OBJECT[playbook.type].innerHTML += playbookBtnTemplate(
+      playbook.name,
+      playbook.type,
+      playbook.blurb
+    );
   }
 };
 
