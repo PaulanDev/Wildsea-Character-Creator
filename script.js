@@ -38,6 +38,8 @@ let qsCharacterHolder = {
   },
 };
 
+const skillPointMax = 5;
+
 const createEdgeHolder = () => {
   return [
     qsCharacterHolder.Bloodline.edge,
@@ -137,6 +139,24 @@ const plusBtnFunction = (target, type) => {
 
   [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
     counter.innerHTML = qsCharacterHolder[type].skills[skill];
+  });
+
+  console.log("Check skills:", qsCharacterHolder);
+};
+
+const minusBtnFunction = (target, type) => {
+  const skill = target.parentElement.id.split("-")[0];
+
+  if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
+    if (qsCharacterHolder[type].skills[skill] > 1) {
+      qsCharacterHolder[type].skills[skill]--;
+    } else {
+      delete qsCharacterHolder[type].skills[skill];
+    }
+  }
+
+  [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
+    counter.innerHTML = qsCharacterHolder[type].skills[skill] ?? 0;
   });
 
   console.log("Check skills:", qsCharacterHolder);
@@ -270,6 +290,16 @@ const playbookChoiceBtns = document.getElementsByClassName(
         });
       }
     );
+
+    //Add clickability to skill minus buttons
+    [...document.getElementsByClassName("skill-val-dec-btn")].forEach(
+      (btn2) => {
+        btn2.addEventListener("click", () => {
+          minusBtnFunction(btn2, selectedPlaybook.type);
+        });
+      }
+    );
+
     updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
     console.log(qsCharacterHolder);
   });
