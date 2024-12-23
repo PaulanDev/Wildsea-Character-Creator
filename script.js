@@ -206,6 +206,9 @@ const playbookChoiceBtns = document.getElementsByClassName(
       selectedPlaybook.type
     );
 
+    //Clear out the holder when a new playbook is clicked
+    resetCharacterPlaybook(qsCharacterHolder[selectedPlaybook.type]);
+
     //Toggle locked-edge off when a playbook button is clicked
     let edgeHolder = createEdgeHolder();
     [...document.getElementsByClassName("edges")].forEach((item) => {
@@ -216,9 +219,6 @@ const playbookChoiceBtns = document.getElementsByClassName(
         item.classList.remove("locked-edge");
       }
     });
-
-    //Clear out the holder when a new playbook is clicked
-    resetCharacterPlaybook(qsCharacterHolder[selectedPlaybook.type]);
 
     //Clear out each div that holds options on click
     OPTIONS_OBJECT[selectedPlaybook.type].divarray.forEach((div) => {
