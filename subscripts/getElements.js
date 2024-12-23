@@ -59,3 +59,11 @@ export const DISPLAY_OBJECT = {
   Origin: { name: ORIGIN_DISPLAY_NAME, edge: ORIGIN_DISPLAY_EDGE },
   Post: { name: POST_DISPLAY_NAME, edge: POST_DISPLAY_EDGE },
 };
+
+export const updateDisplay = (displayObj, sheet) => {
+  for (let pb in displayObj) {
+    for (let key in displayObj[pb]) {
+      displayObj[pb][key].innerHTML = sheet[pb][key];
+    }
+  }
+};
