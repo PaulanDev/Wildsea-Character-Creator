@@ -2,6 +2,7 @@ import {
   CHOICE_OBJECT,
   OPTIONS_OBJECT,
   DISPLAY_OBJECT,
+  updateDisplay,
 } from "./subscripts/getElements.js";
 
 import { PLAYBOOKS } from "./importer.js";
@@ -157,6 +158,7 @@ const edgeButtonFunction = (target, type) => {
     target
   );
   toggleLockedEdges(target);
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
 };
 
 /* HTML TEMPLATES */
@@ -268,6 +270,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
         });
       }
     );
+    updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
     console.log(qsCharacterHolder);
   });
 });
