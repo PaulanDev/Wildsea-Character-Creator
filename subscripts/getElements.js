@@ -55,7 +55,7 @@ const POST_DISPLAY_NAME = document.getElementById("Post-display-name");
 const POST_DISPLAY_EDGE = document.getElementById("Post-display-edge");
 
 export const DISPLAY_OBJECT = {
-  Bloodline: [BLOODLINE_DISPLAY_NAME, BLOODLINE_DISPLAY_EDGE],
-  Origin: [ORIGIN_DISPLAY_NAME, ORIGIN_DISPLAY_EDGE],
-  Post: [POST_DISPLAY_NAME, POST_DISPLAY_EDGE],
+  Bloodline: { name: BLOODLINE_DISPLAY_NAME, edge: BLOODLINE_DISPLAY_EDGE },
+  Origin: { name: ORIGIN_DISPLAY_NAME, edge: ORIGIN_DISPLAY_EDGE },
+  Post: { name: POST_DISPLAY_NAME, edge: POST_DISPLAY_EDGE },
 };
