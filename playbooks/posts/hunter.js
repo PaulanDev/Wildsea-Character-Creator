@@ -128,7 +128,7 @@ export const hunterPlaybook = {
       type: "Companion",
       length: 3,
       description:
-        "Every moment of its life is a hunt. Mark to identify a weak point or wekaness of a creature you can see.",
+        "Every moment of its life is a hunt. Mark to identify a weak point or weakness of a creature you can see.",
     },
   ],
 };
