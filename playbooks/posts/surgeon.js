@@ -82,7 +82,7 @@ export const surgeonPlaybook = {
       type: "Gear",
       length: 3,
       description:
-        "Hard to get hold of, but terrifying potent. Burn to hive you or a crewmate resistance to all damage for the duration of a scene or increased impact on all attacks for the duration of a scene.",
+        "Hard to get hold of, but terrifying potent. Burn to give you or a crewmate resistance to all damage for the duration of a scene or increased impact on all attacks for the duration of a scene.",
     },
     {
       name: "Herbal Sealing-Wax",
