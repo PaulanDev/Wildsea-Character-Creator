@@ -217,8 +217,6 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
-    console.log(selectedPlaybook);
-
     //Hide Options div if no playbook of that type is selected
     hideOptionsIfNotSelected(
       btn,
