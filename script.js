@@ -217,6 +217,8 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     let selectedPlaybook = PLAYBOOKS.find((el) => el.name == clickedBtn.id);
 
+    console.log(selectedPlaybook);
+
     //Hide Options div if no playbook of that type is selected
     hideOptionsIfNotSelected(
       btn,
@@ -244,8 +246,10 @@ const playbookChoiceBtns = document.getElementsByClassName(
       div.innerHTML = "";
     });
 
-    //Assign bloodline name to qsCharacterHolder
-    qsCharacterHolder[selectedPlaybook.type].name = selectedPlaybook.name;
+    //Assign name of playbook to qsCharacterHolder
+    clickedBtn.classList.contains("selected-playbook")
+      ? (qsCharacterHolder[selectedPlaybook.type].name = selectedPlaybook.name)
+      : (qsCharacterHolder[selectedPlaybook.type].name = "");
 
     //Generate Edge buttons
     selectedPlaybook.edgesQS.forEach((edge) => {
