@@ -120,9 +120,7 @@ const toggleLockedEdges = (target) => {
 const doesSkillHavePoints = (skill) => {
   for (let pb in qsCharacterHolder) {
     if (pb["skills"].hasOwnProperty(skill)) {
-      if (pb["skills"][skill] > 0) {
-        return true;
-      }
+      return true;
     }
   }
   return false;
@@ -182,7 +180,6 @@ const edgeButtonFunction = (target, type) => {
 };
 
 /* HTML TEMPLATES */
-
 import {
   playbookBtnTemplate,
   edgeBtnTemplate,
