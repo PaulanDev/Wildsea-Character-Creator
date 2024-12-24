@@ -87,7 +87,7 @@ export const hunterPlaybook = {
       type: "Gear",
       length: 3,
       description:
-        "Count conflicts as triumphs when reaying traps, snares, or ambushes.",
+        "Count conflicts as triumphs when readying traps, snares, or ambushes.",
     },
     {
       name: "Venomous Trophy",
