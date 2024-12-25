@@ -90,7 +90,7 @@ export const steepPlaybook = {
       type: "Gear",
       length: 3,
       description:
-        "Given the proper time and equipment, a steep can brew a hearty stock using this arm-length wishbone chunk. Triumphs on rolls made to bre heal one mark of damage for all cremates who shate in the result.",
+        "Given the proper time and equipment, a steep can brew a hearty stock using this arm-length wishbone chunk. Triumphs on rolls made to brew heal one mark of damage for all cremates who shate in the result.",
     },
     {
       name: "Crezzagrean Kantharos",
