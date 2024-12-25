@@ -116,16 +116,6 @@ const toggleLockedEdges = (target) => {
   });
 };
 
-//Skill Related Functions
-const doesSkillHavePoints = (skill) => {
-  for (let pb in qsCharacterHolder) {
-    if (pb["skills"].hasOwnProperty(skill)) {
-      return true;
-    }
-  }
-  return false;
-};
-
 const plusBtnFunction = (target, type) => {
   const skill = target.parentElement.id.split("-")[0];
 
@@ -185,6 +175,7 @@ import {
   edgeBtnTemplate,
   skillBtnTemplate,
   aspectBtnTemplate,
+  getSkillPointTotal,
 } from "./subscripts/htmlTemplates.js";
 
 //Call renderChoiceBtns before assigning button functionality
@@ -277,7 +268,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
     [...selectedPlaybook.skillsQS, ...selectedPlaybook.languagesQS].forEach(
       (skill) => {
         OPTIONS_OBJECT[selectedPlaybook.type].divarray[2].innerHTML +=
-          skillBtnTemplate(skill, selectedPlaybook.type);
+          skillBtnTemplate(skill, qsCharacterHolder);
       }
     );
 
