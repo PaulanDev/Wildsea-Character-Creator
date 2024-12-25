@@ -11,7 +11,7 @@ const capitalize = (str) => {
   return str[0].toUpperCase() + str.slice(1);
 };
 
-export const getSkillPointTotal = (skill, holder) => {
+export const getTotalPointsInSkill = (skill, holder) => {
   let totalPoints = 0;
   for (let pb in holder) {
     if (holder[pb].skills.hasOwnProperty(skill)) {
@@ -46,7 +46,7 @@ export const skillBtnTemplate = (skill, holder) => {
   return `<div id='${skill}-skill-counter' class=' skill-counter'>
       <div class="skill-name">${skill}</div>
       <div class="skill-val-dec-btn">-</div>
-      <div class="${skill}-value skill-value" id='${skill}-points'>${getSkillPointTotal(
+      <div class="${skill}-value skill-value" id='${skill}-points'>${getTotalPointsInSkill(
     skill,
     holder
   )}</div>
