@@ -175,7 +175,7 @@ import {
   edgeBtnTemplate,
   skillBtnTemplate,
   aspectBtnTemplate,
-  getSkillPointTotal,
+  getTotalPointsInSkill,
 } from "./subscripts/htmlTemplates.js";
 
 //Call renderChoiceBtns before assigning button functionality
