@@ -2,7 +2,7 @@ export const ektusPlaybook = {
   name: "Ektus",
   type: "Bloodline",
   blurb:
-    "Tower, spine-studded cactoids whose deserts were eaten by the Verdancy. The ektus are strong, resilient, and in tune with their natural surroundings.",
+    "Towering, spine-studded cactoids whose deserts were eaten by the Verdancy. The ektus are strong, resilient, and in tune with their natural surroundings.",
   edgesQS: ["Iron", "Sharps", "Tides"],
   skillsQS: ["Brace", "Break", "Delve", "Hack", "Harvest", "Sense", "Wavewalk"],
   languagesQS: ["Saprekk", "Brasstongue", "Highvin"],
