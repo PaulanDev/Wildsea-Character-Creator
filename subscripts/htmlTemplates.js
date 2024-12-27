@@ -45,12 +45,12 @@ export const edgeBtnTemplate = (edge, pb, sheet, db) => {
 export const skillBtnTemplate = (skill, holder, pb) => {
   return `<div id='${skill}-skill-counter-${pb}' class=' skill-counter'>
       <div class="skill-name">${skill}</div>
-      <div class="skill-val-dec-btn">-</div>
+      <div class="skill-val-dec-btn ${pb}-dec-btn">-</div>
       <div class="${skill}-value skill-value" id='${skill}-points-${pb}'>${getTotalPointsInSkill(
     skill,
     holder
   )}</div>
-      <div class="skill-val-inc-btn">+</div>
+      <div class="skill-val-inc-btn ${pb}-inc-btn">+</div>
       <div class="skill-pips"></div>
       </div>`;
 };
