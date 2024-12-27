@@ -2,7 +2,7 @@ export const spitbornPlaybook = {
   name: "Spit-born",
   type: "Origin",
   blurb:
-    "Raised in the relative safety of an isalnd or ruin caught up in the wildsea's growth. Most spit-born value trade, trust, and hospitality to strangers.",
+    "Raised in the relative safety of an island or ruin caught up in the wildsea's growth. Most spit-born value trade, trust, and hospitality to strangers.",
   edgesQS: ["Iron", "Sharps", "Veils"],
   skillsQS: ["Break", "Cook", "Delve", "Outwit", "Rattle", "Study", "Sway"],
   languagesQS: ["Brasstongue", "Highvin"],
