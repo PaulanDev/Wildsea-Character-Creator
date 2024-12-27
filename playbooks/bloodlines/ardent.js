@@ -2,7 +2,7 @@ export const ardentPlaybook = {
   name: "Ardent",
   type: "Bloodline",
   blurb:
-    "The descendants of those humans that survived the explosive growth of the wldsea. The ardent are natural survivors watched over by ancestral spirits.",
+    "The descendants of those humans that survived the explosive growth of the wildsea. The ardent are natural survivors watched over by ancestral spirits.",
   edgesQS: ["Iron", "Teeth", "Tides"],
   skillsQS: ["Harvest", "Hunt", "Sense", "Sway", "Tend", "Wavewalk", "Vault"],
   languagesQS: ["Cthonic", "Old Hand", "Raka Spit"],
