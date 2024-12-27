@@ -40,6 +40,38 @@ let qsCharacterHolder = {
 
 const skillPointMax = 5;
 
+//This is a dirty solution until I make the skills object in playbooks, like I did for edges.
+const SKILLS = [
+  "Brace",
+  "Break",
+  "Concoct",
+  "Cook",
+  "Delve",
+  "Flourish",
+  "Hack",
+  "Harvest",
+  "Hunt",
+  "Outwit",
+  "Rattle",
+  "Scavenge",
+  "Sense",
+  "Study",
+  "Sway",
+  "Tend",
+  "Vault",
+  "Wavewalk",
+  "Cthonic",
+  "Saprekk",
+  "Gaudimm",
+  "Knock",
+  "Brasstongue",
+  "Raka Spit",
+  "Lyre-Bite",
+  "Old Hand",
+  "Signalling",
+  "Highvin",
+];
+
 const createEdgeHolder = () => {
   return [
     qsCharacterHolder.Bloodline.edge,
@@ -116,39 +148,66 @@ const toggleLockedEdges = (target) => {
   });
 };
 
+const updateSkillCounters = (skill) => {
+  [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
+    counter.innerHTML = getTotalPointsInSkill(skill, qsCharacterHolder);
+  });
+};
+
 const plusBtnFunction = (target, type) => {
   const skill = target.parentElement.id.split("-")[0];
 
-  let skillPointsInPB = qsCharacterHolder[type].skills[skill];
-  let skillPointsTotal;
+  let totalPointsInSkill = getTotalPointsInSkill(skill, qsCharacterHolder);
 
-  if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
-    qsCharacterHolder[type].skills[skill]++;
-  } else {
-    qsCharacterHolder[type].skills[skill] = 1;
+  let pointsRemainingForPlaybook =
+    skillPointMax -
+    Object.values(qsCharacterHolder[type].skills).reduce(
+      (acc, currVal) => acc + currVal,
+      0
+    );
+
+  if (pointsRemainingForPlaybook > 0) {
+    if (totalPointsInSkill < 3) {
+      console.log(`Adding one point of ${skill} in ${type}`);
+      if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
+        qsCharacterHolder[type].skills[skill]++;
+      } else {
+        qsCharacterHolder[type].skills[skill] = 1;
+      }
+      console.log(
+        `Current skills for ${type}:`,
+        qsCharacterHolder[type].skills
+      );
+
+      target.parentElement.lastElementChild.innerHTML += " * ";
+
+      updateSkillCounters(skill);
+    }
+    console.log(qsCharacterHolder);
   }
-
-  [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
-    counter.innerHTML = qsCharacterHolder[type].skills[skill];
-  });
-
-  //console.log("Check skills:", qsCharacterHolder[type]);
 };
 
 const minusBtnFunction = (target, type) => {
   const skill = target.parentElement.id.split("-")[0];
 
+  console.log(
+    `Some tests. Button clicked was in ${type}. Does ${skill} exist in ${type}? ${qsCharacterHolder[
+      type
+    ].skills.hasOwnProperty(skill)}`
+  );
   if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
-    if (qsCharacterHolder[type].skills[skill] >= 1) {
+    if (qsCharacterHolder[type].skills[skill] > 1) {
       qsCharacterHolder[type].skills[skill]--;
     } else {
       delete qsCharacterHolder[type].skills[skill];
     }
-    [...document.getElementsByClassName(`${skill}-value`)].forEach(
-      (counter) => {
-        counter.innerHTML = qsCharacterHolder[type].skills[skill] ?? 0;
-      }
-    );
+
+    console.log(`Current skills for ${type}:`, qsCharacterHolder[type].skills);
+
+    target.parentElement.lastElementChild.innerHTML =
+      target.parentElement.lastElementChild.innerHTML.slice(0, -3);
+
+    updateSkillCounters(skill);
   }
 };
 
@@ -275,23 +334,24 @@ const playbookChoiceBtns = document.getElementsByClassName(
     );
 
     //Add clickability to skill plus buttons
-    [...document.getElementsByClassName("skill-val-inc-btn")].forEach(
-      (btn2) => {
-        btn2.addEventListener("click", () => {
-          plusBtnFunction(btn2, selectedPlaybook.type);
-        });
-      }
-    );
+    [
+      ...document.getElementsByClassName(`${selectedPlaybook.type}-inc-btn`),
+    ].forEach((btn2) => {
+      btn2.addEventListener("click", () => {
+        plusBtnFunction(btn2, selectedPlaybook.type);
+      });
+    });
 
     //Add clickability to skill minus buttons
-    [...document.getElementsByClassName("skill-val-dec-btn")].forEach(
-      (btn2) => {
-        btn2.addEventListener("click", () => {
-          minusBtnFunction(btn2, selectedPlaybook.type);
-        });
-      }
-    );
+    [
+      ...document.getElementsByClassName(`${selectedPlaybook.type}-dec-btn`),
+    ].forEach((btn2) => {
+      btn2.addEventListener("click", () => {
+        minusBtnFunction(btn2, selectedPlaybook.type);
+      });
+    });
 
+    SKILLS.forEach((skill) => updateSkillCounters(skill));
     updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
     console.log(qsCharacterHolder);
   });
