@@ -237,6 +237,7 @@ import {
   skillBtnTemplate,
   aspectBtnTemplate,
   getTotalPointsInSkill,
+  kebabCase,
 } from "./subscripts/htmlTemplates.js";
 
 //Call renderChoiceBtns before assigning button functionality
@@ -348,6 +349,15 @@ const playbookChoiceBtns = document.getElementsByClassName(
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
         minusBtnFunction(btn2, selectedPlaybook.type);
+      });
+    });
+
+    //Add clickability to aspect buttons
+    [
+      ...document.getElementsByClassName(`${selectedPlaybook.type}-aspect`),
+    ].forEach((btn2) => {
+      btn2.addEventListener("click", () => {
+        console.log(kebabCase(btn2.firstElementChild.innerHTML));
       });
     });
 
