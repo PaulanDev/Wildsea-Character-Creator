@@ -11,6 +11,10 @@ const capitalize = (str) => {
   return str[0].toUpperCase() + str.slice(1);
 };
 
+export const kebabCase = (str) => {
+  return str.replace(/'/g, "").toLowerCase().replace(/\s/g, "-");
+};
+
 export const getTotalPointsInSkill = (skill, holder) => {
   let totalPoints = 0;
   for (let pb in holder) {
@@ -56,7 +60,7 @@ export const skillBtnTemplate = (skill, holder, pb) => {
 };
 
 export const aspectBtnTemplate = (aspect, type) => {
-  return `<div class='${type}-aspect'>
+  return `<div class='${type}-aspect' id='${kebabCase(aspect["name"])}'>
           <h3>${aspect["name"]}</h3>
           <p>${aspect["length"]} Track ${aspect["type"]}</p>
           <p>${aspect["description"]}</p>
