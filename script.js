@@ -119,6 +119,9 @@ const toggleLockedEdges = (target) => {
 const plusBtnFunction = (target, type) => {
   const skill = target.parentElement.id.split("-")[0];
 
+  let skillPointsInPB = qsCharacterHolder[type].skills[skill];
+  let skillPointsTotal;
+
   if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
     qsCharacterHolder[type].skills[skill]++;
   } else {
@@ -129,25 +132,24 @@ const plusBtnFunction = (target, type) => {
     counter.innerHTML = qsCharacterHolder[type].skills[skill];
   });
 
-  console.log("Check skills:", qsCharacterHolder);
+  //console.log("Check skills:", qsCharacterHolder[type]);
 };
 
 const minusBtnFunction = (target, type) => {
   const skill = target.parentElement.id.split("-")[0];
 
   if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
-    if (qsCharacterHolder[type].skills[skill] > 1) {
+    if (qsCharacterHolder[type].skills[skill] >= 1) {
       qsCharacterHolder[type].skills[skill]--;
     } else {
       delete qsCharacterHolder[type].skills[skill];
     }
+    [...document.getElementsByClassName(`${skill}-value`)].forEach(
+      (counter) => {
+        counter.innerHTML = qsCharacterHolder[type].skills[skill] ?? 0;
+      }
+    );
   }
-
-  [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
-    counter.innerHTML = qsCharacterHolder[type].skills[skill] ?? 0;
-  });
-
-  console.log("Check skills:", qsCharacterHolder);
 };
 
 //Option Functionality
@@ -268,7 +270,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
     [...selectedPlaybook.skillsQS, ...selectedPlaybook.languagesQS].forEach(
       (skill) => {
         OPTIONS_OBJECT[selectedPlaybook.type].divarray[2].innerHTML +=
-          skillBtnTemplate(skill, qsCharacterHolder);
+          skillBtnTemplate(skill, qsCharacterHolder, selectedPlaybook.type);
       }
     );
 
