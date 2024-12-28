@@ -36,6 +36,10 @@ header {
   background-color: turquoise;
 }
 
+.selected-aspect {
+  background-color: rgb(199, 193, 106);
+}
+
 .locked-edge {
   background-color: darkslategray;
   color: beige;
