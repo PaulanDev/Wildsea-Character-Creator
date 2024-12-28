@@ -72,12 +72,8 @@ const SKILLS = [
   "Highvin",
 ];
 
-const createEdgeHolder = () => {
-  return [
-    qsCharacterHolder.Bloodline.edge,
-    qsCharacterHolder.Origin.edge,
-    qsCharacterHolder.Post.edge,
-  ];
+const createEdgeHolder = (sheet) => {
+  return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
 };
 
 const capitalize = (str) => {
@@ -136,7 +132,7 @@ const deselectUnusedButton = (arr, cl, target) => {
 };
 
 const toggleLockedEdges = (target) => {
-  let edgeHolder = createEdgeHolder();
+  let edgeHolder = createEdgeHolder(qsCharacterHolder);
   [...document.getElementsByClassName("edges")].forEach((item) => {
     if (item.id != target.id && !item.classList.contains("selected-edge")) {
       if (edgeHolder.includes(item.classList[1].split("-")[0])) {
@@ -217,6 +213,28 @@ const edgeButtonFunction = (target, type) => {
   updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
 };
 
+//Aspect Functionality
+const aspectButtonFunction = (target, pb) => {
+  let kebabedAspect = kebabCase(target.firstElementChild.innerHTML);
+  let chosenAspect = pb.aspects.find(
+    (el) => el.name == target.firstElementChild.innerHTML
+  );
+  console.log(chosenAspect);
+  if (
+    qsCharacterHolder[pb["type"]].aspects.filter(
+      (item) => kebabCase(item["name"]) == kebabedAspect
+    ).length == 0
+  ) {
+    console.log(
+      `${target.firstElementChild.innerHTML} is not yet in the aspects for ${pb["type"]}`
+    );
+    qsCharacterHolder[pb["type"]].aspects.push(chosenAspect);
+    console.log("Now it is.");
+    console.log(qsCharacterHolder[pb["type"]].aspects);
+  }
+  target.classList.toggle("selected-aspect");
+};
+
 /* HTML TEMPLATES */
 import {
   playbookBtnTemplate,
@@ -269,7 +287,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
     resetCharacterPlaybook(qsCharacterHolder[selectedPlaybook.type]);
 
     //Toggle locked-edge off when a playbook button is clicked
-    let edgeHolder = createEdgeHolder();
+    let edgeHolder = createEdgeHolder(qsCharacterHolder);
     [...document.getElementsByClassName("edges")].forEach((item) => {
       if (
         !edgeHolder.includes(item.classList[1].split("-")[0]) &&
@@ -344,7 +362,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       ...document.getElementsByClassName(`${selectedPlaybook.type}-aspect`),
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
-        console.log(kebabCase(btn2.firstElementChild.innerHTML));
+        aspectButtonFunction(btn2, selectedPlaybook);
       });
     });
 
