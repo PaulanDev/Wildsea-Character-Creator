@@ -168,41 +168,28 @@ const plusBtnFunction = (target, type) => {
 
   if (pointsRemainingForPlaybook > 0) {
     if (totalPointsInSkill < 3) {
-      console.log(`Adding one point of ${skill} in ${type}`);
       if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
         qsCharacterHolder[type].skills[skill]++;
       } else {
         qsCharacterHolder[type].skills[skill] = 1;
       }
-      console.log(
-        `Current skills for ${type}:`,
-        qsCharacterHolder[type].skills
-      );
 
       target.parentElement.lastElementChild.innerHTML += " * ";
 
       updateSkillCounters(skill);
     }
-    console.log(qsCharacterHolder);
   }
 };
 
 const minusBtnFunction = (target, type) => {
   const skill = target.parentElement.id.split("-")[0];
 
-  console.log(
-    `Some tests. Button clicked was in ${type}. Does ${skill} exist in ${type}? ${qsCharacterHolder[
-      type
-    ].skills.hasOwnProperty(skill)}`
-  );
   if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
     if (qsCharacterHolder[type].skills[skill] > 1) {
       qsCharacterHolder[type].skills[skill]--;
     } else {
       delete qsCharacterHolder[type].skills[skill];
     }
-
-    console.log(`Current skills for ${type}:`, qsCharacterHolder[type].skills);
 
     target.parentElement.lastElementChild.innerHTML =
       target.parentElement.lastElementChild.innerHTML.slice(0, -3);
