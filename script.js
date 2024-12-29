@@ -215,24 +215,46 @@ const edgeButtonFunction = (target, type) => {
 
 //Aspect Functionality
 const aspectButtonFunction = (target, pb) => {
-  let kebabedAspect = kebabCase(target.firstElementChild.innerHTML);
+  //Get the name of the clicked aspect button
+  let aspectName = target.firstElementChild.innerHTML;
+  //Get the full object of the aspect
   let chosenAspect = pb.aspects.find(
     (el) => el.name == target.firstElementChild.innerHTML
   );
-  console.log(chosenAspect);
+  //If the aspects for the pb don't have an object with the name of the clicked button
   if (
     qsCharacterHolder[pb["type"]].aspects.filter(
-      (item) => kebabCase(item["name"]) == kebabedAspect
+      (item) => item["name"] == aspectName
     ).length == 0
   ) {
-    console.log(
-      `${target.firstElementChild.innerHTML} is not yet in the aspects for ${pb["type"]}`
-    );
     qsCharacterHolder[pb["type"]].aspects.push(chosenAspect);
-    console.log("Now it is.");
-    console.log(qsCharacterHolder[pb["type"]].aspects);
+  } else {
+    let targetIndex = qsCharacterHolder[pb["type"]].aspects
+      .map((aspect) => aspect.name)
+      .indexOf(aspectName);
+    qsCharacterHolder[pb["type"]].aspects.splice(targetIndex, 1);
   }
-  target.classList.toggle("selected-aspect");
+
+  //Remove the first in the aspect array if a third is added
+  if (qsCharacterHolder[pb["type"]].aspects.length > 2) {
+    qsCharacterHolder[pb["type"]].aspects.shift();
+  }
+
+  //Create array of aspect names in qsCharacterHolder for playbook
+  let selectedAspectNames = qsCharacterHolder[pb["type"]].aspects.map(
+    (aspect) => aspect.name
+  );
+
+  //Toggle selected-aspect for relevant buttons
+  [...document.getElementsByClassName(`${pb["type"]}-aspect`)].forEach(
+    (btn2) => {
+      if (selectedAspectNames.includes(btn2.firstElementChild.innerHTML)) {
+        btn2.classList.add("selected-aspect");
+      } else {
+        btn2.classList.remove("selected-aspect");
+      }
+    }
+  );
 };
 
 /* HTML TEMPLATES */
