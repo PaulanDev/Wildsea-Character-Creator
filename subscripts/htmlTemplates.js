@@ -66,3 +66,10 @@ export const aspectBtnTemplate = (aspect, type) => {
           <p>${aspect["description"]}</p>
           </div>`;
 };
+
+//Made generic to work for drives, mires, and resources
+export const genericBtnTemplate = (type, pb) => {
+  return `<div class="${pb}-${type}">
+  <p>${generic}</p>
+  </div>`;
+};
