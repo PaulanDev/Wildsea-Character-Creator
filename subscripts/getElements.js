@@ -13,27 +13,39 @@ const BLOODLINE_OPTIONS = document.getElementById("Bloodline-options");
 const BLOODLINE_EDGE_BTNS = document.getElementById("Bloodline-edge-btns");
 const BLOODLINE_ASPECT_BTNS = document.getElementById("Bloodline-aspect-btns");
 const BLOODLINE_SKILL_BTNS = document.getElementById("Bloodline-skill-btns");
+const BLOODLINE_RESOURCE_BTNS = document.getElementById(
+  "Bloodline-resource-btns"
+);
 const BLOODLINE_OPTION_DIVS = [
   BLOODLINE_EDGE_BTNS,
   BLOODLINE_ASPECT_BTNS,
   BLOODLINE_SKILL_BTNS,
+  BLOODLINE_RESOURCE_BTNS,
 ];
 
 const ORIGIN_OPTIONS = document.getElementById("Origin-options");
 const ORIGIN_EDGE_BTNS = document.getElementById("Origin-edge-btns");
 const ORIGIN_ASPECT_BTNS = document.getElementById("Origin-aspect-btns");
 const ORIGIN_SKILL_BTNS = document.getElementById("Origin-skill-btns");
+const ORIGIN_RESOURCE_BTNS = document.getElementById("Origin-resource-btns");
 const ORIGIN_OPTION_DIVS = [
   ORIGIN_EDGE_BTNS,
   ORIGIN_ASPECT_BTNS,
   ORIGIN_SKILL_BTNS,
+  ORIGIN_RESOURCE_BTNS,
 ];
 
 const POST_OPTIONS = document.getElementById("Post-options");
 const POST_EDGE_BTNS = document.getElementById("Post-edge-btns");
 const POST_ASPECT_BTNS = document.getElementById("Post-aspect-btns");
 const POST_SKILL_BTNS = document.getElementById("Post-skill-btns");
-const POST_OPTION_DIVS = [POST_EDGE_BTNS, POST_ASPECT_BTNS, POST_SKILL_BTNS];
+const POST_RESOURCE_BTNS = document.getElementById("Post-resource-btns");
+const POST_OPTION_DIVS = [
+  POST_EDGE_BTNS,
+  POST_ASPECT_BTNS,
+  POST_SKILL_BTNS,
+  POST_RESOURCE_BTNS,
+];
 
 export const OPTIONS_OBJECT = {
   Bloodline: { optiondiv: BLOODLINE_OPTIONS, divarray: BLOODLINE_OPTION_DIVS },
