@@ -47,23 +47,44 @@ const BLOODLINE_DISPLAY_NAME = document.getElementById(
 const BLOODLINE_DISPLAY_EDGE = document.getElementById(
   "Bloodline-display-edge"
 );
+const BLOODLINE_DISPLAY_SKILLS = document.getElementById(
+  "Bloodline-display-skills"
+);
 
 const ORIGIN_DISPLAY_NAME = document.getElementById("Origin-display-name");
 const ORIGIN_DISPLAY_EDGE = document.getElementById("Origin-display-edge");
+const ORIGIN_DISPLAY_SKILLS = document.getElementById("Origin-display-skills");
 
 const POST_DISPLAY_NAME = document.getElementById("Post-display-name");
 const POST_DISPLAY_EDGE = document.getElementById("Post-display-edge");
+const POST_DISPLAY_SKILLS = document.getElementById("Post-display-skills");
 
 export const DISPLAY_OBJECT = {
-  Bloodline: { name: BLOODLINE_DISPLAY_NAME, edge: BLOODLINE_DISPLAY_EDGE },
-  Origin: { name: ORIGIN_DISPLAY_NAME, edge: ORIGIN_DISPLAY_EDGE },
-  Post: { name: POST_DISPLAY_NAME, edge: POST_DISPLAY_EDGE },
+  Bloodline: {
+    name: BLOODLINE_DISPLAY_NAME,
+    edge: BLOODLINE_DISPLAY_EDGE,
+    skills: BLOODLINE_DISPLAY_SKILLS,
+  },
+  Origin: {
+    name: ORIGIN_DISPLAY_NAME,
+    edge: ORIGIN_DISPLAY_EDGE,
+    skills: ORIGIN_DISPLAY_SKILLS,
+  },
+  Post: {
+    name: POST_DISPLAY_NAME,
+    edge: POST_DISPLAY_EDGE,
+    skills: POST_DISPLAY_SKILLS,
+  },
 };
 
 export const updateDisplay = (displayObj, sheet) => {
   for (let pb in displayObj) {
-    for (let key in displayObj[pb]) {
-      displayObj[pb][key].innerHTML = sheet[pb][key];
-    }
+    displayObj[pb].name.innerHTML = sheet[pb].name;
+    displayObj[pb].edge.innerHTML = sheet[pb].edge;
+    let skillsText = "";
+    Object.keys(sheet[pb].skills).forEach((skill) => {
+      skillsText += `<br>${skill}: ${sheet[pb].skills[skill]}`;
+    });
+    displayObj[pb].skills.innerHTML = skillsText;
   }
 };
