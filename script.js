@@ -175,6 +175,7 @@ const plusBtnFunction = (target, type) => {
       updateSkillCounters(skill);
     }
   }
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
 };
 
 const minusBtnFunction = (target, type) => {
@@ -192,6 +193,7 @@ const minusBtnFunction = (target, type) => {
 
     updateSkillCounters(skill);
   }
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
 };
 
 //Option Functionality
