@@ -48,10 +48,6 @@ const createEdgeHolder = (sheet) => {
   return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
 };
 
-const capitalize = (str) => {
-  return str[0].toUpperCase() + str.slice(1);
-};
-
 //Reset all choices in the qsCharacterHolder to blanks
 const resetCharacterPlaybook = (item) => {
   item["name"] = "";
@@ -237,6 +233,9 @@ import {
   edgeBtnTemplate,
   skillBtnTemplate,
   aspectBtnTemplate,
+  resourceBtnTemplate,
+  dmBtnTemplate,
+  capitalize,
   getTotalPointsInSkill,
 } from "./subscripts/htmlTemplates.js";
 
@@ -329,7 +328,15 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     //Generate Resource buttons
     for (let resourceType in selectedPlaybook.resourcesQS) {
-      selectedPlaybook.resourcesQS[resourceType].forEach((resource) => {});
+      selectedPlaybook.resourcesQS[resourceType].forEach((resource) => {
+        OPTIONS_OBJECT[selectedPlaybook.type].divarray[3].innerHTML +=
+          resourceBtnTemplate(
+            resource,
+            "resource",
+            selectedPlaybook.type,
+            capitalize(resourceType)
+          );
+      });
     }
 
     //Add clickability to Edge buttons
