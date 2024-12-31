@@ -314,13 +314,6 @@ const playbookChoiceBtns = document.getElementsByClassName(
         );
     });
 
-    //Add clickability to Edge buttons
-    btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
-      btn2.addEventListener("click", () => {
-        edgeButtonFunction(btn2, selectedPlaybook.type);
-      });
-    });
-
     //Generate Aspect buttons
     selectedPlaybook.aspects.forEach((aspect) => {
       OPTIONS_OBJECT[selectedPlaybook.type].divarray[1].innerHTML +=
@@ -334,6 +327,13 @@ const playbookChoiceBtns = document.getElementsByClassName(
           skillBtnTemplate(skill, qsCharacterHolder, selectedPlaybook.type);
       }
     );
+
+    //Add clickability to Edge buttons
+    btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
+      btn2.addEventListener("click", () => {
+        edgeButtonFunction(btn2, selectedPlaybook.type);
+      });
+    });
 
     //Add clickability to skill plus buttons
     [
