@@ -89,14 +89,18 @@ export const DISPLAY_OBJECT = {
   },
 };
 
-export const updateDisplay = (displayObj, sheet) => {
+export const updateDisplay = (displayObj, sheet, skillsArr) => {
   for (let pb in displayObj) {
     displayObj[pb].name.innerHTML = sheet[pb].name;
     displayObj[pb].edge.innerHTML = sheet[pb].edge;
     let skillsText = "";
-    Object.keys(sheet[pb].skills).forEach((skill) => {
-      skillsText += `<br>${skill}: ${sheet[pb].skills[skill]}`;
+
+    skillsArr.forEach((skill) => {
+      if (sheet[pb].skills.hasOwnProperty(skill)) {
+        skillsText += `<br>${skill}: ${sheet[pb].skills[skill]}`;
+      }
     });
+
     displayObj[pb].skills.innerHTML = skillsText;
   }
 };
