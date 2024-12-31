@@ -7,7 +7,7 @@ const isEdgeSelectedElsewhere = (holder, check) => {
   return false;
 };
 
-const capitalize = (str) => {
+export const capitalize = (str) => {
   return str[0].toUpperCase() + str.slice(1);
 };
 
@@ -64,8 +64,15 @@ export const aspectBtnTemplate = (aspect, type) => {
 };
 
 //Made generic to work for drives, mires, and resources
-export const genericBtnTemplate = (type, pb) => {
-  return `<div class="${pb}-${type}">
-  <p>${generic}</p>
+export const resourceBtnTemplate = (name, category, pb, subcat) => {
+  return `<div class="${pb}-${category} ${category}s">
+  <p>${subcat}</p>
+  <p>${name}</p>
+  </div>`;
+};
+
+export const dmBtnTemplate = (name, category, pb) => {
+  return `<div class="${pb}-${category} ${category}s">
+  <p>${name}</p>
   </div>`;
 };
