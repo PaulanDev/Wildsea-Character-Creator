@@ -7,6 +7,7 @@ import {
 
 import { PLAYBOOKS } from "./importer.js";
 import { edgesInfo } from "./playbooks/edges.js";
+import { SKILLS } from "./playbooks/skills.js";
 
 let qsCharacterHolder = {
   Bloodline: {
@@ -41,36 +42,7 @@ let qsCharacterHolder = {
 const skillPointMax = 5;
 
 //This is a dirty solution until I make the skills object in playbooks, like I did for edges.
-const SKILLS = [
-  "Brace",
-  "Break",
-  "Concoct",
-  "Cook",
-  "Delve",
-  "Flourish",
-  "Hack",
-  "Harvest",
-  "Hunt",
-  "Outwit",
-  "Rattle",
-  "Scavenge",
-  "Sense",
-  "Study",
-  "Sway",
-  "Tend",
-  "Vault",
-  "Wavewalk",
-  "Cthonic",
-  "Saprekk",
-  "Gaudimm",
-  "Knock",
-  "Brasstongue",
-  "Raka Spit",
-  "Lyre-Bite",
-  "Old Hand",
-  "Signalling",
-  "Highvin",
-];
+const SKILLSARR = SKILLS.map((skill) => skill.name);
 
 const createEdgeHolder = (sheet) => {
   return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
@@ -175,7 +147,7 @@ const plusBtnFunction = (target, type) => {
       updateSkillCounters(skill);
     }
   }
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
 };
 
 const minusBtnFunction = (target, type) => {
@@ -193,7 +165,7 @@ const minusBtnFunction = (target, type) => {
 
     updateSkillCounters(skill);
   }
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
 };
 
 //Option Functionality
@@ -212,7 +184,7 @@ const edgeButtonFunction = (target, type) => {
     target
   );
   toggleLockedEdges(target);
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
 };
 
 //Aspect Functionality
@@ -390,8 +362,8 @@ const playbookChoiceBtns = document.getElementsByClassName(
       });
     });
 
-    SKILLS.forEach((skill) => updateSkillCounters(skill));
-    updateDisplay(DISPLAY_OBJECT, qsCharacterHolder);
+    SKILLSARR.forEach((skill) => updateSkillCounters(skill));
+    updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
     console.log(qsCharacterHolder);
   });
 });
