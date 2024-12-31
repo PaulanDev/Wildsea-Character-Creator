@@ -54,6 +54,12 @@ header {
   padding: 0 1em;
 }
 
+.resources {
+  border: 1px black solid;
+  padding: 0.25em;
+  border-radius: 1em;
+}
+
 .Bloodline-aspect,
 .Origin-aspect,
 .Post-aspect {
