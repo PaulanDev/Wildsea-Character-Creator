@@ -238,7 +238,6 @@ import {
   skillBtnTemplate,
   aspectBtnTemplate,
   getTotalPointsInSkill,
-  kebabCase,
 } from "./subscripts/htmlTemplates.js";
 
 //Call renderChoiceBtns before assigning button functionality
@@ -327,6 +326,11 @@ const playbookChoiceBtns = document.getElementsByClassName(
           skillBtnTemplate(skill, qsCharacterHolder, selectedPlaybook.type);
       }
     );
+
+    //Generate Resource buttons
+    for (let resourceType in selectedPlaybook.resourcesQS) {
+      selectedPlaybook.resourcesQS[resourceType].forEach((resource) => {});
+    }
 
     //Add clickability to Edge buttons
     btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
