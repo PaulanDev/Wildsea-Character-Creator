@@ -384,6 +384,18 @@ const playbookChoiceBtns = document.getElementsByClassName(
       });
     }
 
+    //Generate Drive buttons
+    selectedPlaybook.drivesQS.forEach((drive) => {
+      OPTIONS_OBJECT[selectedPlaybook.type].divarray[4].innerHTML +=
+        dmBtnTemplate(drive, "drive", selectedPlaybook.type);
+    });
+
+    //Generate Mire buttons
+    selectedPlaybook.miresQS.forEach((mire) => {
+      OPTIONS_OBJECT[selectedPlaybook.type].divarray[5].innerHTML +=
+        dmBtnTemplate(mire, "mire", selectedPlaybook.type);
+    });
+
     //Add clickability to Edge buttons
     btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
       btn2.addEventListener("click", () => {
