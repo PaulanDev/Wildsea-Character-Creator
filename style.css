@@ -58,8 +58,10 @@ header {
   padding: 0 1em;
 }
 
-.resources {
-  border: 1px black solid;
+.resources,
+.drives,
+.mires {
+  border: 2px black solid;
   padding: 0.25em;
   border-radius: 1em;
 }
