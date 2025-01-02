@@ -40,6 +40,10 @@ header {
   background-color: rgb(199, 193, 106);
 }
 
+.selected-resource {
+  background-color: plum;
+}
+
 .locked-edge {
   background-color: darkslategray;
   color: beige;
