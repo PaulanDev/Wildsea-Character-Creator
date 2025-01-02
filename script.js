@@ -227,6 +227,51 @@ const aspectButtonFunction = (target, pb) => {
   );
 };
 
+//Resource Functionality
+const resourceButtonFunction = (target, pb) => {
+  let resourceType = target.firstElementChild.innerHTML;
+  let resourceName = target.lastElementChild.innerHTML;
+
+  //Check if resource is in pb, if so remove from array
+
+  let resourceArray = qsCharacterHolder[pb].resources.map(
+    (thing) => thing["name"]
+  );
+
+  if (resourceArray.indexOf(resourceName) > -1) {
+    qsCharacterHolder[pb].resources.splice(
+      resourceArray.indexOf(resourceName),
+      1
+    );
+  } else {
+    qsCharacterHolder[pb].resources.push({
+      name: resourceName,
+      type: resourceType,
+    });
+  }
+
+  //Remove the 0th index resource if a third one tries to be selected
+  if (qsCharacterHolder[pb].resources.length > 2) {
+    qsCharacterHolder[pb].resources.shift();
+  }
+
+  resourceArray = qsCharacterHolder[pb].resources.map((thing) => thing["name"]);
+
+  //Gives elements .selected-resource or removes it
+  [...document.getElementsByClassName(`${pb}-resource`)].forEach((el) => {
+    console.log(el.lastElementChild.innerHTML);
+    if (resourceArray.includes(el.lastElementChild.innerHTML)) {
+      console.log(`${el.lastElementChild.innerHTML} is on the list.`);
+      el.classList.add("selected-resource");
+    } else {
+      console.log(`${el.lastElementChild.innerHTML} is not on the list.`);
+      el.classList.remove("selected-resource");
+    }
+  });
+
+  console.log(qsCharacterHolder[pb].resources);
+};
+
 /* HTML TEMPLATES */
 import {
   playbookBtnTemplate,
@@ -373,6 +418,16 @@ const playbookChoiceBtns = document.getElementsByClassName(
       });
     });
 
+    //Add clickability to resource buttons
+    [
+      ...document.getElementsByClassName(`${selectedPlaybook.type}-resource`),
+    ].forEach((btn2) => {
+      btn2.addEventListener("click", () => {
+        resourceButtonFunction(btn2, selectedPlaybook.type);
+      });
+    });
+
+    //Update skill counters after changing playbooks, which resets and removes points
     SKILLSARR.forEach((skill) => updateSkillCounters(skill));
     updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
     console.log(qsCharacterHolder);
