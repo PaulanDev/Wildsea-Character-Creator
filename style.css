@@ -12,6 +12,41 @@ header {
   font-size: 3em;
 }
 
+main {
+  margin-top: 3em;
+}
+
+/*UTILITY BAR*/
+#utility-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 75%;
+  height: 2.5em;
+  background-color: yellow;
+  font-size: 1.25em;
+  margin: 0 12.5%;
+  border-radius: 0 0 10px 10px;
+  border: 2px solid black;
+  border-top: none;
+  user-select: none;
+}
+
+#utility-bar a,
+#utility-bar span {
+  text-decoration: none;
+  display: block;
+  color: black;
+}
+
+#utility-bar a:hover,
+#utility-bar span:hover {
+  background: lightcyan;
+}
+
 /* Playbook choice button areas */
 .btn-spread {
   display: flex;
