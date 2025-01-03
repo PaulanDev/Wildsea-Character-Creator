@@ -20,15 +20,13 @@ main {
 #utility-bar {
   position: fixed;
   top: 0;
-  width: 100%;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  width: 75%;
+  width: 65%;
   height: 2.5em;
-  background-color: yellow;
+  background-color: darkgreen;
   font-size: 1.25em;
-  margin: 0 12.5%;
+  margin: 0 17.5%;
   border-radius: 0 0 10px 10px;
   border: 2px solid black;
   border-top: none;
@@ -39,12 +37,14 @@ main {
 #utility-bar span {
   text-decoration: none;
   display: block;
-  color: black;
+  color: goldenrod;
+  padding: 0.625em 1em 0 1em;
 }
 
 #utility-bar a:hover,
 #utility-bar span:hover {
-  background: lightcyan;
+  background: yellowgreen;
+  color: black;
 }
 
 /* Playbook choice button areas */
