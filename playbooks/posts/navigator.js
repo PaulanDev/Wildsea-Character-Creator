@@ -110,7 +110,7 @@ export const navigatorPlaybook = {
       type: "Gear",
       length: 2,
       description:
-        "A small sidearm loaded with chemical flares. Deals LR Acide damage. Can also be used to shed light over extremely large areas at will.",
+        "A small sidearm loaded with chemical flares. Deals LR Acid damage. Can also be used to shed light over extremely large areas at will.",
     },
     {
       name: "Scout Falcon",
