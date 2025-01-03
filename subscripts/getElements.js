@@ -163,5 +163,8 @@ export const updateDisplay = (displayObj, sheet, skillsArr) => {
       resourceText += `<br>${resource.name} (${resource.type})`;
     });
     displayObj[pb].resources.innerHTML = resourceText;
+
+    displayObj[pb].drive.innerHTML = sheet[pb].drive;
+    displayObj[pb].mire.innerHTML = sheet[pb].mire;
   }
 };
