@@ -7,163 +7,173 @@
     <title>Wildsea Character Creator</title>
   </head>
   <body>
-    <header class="text-center">Wildsea Character Creator</header>
-    <section id="opening" class="text-center">
-      This is a non-official website to allow people to make characters for the
-      TTRPG The Wildsea by Felix Isaacs. This is just a little project that I've
-      wanted to make for a long time to practice some basic web dev.
-    </section>
+    <div id="utility-bar">
+      <span id="glossary">Glossary</span>
+      <a href="#Bloodline-container">Bloodline</a>
+      <a href="#Origin-container">Origin</a>
+      <a href="#Post-container">Post</a>
+      <a href="#display-character">Display</a>
+    </div>
 
-    <section id="Bloodline-container">
-      <h1 id="Bloodline-title">Bloodline</h1>
-      <p id="Bloodline-blurb">
-        Your bloodline describes what you are, a truth written in blood or sap
-        or chitin. You'll be instantly recognizable as a member of your
-        bloodline, unless you go to impressive length to hide it.
-      </p>
-      <div id="Bloodline-choice" class="btn-spread"></div>
-      <div id="Bloodline-options" class="hidden">
-        <p>
-          Select 1 Edge, 5 points of Skills/Languages, 2 Resources, 1 Drive, and
-          1 Mire
-        </p>
-        <div id="Bloodline-edges">
-          <h2 id="Bloodline-edges-header">Edges</h2>
-          <section id="Bloodline-edge-btns" class="btn-spread"></section>
-        </div>
-        <div id="Bloodline-skills">
-          <h2 id="Bloodline-skills-header">Skills and Languages</h2>
-          <section id="Bloodline-skill-btns" class="btn-spread"></section>
-        </div>
-        <div id="Bloodline-aspects">
-          <h2 id="Bloodline-aspects-header">Aspects</h2>
-          <section id="Bloodline-aspect-btns" class="btn-spread"></section>
-        </div>
-        <div id="Bloodline-resources">
-          <h2 id="Bloodline-resources-header">Resources</h2>
-          <section id="Bloodline-resource-btns" class="btn-spread"></section>
-        </div>
-        <div id="Bloodline-drives">
-          <h2 id="Bloodline-drives-header">Drives</h2>
-          <section id="Bloodline-drive-btns" class="btn-spread"></section>
-        </div>
-        <div id="Bloodline-mires">
-          <h2 id="Bloodline-mires-header">Mires</h2>
-          <section id="Bloodline-mire-btns" class="btn-spread"></section>
-        </div>
-      </div>
-    </section>
-
-    <section id="Origin-container">
-      <h1 id="Origin-title">Origin</h1>
-      <p id="Origin-blurb">
-        Your origin denotes the kind of environment you lived in before you
-        became a wildsailor. It doesn't need to be where you grew up, though it
-        can be - it could be a place or culture that left a lasting impact on
-        you.
-      </p>
-      <div id="Origin-choice" class="btn-spread"></div>
-      <div id="Origin-options" class="hidden">
-        <p>
-          Select 1 Edge, 5 points of Skills/Languages, 2 Resources, 1 Drive, and
-          1 Mire
-        </p>
-        <div id="Origin-edges">
-          <h2 id="Origin-edges-header">Edges</h2>
-          <section id="Origin-edge-btns" class="btn-spread"></section>
-        </div>
-        <div id="Origin-skills">
-          <h2 id="Origin-skills-header">Skills and Languages</h2>
-          <section id="Origin-skill-btns" class="btn-spread"></section>
-        </div>
-        <div id="Origin-aspects">
-          <h2 id="Origin-aspects-header">Aspects</h2>
-          <section id="Origin-aspect-btns" class="btn-spread"></section>
-        </div>
-        <div id="Origin-resources">
-          <h2 id="Origin-resources-header">Resources</h2>
-          <section id="Origin-resource-btns" class="btn-spread"></section>
-        </div>
-        <div id="Origin-drives">
-          <h2 id="Origin-drives-header">Drives</h2>
-          <section id="Origin-drive-btns" class="btn-spread"></section>
-        </div>
-        <div id="Origin-mires">
-          <h2 id="Origin-mires-header">Mires</h2>
-          <section id="Origin-mire-btns" class="btn-spread"></section>
-        </div>
-      </div>
-    </section>
-
-    <section id="Post-container">
-      <h1 id="Post-title">Post</h1>
-      <p id="Post-blurb">
-        Your post denotes your position on the ship, or at least the kind of
-        activities you've trained for while travelling the rustling waves.
-      </p>
-      <div id="Post-choice" class="btn-spread"></div>
-      <div id="Post-options" class="hidden">
-        <p>
-          Select 1 Edge, 5 points of Skills/Languages, 2 Resources, 1 Drive, and
-          1 Mire
-        </p>
-        <div id="Post-edges">
-          <h2 id="Post-edges-header">Edges</h2>
-          <section id="Post-edge-btns" class="btn-spread"></section>
-        </div>
-        <div id="Post-skills">
-          <h2 id="Post-skills-header">Skills and Languages</h2>
-          <section id="Post-skill-btns" class="btn-spread"></section>
-        </div>
-        <div id="Post-aspects">
-          <h2 id="Post-aspects-header">Aspects</h2>
-          <section id="Post-aspect-btns" class="btn-spread"></section>
-        </div>
-        <div id="Post-resources">
-          <h2 id="Post-resources-header">Resources</h2>
-          <section id="Post-resource-btns" class="btn-spread"></section>
-        </div>
-        <div id="Post-drives">
-          <h2 id="Post-drives-header">Drives</h2>
-          <section id="Post-drive-btns" class="btn-spread"></section>
-        </div>
-        <div id="Post-mires">
-          <h2 id="Post-mires-header">Mires</h2>
-          <section id="Post-mire-btns" class="btn-spread"></section>
-        </div>
-      </div>
-    </section>
-
-    <h2>Display</h2>
-    <section id="display-character" class="btn-spread">
-      <section id="Bloodline-display" class="display-el">
-        <p>Bloodline: <span id="Bloodline-display-name"></span></p>
-        <p>Edge:<span id="Bloodline-display-edge"></span></p>
-        <p>Skills: <span id="Bloodline-display-skills"></span></p>
-        <p>Aspects: <span id="Bloodline-display-aspects"></span></p>
-        <p>Resources: <span id="Bloodline-display-resources"></span></p>
-        <p>Drive: <span id="Bloodline-display-drive"></span></p>
-        <p>Mire: <span id="Bloodline-display-mire"></span></p>
+    <main>
+      <header class="text-center">Wildsea Character Creator</header>
+      <section id="opening" class="text-center">
+        This is a non-official website to allow people to make characters for
+        the TTRPG The Wildsea by Felix Isaacs. This is just a little project
+        that I've wanted to make for a long time to practice some basic web dev.
       </section>
-      <section id="Origin-display" class="display-el">
-        <p>Origin:<span id="Origin-display-name"></span></p>
-        <p>Edge:<span id="Origin-display-edge"></span></p>
-        <p>Skills: <span id="Origin-display-skills"></span></p>
-        <p>Aspects: <span id="Origin-display-aspects"></span></p>
-        <p>Resources: <span id="Origin-display-resources"></span></p>
-        <p>Drive: <span id="Origin-display-drive"></span></p>
-        <p>Mire: <span id="Origin-display-mire"></span></p>
+
+      <section id="Bloodline-container">
+        <h1 id="Bloodline-title">Bloodline</h1>
+        <p id="Bloodline-blurb">
+          Your bloodline describes what you are, a truth written in blood or sap
+          or chitin. You'll be instantly recognizable as a member of your
+          bloodline, unless you go to impressive length to hide it.
+        </p>
+        <div id="Bloodline-choice" class="btn-spread"></div>
+        <div id="Bloodline-options" class="hidden">
+          <p>
+            Select 1 Edge, 5 points of Skills/Languages, 2 Resources, 1 Drive,
+            and 1 Mire
+          </p>
+          <div id="Bloodline-edges">
+            <h2 id="Bloodline-edges-header">Edges</h2>
+            <section id="Bloodline-edge-btns" class="btn-spread"></section>
+          </div>
+          <div id="Bloodline-skills">
+            <h2 id="Bloodline-skills-header">Skills and Languages</h2>
+            <section id="Bloodline-skill-btns" class="btn-spread"></section>
+          </div>
+          <div id="Bloodline-aspects">
+            <h2 id="Bloodline-aspects-header">Aspects</h2>
+            <section id="Bloodline-aspect-btns" class="btn-spread"></section>
+          </div>
+          <div id="Bloodline-resources">
+            <h2 id="Bloodline-resources-header">Resources</h2>
+            <section id="Bloodline-resource-btns" class="btn-spread"></section>
+          </div>
+          <div id="Bloodline-drives">
+            <h2 id="Bloodline-drives-header">Drives</h2>
+            <section id="Bloodline-drive-btns" class="btn-spread"></section>
+          </div>
+          <div id="Bloodline-mires">
+            <h2 id="Bloodline-mires-header">Mires</h2>
+            <section id="Bloodline-mire-btns" class="btn-spread"></section>
+          </div>
+        </div>
       </section>
-      <section id="Post-display" class="display-el">
-        <p>Post:<span id="Post-display-name"></span></p>
-        <p>Edge:<span id="Post-display-edge"></span></p>
-        <p>Skills: <span id="Post-display-skills"></span></p>
-        <p>Aspects: <span id="Post-display-aspects"></span></p>
-        <p>Resources: <span id="Post-display-resources"></span></p>
-        <p>Drive: <span id="Post-display-drive"></span></p>
-        <p>Mire: <span id="Post-display-mire"></span></p>
+
+      <section id="Origin-container">
+        <h1 id="Origin-title">Origin</h1>
+        <p id="Origin-blurb">
+          Your origin denotes the kind of environment you lived in before you
+          became a wildsailor. It doesn't need to be where you grew up, though
+          it can be - it could be a place or culture that left a lasting impact
+          on you.
+        </p>
+        <div id="Origin-choice" class="btn-spread"></div>
+        <div id="Origin-options" class="hidden">
+          <p>
+            Select 1 Edge, 5 points of Skills/Languages, 2 Resources, 1 Drive,
+            and 1 Mire
+          </p>
+          <div id="Origin-edges">
+            <h2 id="Origin-edges-header">Edges</h2>
+            <section id="Origin-edge-btns" class="btn-spread"></section>
+          </div>
+          <div id="Origin-skills">
+            <h2 id="Origin-skills-header">Skills and Languages</h2>
+            <section id="Origin-skill-btns" class="btn-spread"></section>
+          </div>
+          <div id="Origin-aspects">
+            <h2 id="Origin-aspects-header">Aspects</h2>
+            <section id="Origin-aspect-btns" class="btn-spread"></section>
+          </div>
+          <div id="Origin-resources">
+            <h2 id="Origin-resources-header">Resources</h2>
+            <section id="Origin-resource-btns" class="btn-spread"></section>
+          </div>
+          <div id="Origin-drives">
+            <h2 id="Origin-drives-header">Drives</h2>
+            <section id="Origin-drive-btns" class="btn-spread"></section>
+          </div>
+          <div id="Origin-mires">
+            <h2 id="Origin-mires-header">Mires</h2>
+            <section id="Origin-mire-btns" class="btn-spread"></section>
+          </div>
+        </div>
       </section>
-    </section>
+
+      <section id="Post-container">
+        <h1 id="Post-title">Post</h1>
+        <p id="Post-blurb">
+          Your post denotes your position on the ship, or at least the kind of
+          activities you've trained for while travelling the rustling waves.
+        </p>
+        <div id="Post-choice" class="btn-spread"></div>
+        <div id="Post-options" class="hidden">
+          <p>
+            Select 1 Edge, 5 points of Skills/Languages, 2 Resources, 1 Drive,
+            and 1 Mire
+          </p>
+          <div id="Post-edges">
+            <h2 id="Post-edges-header">Edges</h2>
+            <section id="Post-edge-btns" class="btn-spread"></section>
+          </div>
+          <div id="Post-skills">
+            <h2 id="Post-skills-header">Skills and Languages</h2>
+            <section id="Post-skill-btns" class="btn-spread"></section>
+          </div>
+          <div id="Post-aspects">
+            <h2 id="Post-aspects-header">Aspects</h2>
+            <section id="Post-aspect-btns" class="btn-spread"></section>
+          </div>
+          <div id="Post-resources">
+            <h2 id="Post-resources-header">Resources</h2>
+            <section id="Post-resource-btns" class="btn-spread"></section>
+          </div>
+          <div id="Post-drives">
+            <h2 id="Post-drives-header">Drives</h2>
+            <section id="Post-drive-btns" class="btn-spread"></section>
+          </div>
+          <div id="Post-mires">
+            <h2 id="Post-mires-header">Mires</h2>
+            <section id="Post-mire-btns" class="btn-spread"></section>
+          </div>
+        </div>
+      </section>
+
+      <h2>Display</h2>
+      <section id="display-character" class="btn-spread">
+        <section id="Bloodline-display" class="display-el">
+          <p>Bloodline: <span id="Bloodline-display-name"></span></p>
+          <p>Edge:<span id="Bloodline-display-edge"></span></p>
+          <p>Skills: <span id="Bloodline-display-skills"></span></p>
+          <p>Aspects: <span id="Bloodline-display-aspects"></span></p>
+          <p>Resources: <span id="Bloodline-display-resources"></span></p>
+          <p>Drive: <span id="Bloodline-display-drive"></span></p>
+          <p>Mire: <span id="Bloodline-display-mire"></span></p>
+        </section>
+        <section id="Origin-display" class="display-el">
+          <p>Origin:<span id="Origin-display-name"></span></p>
+          <p>Edge:<span id="Origin-display-edge"></span></p>
+          <p>Skills: <span id="Origin-display-skills"></span></p>
+          <p>Aspects: <span id="Origin-display-aspects"></span></p>
+          <p>Resources: <span id="Origin-display-resources"></span></p>
+          <p>Drive: <span id="Origin-display-drive"></span></p>
+          <p>Mire: <span id="Origin-display-mire"></span></p>
+        </section>
+        <section id="Post-display" class="display-el">
+          <p>Post:<span id="Post-display-name"></span></p>
+          <p>Edge:<span id="Post-display-edge"></span></p>
+          <p>Skills: <span id="Post-display-skills"></span></p>
+          <p>Aspects: <span id="Post-display-aspects"></span></p>
+          <p>Resources: <span id="Post-display-resources"></span></p>
+          <p>Drive: <span id="Post-display-drive"></span></p>
+          <p>Mire: <span id="Post-display-mire"></span></p>
+        </section>
+      </section>
+    </main>
     <footer></footer>
   </body>
   <script type="module" src="script.js"></script>
