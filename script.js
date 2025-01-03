@@ -260,15 +260,56 @@ const resourceButtonFunction = (target, pb) => {
 
   //Gives elements .selected-resource or removes it
   [...document.getElementsByClassName(`${pb}-resource`)].forEach((el) => {
-    console.log(el.lastElementChild.innerHTML);
     if (resourceArray.includes(el.lastElementChild.innerHTML)) {
-      console.log(`${el.lastElementChild.innerHTML} is on the list.`);
       el.classList.add("selected-resource");
     } else {
-      console.log(`${el.lastElementChild.innerHTML} is not on the list.`);
       el.classList.remove("selected-resource");
     }
   });
+
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
+};
+
+const driveButtonFunction = (target, pb) => {
+  let targetDrive = target.firstElementChild.innerHTML;
+
+  //Control class on buttons
+  [...document.getElementsByClassName(`${pb}-drive`)].forEach((drive) => {
+    if (targetDrive == drive.firstElementChild.innerHTML) {
+      drive.classList.toggle("selected-drive");
+    } else {
+      drive.classList.remove("selected-drive");
+    }
+  });
+
+  //Assign to playbook
+  if (target.classList.contains("selected-drive")) {
+    qsCharacterHolder[pb].drive = targetDrive;
+  } else {
+    qsCharacterHolder[pb].drive = "";
+  }
+
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
+};
+
+const mireButtonFunction = (target, pb) => {
+  let targetMire = target.firstElementChild.innerHTML;
+
+  //Control class on buttons
+  [...document.getElementsByClassName(`${pb}-mire`)].forEach((mire) => {
+    if (targetMire == mire.firstElementChild.innerHTML) {
+      mire.classList.toggle("selected-mire");
+    } else {
+      mire.classList.remove("selected-mire");
+    }
+  });
+
+  //Assign to playbook
+  if (target.classList.contains("selected-mire")) {
+    qsCharacterHolder[pb].mire = targetMire;
+  } else {
+    qsCharacterHolder[pb].mire = "";
+  }
 
   updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
 };
@@ -437,6 +478,24 @@ const playbookChoiceBtns = document.getElementsByClassName(
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
         resourceButtonFunction(btn2, selectedPlaybook.type);
+      });
+    });
+
+    //Add clickability to drive buttons
+    [
+      ...document.getElementsByClassName(`${selectedPlaybook.type}-drive`),
+    ].forEach((btn2) => {
+      btn2.addEventListener("click", () => {
+        driveButtonFunction(btn2, selectedPlaybook.type);
+      });
+    });
+
+    //Add clickability to mire buttons
+    [
+      ...document.getElementsByClassName(`${selectedPlaybook.type}-mire`),
+    ].forEach((btn2) => {
+      btn2.addEventListener("click", () => {
+        mireButtonFunction(btn2, selectedPlaybook.type);
       });
     });
 
