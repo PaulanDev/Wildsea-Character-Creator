@@ -114,16 +114,28 @@ export const DISPLAY_OBJECT = {
     name: BLOODLINE_DISPLAY_NAME,
     edge: BLOODLINE_DISPLAY_EDGE,
     skills: BLOODLINE_DISPLAY_SKILLS,
+    aspects: BLOODLINE_DISPLAY_ASPECTS,
+    resources: BLOODLINE_DISPLAY_RESOURCES,
+    drive: BLOODLINE_DISPLAY_DRIVE,
+    mire: BLOODLINE_DISPLAY_MIRE,
   },
   Origin: {
     name: ORIGIN_DISPLAY_NAME,
     edge: ORIGIN_DISPLAY_EDGE,
     skills: ORIGIN_DISPLAY_SKILLS,
+    aspects: ORIGIN_DISPLAY_ASPECTS,
+    resources: ORIGIN_DISPLAY_RESOURCES,
+    drive: ORIGIN_DISPLAY_DRIVE,
+    mire: ORIGIN_DISPLAY_MIRE,
   },
   Post: {
     name: POST_DISPLAY_NAME,
     edge: POST_DISPLAY_EDGE,
     skills: POST_DISPLAY_SKILLS,
+    aspects: POST_DISPLAY_ASPECTS,
+    resources: POST_DISPLAY_RESOURCES,
+    drive: POST_DISPLAY_DRIVE,
+    mire: POST_DISPLAY_MIRE,
   },
 };
 
@@ -139,5 +151,17 @@ export const updateDisplay = (displayObj, sheet, skillsArr) => {
       }
     });
     displayObj[pb].skills.innerHTML = skillsText;
+
+    let aspectText = "";
+    sheet[pb].aspects.forEach((aspect) => {
+      aspectText += `<br>${aspect.name}`;
+    });
+    displayObj[pb].aspects.innerHTML = aspectText;
+
+    let resourceText = "";
+    sheet[pb].resources.forEach((resource) => {
+      resourceText += `<br>${resource.name} (${resource.type})`;
+    });
+    displayObj[pb].resources.innerHTML = resourceText;
   }
 };
