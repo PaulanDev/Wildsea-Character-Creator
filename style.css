@@ -146,7 +146,7 @@ header {
   display: flex;
   justify-content: space-around;
   border-top: 1px black solid;
-  min-height: 1em;
+  min-height: 1.1em;
   user-select: none;
 }
 
