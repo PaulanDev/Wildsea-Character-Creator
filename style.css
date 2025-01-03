@@ -44,6 +44,14 @@ header {
   background-color: plum;
 }
 
+.selected-drive {
+  background-color: salmon;
+}
+
+.selected-mire {
+  background-color: lightgrey;
+}
+
 .locked-edge {
   background-color: darkslategray;
   color: beige;
@@ -94,6 +102,7 @@ header {
   border-radius: 10%;
   padding: 0.5em;
   min-width: 20%;
+  max-width: 25%;
   text-align: center;
 }
 
