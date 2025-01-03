@@ -74,14 +74,40 @@ const BLOODLINE_DISPLAY_EDGE = document.getElementById(
 const BLOODLINE_DISPLAY_SKILLS = document.getElementById(
   "Bloodline-display-skills"
 );
+const BLOODLINE_DISPLAY_ASPECTS = document.getElementById(
+  "Bloodline-display-aspects"
+);
+const BLOODLINE_DISPLAY_RESOURCES = document.getElementById(
+  "Bloodline-display-resources"
+);
+const BLOODLINE_DISPLAY_DRIVE = document.getElementById(
+  "Bloodline-display-drive"
+);
+const BLOODLINE_DISPLAY_MIRE = document.getElementById(
+  "Bloodline-display-mire"
+);
 
 const ORIGIN_DISPLAY_NAME = document.getElementById("Origin-display-name");
 const ORIGIN_DISPLAY_EDGE = document.getElementById("Origin-display-edge");
 const ORIGIN_DISPLAY_SKILLS = document.getElementById("Origin-display-skills");
+const ORIGIN_DISPLAY_ASPECTS = document.getElementById(
+  "Origin-display-aspects"
+);
+const ORIGIN_DISPLAY_RESOURCES = document.getElementById(
+  "Origin-display-resources"
+);
+const ORIGIN_DISPLAY_DRIVE = document.getElementById("Origin-display-drive");
+const ORIGIN_DISPLAY_MIRE = document.getElementById("Origin-display-mire");
 
 const POST_DISPLAY_NAME = document.getElementById("Post-display-name");
 const POST_DISPLAY_EDGE = document.getElementById("Post-display-edge");
 const POST_DISPLAY_SKILLS = document.getElementById("Post-display-skills");
+const POST_DISPLAY_ASPECTS = document.getElementById("Post-display-aspects");
+const POST_DISPLAY_RESOURCES = document.getElementById(
+  "Post-display-resources"
+);
+const POST_DISPLAY_DRIVE = document.getElementById("Post-display-drive");
+const POST_DISPLAY_MIRE = document.getElementById("Post-display-mire");
 
 export const DISPLAY_OBJECT = {
   Bloodline: {
