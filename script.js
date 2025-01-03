@@ -225,6 +225,7 @@ const aspectButtonFunction = (target, pb) => {
       }
     }
   );
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
 };
 
 //Resource Functionality
@@ -269,7 +270,7 @@ const resourceButtonFunction = (target, pb) => {
     }
   });
 
-  console.log(qsCharacterHolder[pb].resources);
+  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
 };
 
 /* HTML TEMPLATES */
