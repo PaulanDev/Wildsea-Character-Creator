@@ -168,3 +168,16 @@ export const updateDisplay = (displayObj, sheet, skillsArr) => {
     displayObj[pb].mire.innerHTML = sheet[pb].mire;
   }
 };
+
+//MODAL
+
+const modal = document.getElementById("modal-container");
+const displayBtn = document.getElementById("ub-display");
+displayBtn.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
