@@ -5,7 +5,7 @@ export const ardentPlaybook = {
     "The descendants of those humans that survived the explosive growth of the wildsea. The ardent are natural survivors watched over by ancestral spirits.",
   edgesQS: ["Iron", "Teeth", "Tides"],
   skillsQS: ["Harvest", "Hunt", "Sense", "Sway", "Tend", "Wavewalk", "Vault"],
-  languagesQS: ["Cthonic", "Old Hand", "Raka Spit"],
+  languagesQS: ["Chthonic", "Old Hand", "Raka Spit"],
   resourcesQS: {
     salvage: ["Stone Fragments", "Highwood Planks"],
     specimens: ["Caged Bird", "Milkweed"],
