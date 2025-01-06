@@ -9,35 +9,12 @@ import { PLAYBOOKS } from "./importer.js";
 import { edgesInfo } from "./playbooks/edges.js";
 import { SKILLS } from "./playbooks/skills.js";
 
-let qsPlaybookHolder = {
-  Bloodline: {
-    name: "",
-    edge: "",
-    skills: {},
-    resources: [],
-    drive: "",
-    mire: "",
-    aspects: [],
-  },
-  Origin: {
-    name: "",
-    edge: "",
-    skills: {},
-    resources: [],
-    drive: "",
-    mire: "",
-    aspects: [],
-  },
-  Post: {
-    name: "",
-    edge: "",
-    skills: {},
-    resources: [],
-    drive: "",
-    mire: "",
-    aspects: [],
-  },
-};
+import {
+  qsPlaybookHolder,
+  qsFullCharacter,
+  resetCharacterPlaybook,
+  updateFullCharacter,
+} from "./subscripts/characterSheets.js";
 
 const skillPointMax = 5;
 
@@ -46,21 +23,6 @@ const SKILLSARR = SKILLS.map((skill) => skill.name);
 
 const createEdgeHolder = (sheet) => {
   return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
-};
-
-//Reset all choices in the qsPlaybookHolder to blanks
-const resetCharacterPlaybook = (item) => {
-  item["name"] = "";
-  item["edge"] = "";
-  item["skills"] = {};
-  item["resources"] = [];
-  item["drive"] = "";
-  item["mire"] = "";
-  item["aspects"] = [];
-};
-
-const btnArrayOf = (pb, option) => {
-  return [...document.getElementsByClassName(`${pb}-${option}`)];
 };
 
 //Create playbook choice buttons
@@ -439,7 +401,9 @@ const playbookChoiceBtns = document.getElementsByClassName(
     });
 
     //Add clickability to Edge buttons
-    btnArrayOf(selectedPlaybook.type, "edge").forEach((btn2) => {
+    [
+      ...document.getElementsByClassName(`${selectedPlaybook.type}-edge`),
+    ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
         edgeButtonFunction(btn2, selectedPlaybook.type);
       });
@@ -502,6 +466,8 @@ const playbookChoiceBtns = document.getElementsByClassName(
     //Update skill counters after changing playbooks, which resets and removes points
     SKILLSARR.forEach((skill) => updateSkillCounters(skill));
     updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
-    console.log(qsPlaybookHolder);
+    updateFullCharacter(qsPlaybookHolder, qsFullCharacter);
+    console.log("Here's the condensed character sheet:");
+    console.log(qsFullCharacter);
   });
 });
