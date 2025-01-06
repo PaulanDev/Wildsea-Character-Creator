@@ -266,3 +266,5 @@ export const SKILLS = [
       "Exceedingly difficult to master, Highvin is a primarily written language often found on old pre-verdant ruins. Usually understood by scholars, antiquarians, and treasure-hunters. Lore might include details of the pre-verdant times, though always fragmentary.",
   },
 ];
+
+export const SKILLSARR = SKILLS.map((skill) => skill.name);
