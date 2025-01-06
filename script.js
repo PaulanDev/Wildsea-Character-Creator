@@ -7,7 +7,7 @@ import {
 
 import { PLAYBOOKS } from "./importer.js";
 import { edgesInfo } from "./playbooks/edges.js";
-import { SKILLS } from "./playbooks/skills.js";
+import { SKILLSARR } from "./playbooks/skills.js";
 
 import {
   qsPlaybookHolder,
@@ -17,9 +17,6 @@ import {
 } from "./subscripts/characterSheets.js";
 
 const skillPointMax = 5;
-
-//This is a dirty solution until I make the skills object in playbooks, like I did for edges.
-const SKILLSARR = SKILLS.map((skill) => skill.name);
 
 const createEdgeHolder = (sheet) => {
   return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
@@ -48,18 +45,7 @@ const hideOptionsIfNotSelected = (target, cl, el, pb) => {
   }
 };
 
-//Unselect a button of the same class as the clicked button
-const deselectUnusedButton = (arr, cl, target) => {
-  [...arr].forEach((item) => {
-    if (
-      item.classList.contains(cl) &&
-      item.classList.contains(target.classList[0]) &&
-      item.id !== target.id
-    ) {
-      item.classList.remove(cl);
-    }
-  });
-};
+import { deselectUnusedButton } from "./subscripts/buttonFunctions.js";
 
 const toggleLockedEdges = (target) => {
   let edgeHolder = createEdgeHolder(qsPlaybookHolder);
@@ -127,22 +113,22 @@ const minusBtnFunction = (target, type) => {
 };
 
 //Option Functionality
-const edgeButtonFunction = (target, type) => {
+const edgeButtonFunction = (target, type, pbHolder) => {
   //Set edge on the character sheet
-  qsPlaybookHolder[type].edge = target.id.split("-")[2];
+  pbHolder[type].edge = target.id.split("-")[2];
   //Toggle selection class on clicked button
   target.classList.toggle("selected-edge");
   //Removes edge from qsPlaybookHolder is edge button is deselected
   if (!target.classList.contains("selected-edge")) {
-    qsPlaybookHolder[type].edge = "";
+    pbHolder[type].edge = "";
   }
   deselectUnusedButton(
     [...document.getElementsByClassName(`${type}-edge`)],
     "selected-edge",
     target
   );
-  toggleLockedEdges(target);
-  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
+  toggleLockedEdges(target, pbHolder);
+  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
 
 //Aspect Functionality
@@ -405,7 +391,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       ...document.getElementsByClassName(`${selectedPlaybook.type}-edge`),
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
-        edgeButtonFunction(btn2, selectedPlaybook.type);
+        edgeButtonFunction(btn2, selectedPlaybook.type, qsPlaybookHolder);
       });
     });
 
