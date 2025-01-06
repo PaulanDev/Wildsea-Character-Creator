@@ -1,4 +1,4 @@
-import { updateDisplay } from "./getElements.js";
+import { updateDisplay, DISPLAY_OBJECT } from "./getElements.js";
 import { getTotalPointsInSkill } from "./htmlTemplates.js";
 
 //Unselect a button of the same class as the clicked button
@@ -14,7 +14,6 @@ export const deselectUnusedButton = (arr, cl, target) => {
   });
 };
 
-/*
 const toggleLockedEdges = (target, pbHolder) => {
   let edgeHolder = createEdgeHolder(pbHolder);
   [...document.getElementsByClassName("edges")].forEach((item) => {
@@ -28,6 +27,7 @@ const toggleLockedEdges = (target, pbHolder) => {
   });
 };
 
+/*
 export const updateSkillCounters = (skill) => {
   [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
     counter.innerHTML = getTotalPointsInSkill(skill, pbHolder);
