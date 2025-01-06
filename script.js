@@ -9,7 +9,7 @@ import { PLAYBOOKS } from "./importer.js";
 import { edgesInfo } from "./playbooks/edges.js";
 import { SKILLS } from "./playbooks/skills.js";
 
-let qsCharacterHolder = {
+let qsPlaybookHolder = {
   Bloodline: {
     name: "",
     edge: "",
@@ -48,7 +48,7 @@ const createEdgeHolder = (sheet) => {
   return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
 };
 
-//Reset all choices in the qsCharacterHolder to blanks
+//Reset all choices in the qsPlaybookHolder to blanks
 const resetCharacterPlaybook = (item) => {
   item["name"] = "";
   item["edge"] = "";
@@ -81,7 +81,7 @@ const hideOptionsIfNotSelected = (target, cl, el, pb) => {
       el.classList.remove("hidden");
     } else {
       el.classList.add("hidden");
-      resetCharacterPlaybook(qsCharacterHolder[pb]);
+      resetCharacterPlaybook(qsPlaybookHolder[pb]);
     }
   }
 };
@@ -100,7 +100,7 @@ const deselectUnusedButton = (arr, cl, target) => {
 };
 
 const toggleLockedEdges = (target) => {
-  let edgeHolder = createEdgeHolder(qsCharacterHolder);
+  let edgeHolder = createEdgeHolder(qsPlaybookHolder);
   [...document.getElementsByClassName("edges")].forEach((item) => {
     if (item.id != target.id && !item.classList.contains("selected-edge")) {
       if (edgeHolder.includes(item.classList[1].split("-")[0])) {
@@ -114,28 +114,28 @@ const toggleLockedEdges = (target) => {
 
 const updateSkillCounters = (skill) => {
   [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
-    counter.innerHTML = getTotalPointsInSkill(skill, qsCharacterHolder);
+    counter.innerHTML = getTotalPointsInSkill(skill, qsPlaybookHolder);
   });
 };
 
 const plusBtnFunction = (target, type) => {
   const skill = target.parentElement.id.split("-")[0];
 
-  let totalPointsInSkill = getTotalPointsInSkill(skill, qsCharacterHolder);
+  let totalPointsInSkill = getTotalPointsInSkill(skill, qsPlaybookHolder);
 
   let pointsRemainingForPlaybook =
     skillPointMax -
-    Object.values(qsCharacterHolder[type].skills).reduce(
+    Object.values(qsPlaybookHolder[type].skills).reduce(
       (acc, currVal) => acc + currVal,
       0
     );
 
   if (pointsRemainingForPlaybook > 0) {
     if (totalPointsInSkill < 3) {
-      if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
-        qsCharacterHolder[type].skills[skill]++;
+      if (qsPlaybookHolder[type].skills.hasOwnProperty(skill)) {
+        qsPlaybookHolder[type].skills[skill]++;
       } else {
-        qsCharacterHolder[type].skills[skill] = 1;
+        qsPlaybookHolder[type].skills[skill] = 1;
       }
 
       target.parentElement.lastElementChild.innerHTML += " * ";
@@ -143,17 +143,17 @@ const plusBtnFunction = (target, type) => {
       updateSkillCounters(skill);
     }
   }
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
+  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
 };
 
 const minusBtnFunction = (target, type) => {
   const skill = target.parentElement.id.split("-")[0];
 
-  if (qsCharacterHolder[type].skills.hasOwnProperty(skill)) {
-    if (qsCharacterHolder[type].skills[skill] > 1) {
-      qsCharacterHolder[type].skills[skill]--;
+  if (qsPlaybookHolder[type].skills.hasOwnProperty(skill)) {
+    if (qsPlaybookHolder[type].skills[skill] > 1) {
+      qsPlaybookHolder[type].skills[skill]--;
     } else {
-      delete qsCharacterHolder[type].skills[skill];
+      delete qsPlaybookHolder[type].skills[skill];
     }
 
     target.parentElement.lastElementChild.innerHTML =
@@ -161,18 +161,18 @@ const minusBtnFunction = (target, type) => {
 
     updateSkillCounters(skill);
   }
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
+  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
 };
 
 //Option Functionality
 const edgeButtonFunction = (target, type) => {
   //Set edge on the character sheet
-  qsCharacterHolder[type].edge = target.id.split("-")[2];
+  qsPlaybookHolder[type].edge = target.id.split("-")[2];
   //Toggle selection class on clicked button
   target.classList.toggle("selected-edge");
-  //Removes edge from qsCharacterHolder is edge button is deselected
+  //Removes edge from qsPlaybookHolder is edge button is deselected
   if (!target.classList.contains("selected-edge")) {
-    qsCharacterHolder[type].edge = "";
+    qsPlaybookHolder[type].edge = "";
   }
   deselectUnusedButton(
     [...document.getElementsByClassName(`${type}-edge`)],
@@ -180,7 +180,7 @@ const edgeButtonFunction = (target, type) => {
     target
   );
   toggleLockedEdges(target);
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
+  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
 };
 
 //Aspect Functionality
@@ -193,25 +193,25 @@ const aspectButtonFunction = (target, pb) => {
   );
   //If the aspects for the pb don't have an object with the name of the clicked button
   if (
-    qsCharacterHolder[pb["type"]].aspects.filter(
+    qsPlaybookHolder[pb["type"]].aspects.filter(
       (item) => item["name"] == aspectName
     ).length == 0
   ) {
-    qsCharacterHolder[pb["type"]].aspects.push(chosenAspect);
+    qsPlaybookHolder[pb["type"]].aspects.push(chosenAspect);
   } else {
-    let targetIndex = qsCharacterHolder[pb["type"]].aspects
+    let targetIndex = qsPlaybookHolder[pb["type"]].aspects
       .map((aspect) => aspect.name)
       .indexOf(aspectName);
-    qsCharacterHolder[pb["type"]].aspects.splice(targetIndex, 1);
+    qsPlaybookHolder[pb["type"]].aspects.splice(targetIndex, 1);
   }
 
   //Remove the first in the aspect array if a third is added
-  if (qsCharacterHolder[pb["type"]].aspects.length > 2) {
-    qsCharacterHolder[pb["type"]].aspects.shift();
+  if (qsPlaybookHolder[pb["type"]].aspects.length > 2) {
+    qsPlaybookHolder[pb["type"]].aspects.shift();
   }
 
-  //Create array of aspect names in qsCharacterHolder for playbook
-  let selectedAspectNames = qsCharacterHolder[pb["type"]].aspects.map(
+  //Create array of aspect names in qsPlaybookHolder for playbook
+  let selectedAspectNames = qsPlaybookHolder[pb["type"]].aspects.map(
     (aspect) => aspect.name
   );
 
@@ -225,7 +225,7 @@ const aspectButtonFunction = (target, pb) => {
       }
     }
   );
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
+  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
 };
 
 //Resource Functionality
@@ -235,28 +235,28 @@ const resourceButtonFunction = (target, pb) => {
 
   //Check if resource is in pb, if so remove from array
 
-  let resourceArray = qsCharacterHolder[pb].resources.map(
+  let resourceArray = qsPlaybookHolder[pb].resources.map(
     (thing) => thing["name"]
   );
 
   if (resourceArray.indexOf(resourceName) > -1) {
-    qsCharacterHolder[pb].resources.splice(
+    qsPlaybookHolder[pb].resources.splice(
       resourceArray.indexOf(resourceName),
       1
     );
   } else {
-    qsCharacterHolder[pb].resources.push({
+    qsPlaybookHolder[pb].resources.push({
       name: resourceName,
       type: resourceType,
     });
   }
 
   //Remove the 0th index resource if a third one tries to be selected
-  if (qsCharacterHolder[pb].resources.length > 2) {
-    qsCharacterHolder[pb].resources.shift();
+  if (qsPlaybookHolder[pb].resources.length > 2) {
+    qsPlaybookHolder[pb].resources.shift();
   }
 
-  resourceArray = qsCharacterHolder[pb].resources.map((thing) => thing["name"]);
+  resourceArray = qsPlaybookHolder[pb].resources.map((thing) => thing["name"]);
 
   //Gives elements .selected-resource or removes it
   [...document.getElementsByClassName(`${pb}-resource`)].forEach((el) => {
@@ -267,7 +267,7 @@ const resourceButtonFunction = (target, pb) => {
     }
   });
 
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
+  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
 };
 
 const driveButtonFunction = (target, pb) => {
@@ -284,12 +284,12 @@ const driveButtonFunction = (target, pb) => {
 
   //Assign to playbook
   if (target.classList.contains("selected-drive")) {
-    qsCharacterHolder[pb].drive = targetDrive;
+    qsPlaybookHolder[pb].drive = targetDrive;
   } else {
-    qsCharacterHolder[pb].drive = "";
+    qsPlaybookHolder[pb].drive = "";
   }
 
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
+  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
 };
 
 const mireButtonFunction = (target, pb) => {
@@ -306,12 +306,12 @@ const mireButtonFunction = (target, pb) => {
 
   //Assign to playbook
   if (target.classList.contains("selected-mire")) {
-    qsCharacterHolder[pb].mire = targetMire;
+    qsPlaybookHolder[pb].mire = targetMire;
   } else {
-    qsCharacterHolder[pb].mire = "";
+    qsPlaybookHolder[pb].mire = "";
   }
 
-  updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
+  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
 };
 
 /* HTML TEMPLATES */
@@ -365,10 +365,10 @@ const playbookChoiceBtns = document.getElementsByClassName(
     );
 
     //Clear out the holder when a new playbook is clicked
-    resetCharacterPlaybook(qsCharacterHolder[selectedPlaybook.type]);
+    resetCharacterPlaybook(qsPlaybookHolder[selectedPlaybook.type]);
 
     //Toggle locked-edge off when a playbook button is clicked
-    let edgeHolder = createEdgeHolder(qsCharacterHolder);
+    let edgeHolder = createEdgeHolder(qsPlaybookHolder);
     [...document.getElementsByClassName("edges")].forEach((item) => {
       if (
         !edgeHolder.includes(item.classList[1].split("-")[0]) &&
@@ -383,10 +383,10 @@ const playbookChoiceBtns = document.getElementsByClassName(
       div.innerHTML = "";
     });
 
-    //Assign name of playbook to qsCharacterHolder
+    //Assign name of playbook to qsPlaybookHolder
     clickedBtn.classList.contains("selected-playbook")
-      ? (qsCharacterHolder[selectedPlaybook.type].name = selectedPlaybook.name)
-      : (qsCharacterHolder[selectedPlaybook.type].name = "");
+      ? (qsPlaybookHolder[selectedPlaybook.type].name = selectedPlaybook.name)
+      : (qsPlaybookHolder[selectedPlaybook.type].name = "");
 
     //Generate Edge buttons
     selectedPlaybook.edgesQS.forEach((edge) => {
@@ -394,7 +394,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
         edgeBtnTemplate(
           edge,
           selectedPlaybook.type,
-          qsCharacterHolder,
+          qsPlaybookHolder,
           edgesInfo
         );
     });
@@ -409,7 +409,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
     [...selectedPlaybook.skillsQS, ...selectedPlaybook.languagesQS].forEach(
       (skill) => {
         OPTIONS_OBJECT[selectedPlaybook.type].divarray[2].innerHTML +=
-          skillBtnTemplate(skill, qsCharacterHolder, selectedPlaybook.type);
+          skillBtnTemplate(skill, qsPlaybookHolder, selectedPlaybook.type);
       }
     );
 
@@ -501,7 +501,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
 
     //Update skill counters after changing playbooks, which resets and removes points
     SKILLSARR.forEach((skill) => updateSkillCounters(skill));
-    updateDisplay(DISPLAY_OBJECT, qsCharacterHolder, SKILLSARR);
-    console.log(qsCharacterHolder);
+    updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
+    console.log(qsPlaybookHolder);
   });
 });
