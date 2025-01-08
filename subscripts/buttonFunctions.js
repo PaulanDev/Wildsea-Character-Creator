@@ -55,6 +55,7 @@ export const edgeButtonFunction = (target, type, pbHolder) => {
     target
   );
   toggleLockedEdges(target, pbHolder);
+  updateFullCharacter(pbHolder, qsFullCharacter);
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
 
@@ -83,6 +84,7 @@ export const plusBtnFunction = (target, type, pbHolder) => {
       updateSkillCounters(skill, pbHolder);
     }
   }
+  updateFullCharacter(pbHolder, qsFullCharacter);
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
 
@@ -101,6 +103,7 @@ export const minusBtnFunction = (target, type, pbHolder) => {
 
     updateSkillCounters(skill, pbHolder);
   }
+  updateFullCharacter(pbHolder, qsFullCharacter);
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
 
@@ -145,6 +148,7 @@ export const aspectButtonFunction = (target, pb, pbHolder) => {
       }
     }
   );
+  updateFullCharacter(pbHolder, qsFullCharacter);
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
 
@@ -179,7 +183,7 @@ export const resourceButtonFunction = (target, pb, pbHolder) => {
       el.classList.remove("selected-resource");
     }
   });
-
+  updateFullCharacter(pbHolder, qsFullCharacter);
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
 
@@ -201,7 +205,7 @@ export const driveButtonFunction = (target, pb, pbHolder) => {
   } else {
     pbHolder[pb].drive = "";
   }
-
+  updateFullCharacter(pbHolder, qsFullCharacter);
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
 
@@ -223,6 +227,6 @@ export const mireButtonFunction = (target, pb, pbHolder) => {
   } else {
     pbHolder[pb].mire = "";
   }
-
+  updateFullCharacter(pbHolder, qsFullCharacter);
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
