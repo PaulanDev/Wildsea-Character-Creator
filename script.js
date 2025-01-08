@@ -51,52 +51,8 @@ import {
   updateSkillCounters,
   plusBtnFunction,
   minusBtnFunction,
+  aspectButtonFunction,
 } from "./subscripts/buttonFunctions.js";
-
-//Aspect Functionality
-const aspectButtonFunction = (target, pb) => {
-  //Get the name of the clicked aspect button
-  let aspectName = target.firstElementChild.innerHTML;
-  //Get the full object of the aspect
-  let chosenAspect = pb.aspects.find(
-    (el) => el.name == target.firstElementChild.innerHTML
-  );
-  //If the aspects for the pb don't have an object with the name of the clicked button
-  if (
-    qsPlaybookHolder[pb["type"]].aspects.filter(
-      (item) => item["name"] == aspectName
-    ).length == 0
-  ) {
-    qsPlaybookHolder[pb["type"]].aspects.push(chosenAspect);
-  } else {
-    let targetIndex = qsPlaybookHolder[pb["type"]].aspects
-      .map((aspect) => aspect.name)
-      .indexOf(aspectName);
-    qsPlaybookHolder[pb["type"]].aspects.splice(targetIndex, 1);
-  }
-
-  //Remove the first in the aspect array if a third is added
-  if (qsPlaybookHolder[pb["type"]].aspects.length > 2) {
-    qsPlaybookHolder[pb["type"]].aspects.shift();
-  }
-
-  //Create array of aspect names in qsPlaybookHolder for playbook
-  let selectedAspectNames = qsPlaybookHolder[pb["type"]].aspects.map(
-    (aspect) => aspect.name
-  );
-
-  //Toggle selected-aspect for relevant buttons
-  [...document.getElementsByClassName(`${pb["type"]}-aspect`)].forEach(
-    (btn2) => {
-      if (selectedAspectNames.includes(btn2.firstElementChild.innerHTML)) {
-        btn2.classList.add("selected-aspect");
-      } else {
-        btn2.classList.remove("selected-aspect");
-      }
-    }
-  );
-  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
-};
 
 //Resource Functionality
 const resourceButtonFunction = (target, pb) => {
@@ -193,7 +149,6 @@ import {
   resourceBtnTemplate,
   dmBtnTemplate,
   capitalize,
-  getTotalPointsInSkill,
 } from "./subscripts/htmlTemplates.js";
 
 //Call renderPlaybookBtns before assigning button functionality
@@ -345,7 +300,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       ...document.getElementsByClassName(`${selectedPlaybook.type}-aspect`),
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
-        aspectButtonFunction(btn2, selectedPlaybook);
+        aspectButtonFunction(btn2, selectedPlaybook, qsPlaybookHolder);
       });
     });
 
