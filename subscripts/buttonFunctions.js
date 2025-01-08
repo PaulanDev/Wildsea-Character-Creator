@@ -204,3 +204,25 @@ export const driveButtonFunction = (target, pb, pbHolder) => {
 
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
+
+export const mireButtonFunction = (target, pb, pbHolder) => {
+  let targetMire = target.firstElementChild.innerHTML;
+
+  //Control class on buttons
+  [...document.getElementsByClassName(`${pb}-mire`)].forEach((mire) => {
+    if (targetMire == mire.firstElementChild.innerHTML) {
+      mire.classList.toggle("selected-mire");
+    } else {
+      mire.classList.remove("selected-mire");
+    }
+  });
+
+  //Assign to playbook
+  if (target.classList.contains("selected-mire")) {
+    pbHolder[pb].mire = targetMire;
+  } else {
+    pbHolder[pb].mire = "";
+  }
+
+  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
+};
