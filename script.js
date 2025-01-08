@@ -48,13 +48,8 @@ const hideOptionsIfNotSelected = (target, cl, el, pb) => {
 import {
   deselectUnusedButton,
   edgeButtonFunction,
+  updateSkillCounters,
 } from "./subscripts/buttonFunctions.js";
-
-const updateSkillCounters = (skill, pbHolder) => {
-  [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
-    counter.innerHTML = getTotalPointsInSkill(skill, pbHolder);
-  });
-};
 
 const plusBtnFunction = (target, type, pbHolder) => {
   const skill = target.parentElement.id.split("-")[0];
