@@ -28,6 +28,12 @@ const toggleLockedEdges = (target, pbHolder) => {
   });
 };
 
+export const updateSkillCounters = (skill, pbHolder) => {
+  [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
+    counter.innerHTML = getTotalPointsInSkill(skill, pbHolder);
+  });
+};
+
 export const edgeButtonFunction = (target, type, pbHolder) => {
   //Set edge on the character sheet
   pbHolder[type].edge = target.id.split("-")[2];
