@@ -51,29 +51,8 @@ import {
   aspectButtonFunction,
   resourceButtonFunction,
   driveButtonFunction,
+  mireButtonFunction,
 } from "./subscripts/buttonFunctions.js";
-
-const mireButtonFunction = (target, pb) => {
-  let targetMire = target.firstElementChild.innerHTML;
-
-  //Control class on buttons
-  [...document.getElementsByClassName(`${pb}-mire`)].forEach((mire) => {
-    if (targetMire == mire.firstElementChild.innerHTML) {
-      mire.classList.toggle("selected-mire");
-    } else {
-      mire.classList.remove("selected-mire");
-    }
-  });
-
-  //Assign to playbook
-  if (target.classList.contains("selected-mire")) {
-    qsPlaybookHolder[pb].mire = targetMire;
-  } else {
-    qsPlaybookHolder[pb].mire = "";
-  }
-
-  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
-};
 
 /* HTML TEMPLATES */
 import {
@@ -262,7 +241,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       ...document.getElementsByClassName(`${selectedPlaybook.type}-mire`),
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
-        mireButtonFunction(btn2, selectedPlaybook.type);
+        mireButtonFunction(btn2, selectedPlaybook.type, qsPlaybookHolder);
       });
     });
 
@@ -270,7 +249,5 @@ const playbookChoiceBtns = document.getElementsByClassName(
     SKILLSARR.forEach((skill) => updateSkillCounters(skill, qsPlaybookHolder));
     updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
     updateFullCharacter(qsPlaybookHolder, qsFullCharacter);
-    console.log("Here's the condensed character sheet:");
-    console.log(qsFullCharacter);
   });
 });
