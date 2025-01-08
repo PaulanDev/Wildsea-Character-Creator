@@ -16,7 +16,7 @@ import {
   updateFullCharacter,
 } from "./subscripts/characterSheets.js";
 
-const skillPointMax = 5;
+export const skillPointMax = 5;
 
 const createEdgeHolder = (sheet) => {
   return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
@@ -49,53 +49,9 @@ import {
   deselectUnusedButton,
   edgeButtonFunction,
   updateSkillCounters,
+  plusBtnFunction,
+  minusBtnFunction,
 } from "./subscripts/buttonFunctions.js";
-
-const plusBtnFunction = (target, type, pbHolder) => {
-  const skill = target.parentElement.id.split("-")[0];
-
-  let totalPointsInSkill = getTotalPointsInSkill(skill, pbHolder);
-
-  let pointsRemainingForPlaybook =
-    skillPointMax -
-    Object.values(pbHolder[type].skills).reduce(
-      (acc, currVal) => acc + currVal,
-      0
-    );
-
-  if (pointsRemainingForPlaybook > 0) {
-    if (totalPointsInSkill < 3) {
-      if (pbHolder[type].skills.hasOwnProperty(skill)) {
-        pbHolder[type].skills[skill]++;
-      } else {
-        pbHolder[type].skills[skill] = 1;
-      }
-
-      target.parentElement.lastElementChild.innerHTML += " * ";
-
-      updateSkillCounters(skill, qsPlaybookHolder);
-    }
-  }
-  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
-};
-
-const minusBtnFunction = (target, type, pbHolder) => {
-  const skill = target.parentElement.id.split("-")[0];
-
-  if (pbHolder[type].skills.hasOwnProperty(skill)) {
-    if (pbHolder[type].skills[skill] > 1) {
-      pbHolder[type].skills[skill]--;
-    } else {
-      delete pbHolder[type].skills[skill];
-    }
-
-    target.parentElement.lastElementChild.innerHTML =
-      target.parentElement.lastElementChild.innerHTML.slice(0, -3);
-
-    updateSkillCounters(skill, qsPlaybookHolder);
-  }
-  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
-};
 
 //Aspect Functionality
 const aspectButtonFunction = (target, pb) => {
