@@ -23,7 +23,7 @@ const createEdgeHolder = (sheet) => {
 };
 
 //Create playbook choice buttons
-const renderChoiceBtns = () => {
+const renderPlaybookBtns = () => {
   for (let playbook of PLAYBOOKS) {
     CHOICE_OBJECT[playbook.type].innerHTML += playbookBtnTemplate(
       playbook.name,
@@ -45,89 +45,60 @@ const hideOptionsIfNotSelected = (target, cl, el, pb) => {
   }
 };
 
-import { deselectUnusedButton } from "./subscripts/buttonFunctions.js";
+import {
+  deselectUnusedButton,
+  edgeButtonFunction,
+} from "./subscripts/buttonFunctions.js";
 
-const toggleLockedEdges = (target) => {
-  let edgeHolder = createEdgeHolder(qsPlaybookHolder);
-  [...document.getElementsByClassName("edges")].forEach((item) => {
-    if (item.id != target.id && !item.classList.contains("selected-edge")) {
-      if (edgeHolder.includes(item.classList[1].split("-")[0])) {
-        item.classList.add("locked-edge");
-      } else if (item.classList.contains("locked-edge")) {
-        item.classList.remove("locked-edge");
-      }
-    }
-  });
-};
-
-const updateSkillCounters = (skill) => {
+const updateSkillCounters = (skill, pbHolder) => {
   [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
-    counter.innerHTML = getTotalPointsInSkill(skill, qsPlaybookHolder);
+    counter.innerHTML = getTotalPointsInSkill(skill, pbHolder);
   });
 };
 
-const plusBtnFunction = (target, type) => {
+const plusBtnFunction = (target, type, pbHolder) => {
   const skill = target.parentElement.id.split("-")[0];
 
-  let totalPointsInSkill = getTotalPointsInSkill(skill, qsPlaybookHolder);
+  let totalPointsInSkill = getTotalPointsInSkill(skill, pbHolder);
 
   let pointsRemainingForPlaybook =
     skillPointMax -
-    Object.values(qsPlaybookHolder[type].skills).reduce(
+    Object.values(pbHolder[type].skills).reduce(
       (acc, currVal) => acc + currVal,
       0
     );
 
   if (pointsRemainingForPlaybook > 0) {
     if (totalPointsInSkill < 3) {
-      if (qsPlaybookHolder[type].skills.hasOwnProperty(skill)) {
-        qsPlaybookHolder[type].skills[skill]++;
+      if (pbHolder[type].skills.hasOwnProperty(skill)) {
+        pbHolder[type].skills[skill]++;
       } else {
-        qsPlaybookHolder[type].skills[skill] = 1;
+        pbHolder[type].skills[skill] = 1;
       }
 
       target.parentElement.lastElementChild.innerHTML += " * ";
 
-      updateSkillCounters(skill);
+      updateSkillCounters(skill, qsPlaybookHolder);
     }
   }
-  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
+  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
 
-const minusBtnFunction = (target, type) => {
+const minusBtnFunction = (target, type, pbHolder) => {
   const skill = target.parentElement.id.split("-")[0];
 
-  if (qsPlaybookHolder[type].skills.hasOwnProperty(skill)) {
-    if (qsPlaybookHolder[type].skills[skill] > 1) {
-      qsPlaybookHolder[type].skills[skill]--;
+  if (pbHolder[type].skills.hasOwnProperty(skill)) {
+    if (pbHolder[type].skills[skill] > 1) {
+      pbHolder[type].skills[skill]--;
     } else {
-      delete qsPlaybookHolder[type].skills[skill];
+      delete pbHolder[type].skills[skill];
     }
 
     target.parentElement.lastElementChild.innerHTML =
       target.parentElement.lastElementChild.innerHTML.slice(0, -3);
 
-    updateSkillCounters(skill);
+    updateSkillCounters(skill, qsPlaybookHolder);
   }
-  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
-};
-
-//Option Functionality
-const edgeButtonFunction = (target, type, pbHolder) => {
-  //Set edge on the character sheet
-  pbHolder[type].edge = target.id.split("-")[2];
-  //Toggle selection class on clicked button
-  target.classList.toggle("selected-edge");
-  //Removes edge from qsPlaybookHolder is edge button is deselected
-  if (!target.classList.contains("selected-edge")) {
-    pbHolder[type].edge = "";
-  }
-  deselectUnusedButton(
-    [...document.getElementsByClassName(`${type}-edge`)],
-    "selected-edge",
-    target
-  );
-  toggleLockedEdges(target, pbHolder);
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
 
@@ -274,8 +245,8 @@ import {
   getTotalPointsInSkill,
 } from "./subscripts/htmlTemplates.js";
 
-//Call renderChoiceBtns before assigning button functionality
-renderChoiceBtns();
+//Call renderPlaybookBtns before assigning button functionality
+renderPlaybookBtns();
 
 //Create array of selectable buttons
 const playbookChoiceBtns = document.getElementsByClassName(
@@ -400,7 +371,12 @@ const playbookChoiceBtns = document.getElementsByClassName(
       ...document.getElementsByClassName(`${selectedPlaybook.type}-inc-btn`),
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
-        plusBtnFunction(btn2, selectedPlaybook.type);
+        plusBtnFunction(
+          btn2,
+          selectedPlaybook.type,
+          qsPlaybookHolder,
+          skillPointMax
+        );
       });
     });
 
@@ -409,7 +385,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       ...document.getElementsByClassName(`${selectedPlaybook.type}-dec-btn`),
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
-        minusBtnFunction(btn2, selectedPlaybook.type);
+        minusBtnFunction(btn2, selectedPlaybook.type, qsPlaybookHolder);
       });
     });
 
@@ -450,7 +426,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
     });
 
     //Update skill counters after changing playbooks, which resets and removes points
-    SKILLSARR.forEach((skill) => updateSkillCounters(skill));
+    SKILLSARR.forEach((skill) => updateSkillCounters(skill, qsPlaybookHolder));
     updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
     updateFullCharacter(qsPlaybookHolder, qsFullCharacter);
     console.log("Here's the condensed character sheet:");
