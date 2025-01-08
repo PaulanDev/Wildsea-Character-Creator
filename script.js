@@ -49,49 +49,8 @@ import {
   plusBtnFunction,
   minusBtnFunction,
   aspectButtonFunction,
+  resourceButtonFunction,
 } from "./subscripts/buttonFunctions.js";
-
-//Resource Functionality
-const resourceButtonFunction = (target, pb) => {
-  let resourceType = target.firstElementChild.innerHTML;
-  let resourceName = target.lastElementChild.innerHTML;
-
-  //Check if resource is in pb, if so remove from array
-
-  let resourceArray = qsPlaybookHolder[pb].resources.map(
-    (thing) => thing["name"]
-  );
-
-  if (resourceArray.indexOf(resourceName) > -1) {
-    qsPlaybookHolder[pb].resources.splice(
-      resourceArray.indexOf(resourceName),
-      1
-    );
-  } else {
-    qsPlaybookHolder[pb].resources.push({
-      name: resourceName,
-      type: resourceType,
-    });
-  }
-
-  //Remove the 0th index resource if a third one tries to be selected
-  if (qsPlaybookHolder[pb].resources.length > 2) {
-    qsPlaybookHolder[pb].resources.shift();
-  }
-
-  resourceArray = qsPlaybookHolder[pb].resources.map((thing) => thing["name"]);
-
-  //Gives elements .selected-resource or removes it
-  [...document.getElementsByClassName(`${pb}-resource`)].forEach((el) => {
-    if (resourceArray.includes(el.lastElementChild.innerHTML)) {
-      el.classList.add("selected-resource");
-    } else {
-      el.classList.remove("selected-resource");
-    }
-  });
-
-  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
-};
 
 const driveButtonFunction = (target, pb) => {
   let targetDrive = target.firstElementChild.innerHTML;
@@ -306,7 +265,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       ...document.getElementsByClassName(`${selectedPlaybook.type}-resource`),
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
-        resourceButtonFunction(btn2, selectedPlaybook.type);
+        resourceButtonFunction(btn2, selectedPlaybook.type, qsPlaybookHolder);
       });
     });
 
