@@ -4,6 +4,10 @@ import { SKILLSARR } from "../playbooks/skills.js";
 import { skillPointMax } from "../script.js";
 import { qsFullCharacter } from "./characterSheets.js";
 
+export const createEdgeHolder = (sheet) => {
+  return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
+};
+
 //Unselect a button of the same class as the clicked button
 export const deselectUnusedButton = (arr, cl, target) => {
   [...arr].forEach((item) => {
