@@ -1,5 +1,6 @@
 import { updateDisplay, DISPLAY_OBJECT } from "./getElements.js";
 import { getTotalPointsInSkill } from "./htmlTemplates.js";
+import { SKILLSARR } from "../playbooks/skills.js";
 
 //Unselect a button of the same class as the clicked button
 export const deselectUnusedButton = (arr, cl, target) => {
@@ -27,38 +28,20 @@ const toggleLockedEdges = (target, pbHolder) => {
   });
 };
 
-/*
-export const updateSkillCounters = (skill) => {
-  [...document.getElementsByClassName(`${skill}-value`)].forEach((counter) => {
-    counter.innerHTML = getTotalPointsInSkill(skill, pbHolder);
-  });
-};
-
-export const plusBtnFunction = (target, type) => {
-  const skill = target.parentElement.id.split("-")[0];
-
-  let totalPointsInSkill = getTotalPointsInSkill(skill, qsPlaybookHolder);
-
-  let pointsRemainingForPlaybook =
-    skillPointMax -
-    Object.values(qsPlaybookHolder[type].skills).reduce(
-      (acc, currVal) => acc + currVal,
-      0
-    );
-
-  if (pointsRemainingForPlaybook > 0) {
-    if (totalPointsInSkill < 3) {
-      if (qsPlaybookHolder[type].skills.hasOwnProperty(skill)) {
-        qsPlaybookHolder[type].skills[skill]++;
-      } else {
-        qsPlaybookHolder[type].skills[skill] = 1;
-      }
-
-      target.parentElement.lastElementChild.innerHTML += " * ";
-
-      updateSkillCounters(skill);
-    }
+export const edgeButtonFunction = (target, type, pbHolder) => {
+  //Set edge on the character sheet
+  pbHolder[type].edge = target.id.split("-")[2];
+  //Toggle selection class on clicked button
+  target.classList.toggle("selected-edge");
+  //Removes edge from qsPlaybookHolder is edge button is deselected
+  if (!target.classList.contains("selected-edge")) {
+    pbHolder[type].edge = "";
   }
-  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
+  deselectUnusedButton(
+    [...document.getElementsByClassName(`${type}-edge`)],
+    "selected-edge",
+    target
+  );
+  toggleLockedEdges(target, pbHolder);
+  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
-*/
