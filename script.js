@@ -53,30 +53,6 @@ import {
   driveButtonFunction,
 } from "./subscripts/buttonFunctions.js";
 
-/*
-const driveButtonFunction = (target, pb, pbHolder) => {
-  let targetDrive = target.firstElementChild.innerHTML;
-
-  //Control class on buttons
-  [...document.getElementsByClassName(`${pb}-drive`)].forEach((drive) => {
-    if (targetDrive == drive.firstElementChild.innerHTML) {
-      drive.classList.toggle("selected-drive");
-    } else {
-      drive.classList.remove("selected-drive");
-    }
-  });
-
-  //Assign to playbook
-  if (target.classList.contains("selected-drive")) {
-    pbHolder[pb].drive = targetDrive;
-  } else {
-    pbHolder[pb].drive = "";
-  }
-
-  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
-};
-*/
-
 const mireButtonFunction = (target, pb) => {
   let targetMire = target.firstElementChild.innerHTML;
 
