@@ -182,3 +182,25 @@ export const resourceButtonFunction = (target, pb, pbHolder) => {
 
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
+
+export const driveButtonFunction = (target, pb, pbHolder) => {
+  let targetDrive = target.firstElementChild.innerHTML;
+
+  //Control class on buttons
+  [...document.getElementsByClassName(`${pb}-drive`)].forEach((drive) => {
+    if (targetDrive == drive.firstElementChild.innerHTML) {
+      drive.classList.toggle("selected-drive");
+    } else {
+      drive.classList.remove("selected-drive");
+    }
+  });
+
+  //Assign to playbook
+  if (target.classList.contains("selected-drive")) {
+    pbHolder[pb].drive = targetDrive;
+  } else {
+    pbHolder[pb].drive = "";
+  }
+
+  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
+};
