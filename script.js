@@ -50,9 +50,11 @@ import {
   minusBtnFunction,
   aspectButtonFunction,
   resourceButtonFunction,
+  driveButtonFunction,
 } from "./subscripts/buttonFunctions.js";
 
-const driveButtonFunction = (target, pb) => {
+/*
+const driveButtonFunction = (target, pb, pbHolder) => {
   let targetDrive = target.firstElementChild.innerHTML;
 
   //Control class on buttons
@@ -66,13 +68,14 @@ const driveButtonFunction = (target, pb) => {
 
   //Assign to playbook
   if (target.classList.contains("selected-drive")) {
-    qsPlaybookHolder[pb].drive = targetDrive;
+    pbHolder[pb].drive = targetDrive;
   } else {
-    qsPlaybookHolder[pb].drive = "";
+    pbHolder[pb].drive = "";
   }
 
-  updateDisplay(DISPLAY_OBJECT, qsPlaybookHolder, SKILLSARR);
+  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
+*/
 
 const mireButtonFunction = (target, pb) => {
   let targetMire = target.firstElementChild.innerHTML;
@@ -274,7 +277,7 @@ const playbookChoiceBtns = document.getElementsByClassName(
       ...document.getElementsByClassName(`${selectedPlaybook.type}-drive`),
     ].forEach((btn2) => {
       btn2.addEventListener("click", () => {
-        driveButtonFunction(btn2, selectedPlaybook.type);
+        driveButtonFunction(btn2, selectedPlaybook.type, qsPlaybookHolder);
       });
     });
 
