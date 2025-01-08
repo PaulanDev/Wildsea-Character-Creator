@@ -18,10 +18,6 @@ import {
 
 export const skillPointMax = 5;
 
-const createEdgeHolder = (sheet) => {
-  return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
-};
-
 //Create playbook choice buttons
 const renderPlaybookBtns = () => {
   for (let playbook of PLAYBOOKS) {
@@ -46,6 +42,7 @@ const hideOptionsIfNotSelected = (target, cl, el, pb) => {
 };
 
 import {
+  createEdgeHolder,
   deselectUnusedButton,
   edgeButtonFunction,
   updateSkillCounters,
