@@ -147,3 +147,38 @@ export const aspectButtonFunction = (target, pb, pbHolder) => {
   );
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
+
+//Resource Functionality
+export const resourceButtonFunction = (target, pb, pbHolder) => {
+  let resourceType = target.firstElementChild.innerHTML;
+  let resourceName = target.lastElementChild.innerHTML;
+
+  //Check if resource is in pb, if so remove from array
+  let resourceArray = pbHolder[pb].resources.map((thing) => thing["name"]);
+  if (resourceArray.indexOf(resourceName) > -1) {
+    pbHolder[pb].resources.splice(resourceArray.indexOf(resourceName), 1);
+  } else {
+    pbHolder[pb].resources.push({
+      name: resourceName,
+      type: resourceType,
+    });
+  }
+
+  //Remove the 0th index resource if a third one tries to be selected
+  if (pbHolder[pb].resources.length > 2) {
+    pbHolder[pb].resources.shift();
+  }
+
+  resourceArray = pbHolder[pb].resources.map((thing) => thing["name"]);
+
+  //Gives elements .selected-resource or removes it
+  [...document.getElementsByClassName(`${pb}-resource`)].forEach((el) => {
+    if (resourceArray.includes(el.lastElementChild.innerHTML)) {
+      el.classList.add("selected-resource");
+    } else {
+      el.classList.remove("selected-resource");
+    }
+  });
+
+  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
+};
