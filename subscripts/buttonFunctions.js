@@ -2,6 +2,7 @@ import { updateDisplay, DISPLAY_OBJECT } from "./getElements.js";
 import { getTotalPointsInSkill } from "./htmlTemplates.js";
 import { SKILLSARR } from "../playbooks/skills.js";
 import { skillPointMax } from "../script.js";
+import { qsFullCharacter } from "./characterSheets.js";
 
 //Unselect a button of the same class as the clicked button
 export const deselectUnusedButton = (arr, cl, target) => {
@@ -96,5 +97,49 @@ export const minusBtnFunction = (target, type, pbHolder) => {
 
     updateSkillCounters(skill, pbHolder);
   }
+  updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
+};
+
+//Aspect Functionality
+export const aspectButtonFunction = (target, pb, pbHolder) => {
+  //Get the name of the clicked aspect button
+  let aspectName = target.firstElementChild.innerHTML;
+  //Get the full object of the aspect
+  let chosenAspect = pb.aspects.find(
+    (el) => el.name == target.firstElementChild.innerHTML
+  );
+  //If the aspects for the pb don't have an object with the name of the clicked button
+  if (
+    pbHolder[pb["type"]].aspects.filter((item) => item["name"] == aspectName)
+      .length == 0
+  ) {
+    pbHolder[pb["type"]].aspects.push(chosenAspect);
+  } else {
+    let targetIndex = pbHolder[pb["type"]].aspects
+      .map((aspect) => aspect.name)
+      .indexOf(aspectName);
+    pbHolder[pb["type"]].aspects.splice(targetIndex, 1);
+  }
+
+  //Remove the first in the aspect array if a third is added
+  if (pbHolder[pb["type"]].aspects.length > 2) {
+    pbHolder[pb["type"]].aspects.shift();
+  }
+
+  //Create array of aspect names in pbHolder for playbook
+  let selectedAspectNames = pbHolder[pb["type"]].aspects.map(
+    (aspect) => aspect.name
+  );
+
+  //Toggle selected-aspect for relevant buttons
+  [...document.getElementsByClassName(`${pb["type"]}-aspect`)].forEach(
+    (btn2) => {
+      if (selectedAspectNames.includes(btn2.firstElementChild.innerHTML)) {
+        btn2.classList.add("selected-aspect");
+      } else {
+        btn2.classList.remove("selected-aspect");
+      }
+    }
+  );
   updateDisplay(DISPLAY_OBJECT, pbHolder, SKILLSARR);
 };
