@@ -246,7 +246,7 @@ export const SKILLS = [
       "The rapid patter of hunting-families and leviathaneers, known for its incredible depth of descriptive words. Lore might include facts about the beasts and birds of the waves, and great conquests of hunters across the wilds.",
   },
   {
-    name: "Lyre-Bite",
+    name: "Lyrebite",
     blurb:
       "The lilting tongue of poets and songwriters across the wild waves, well-suited to performances and long-form poetry. Lore might include ancient pre-verdant songs and a deeper understanding of whispers.",
   },
