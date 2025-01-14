@@ -251,3 +251,9 @@ const playbookChoiceBtns = document.getElementsByClassName(
     updateFullCharacter(qsPlaybookHolder, qsFullCharacter);
   });
 });
+
+document.addEventListener("keyup", (event) => {
+  if (event.key == "p") {
+    console.log(qsFullCharacter);
+  }
+});
