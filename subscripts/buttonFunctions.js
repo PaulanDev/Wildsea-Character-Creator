@@ -2,7 +2,7 @@ import { updateDisplay, DISPLAY_OBJECT } from "./getElements.js";
 import { getTotalPointsInSkill } from "./htmlTemplates.js";
 import { SKILLSARR } from "../playbooks/skills.js";
 import { skillPointMax } from "../script.js";
-import { qsFullCharacter } from "./characterSheets.js";
+import { qsFullCharacter, updateFullCharacter } from "./characterSheets.js";
 
 export const createEdgeHolder = (sheet) => {
   return [sheet["Bloodline"].edge, sheet["Origin"].edge, sheet["Post"].edge];
