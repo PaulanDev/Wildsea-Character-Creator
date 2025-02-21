@@ -170,7 +170,6 @@ export const updateDisplay = (displayObj, sheet, skillsArr) => {
 };
 
 //MODAL
-
 const modal = document.getElementById("modal-container");
 const displayBtn = document.getElementById("ub-display");
 displayBtn.addEventListener("click", () => {
